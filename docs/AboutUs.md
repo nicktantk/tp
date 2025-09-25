@@ -26,9 +26,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/brandontwj1.png.jpg" width="200px">
 
 [[github](http://github.com/brandontwj1)]
-[[portfolio]()]
+[[portfolio](team/johndoe)]
 
-* Role: ?
+* Role: ???
 * Responsibilities: ???
 
 ### Johnny Doe
