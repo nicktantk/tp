@@ -32,7 +32,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Brandon
 
-<img src="images/brandontwj1.png.jpg" width="200px">
+<img src="images/brandontwj1.png" width="200px">
 
 [[github](http://github.com/brandontwj1)]
 [[portfolio](team/johndoe)]
