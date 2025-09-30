@@ -4,7 +4,7 @@
   pageNav: 3
 ---
 
-# AB-3 Developer Guide
+# InSight Developer Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -329,11 +329,47 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. `Constraint-Platform_Independent`
+- The software must run on Windows, Linux, and macOS, and must not use any OS-dependent libraries or features.
 
-*{More to be added}*
+2. `Constraint-Java-Version`
+- The application must work on a computer that has only Java 11 installed (i.e., it must not require any other Java version).
+
+3. `Constraint-Portable`
+- The software must be usable without requiring an installer; users should be able to run the JAR file directly.
+
+4. `Constraint-Single-User`
+- The product must be designed for a single user and must not support multi-user access or concurrent data file usage.
+
+5. `Constraint-Typing-Preferred`
+- The user interface must be optimized for users who type fast and prefer typing over other input methods.
+
+6. `Constraint-Human-Editable-File`
+- All data must be stored locally in a human-editable text file format.
+
+7. `Constraint-No-DBMS`
+- The application must not use a database management system (DBMS) such as MySQL to store data.
+
+8. `Constraint-OO`
+- The software must primarily follow the object-oriented programming design.
+
+9. `Constraint-Incremental`
+- The product must be developed in a breadth-first, incremental manner, with consistent delivery of working features throughout the project duration.
+
+10. `Constraint-No-Remote-Server`
+- The software must not depend on any remote server for its core functionality.
+
+11. `Constraint-External-Software`
+- Any third-party libraries used must be free, open-source, have permissive licenses, and must not require installation by the user.
+
+12. `Constraint-Screen-Resolution`
+- The GUI must work well at 1920x1080 resolution and higher (at 100% and 125% scaling), and be usable at 1280x720 and higher (at 150% scaling).
+
+13. `Constraint-Single-File`
+- The application and all dependencies must be packaged into a single JAR file (or a single ZIP file if necessary).
+
+14. `Constraint-File-Size`
+- The JAR/ZIP file size must not exceed 100MB; PDF documentation files must not exceed 15MB each.
 
 ### Glossary
 
