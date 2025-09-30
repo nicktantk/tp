@@ -20,7 +20,7 @@ lack business context, InSight is tailored for creative professionals who want t
 * Improve service delivery with context-aware communication
 
 ## 📖 Table of Contents
-* [About the Project]()
+* About the Project
 * Key Features 
 * User Stories 
 * Getting Started 
