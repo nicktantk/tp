@@ -375,7 +375,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-
+* **Loyalty Tracking**: A feature that records repeat interactions to identify frequent or returning clients.
+* **Tag**: A label that can be attached to a booking or client (e.g., “Wedding,” “Corporate,” “Outdoor Shoot”) 
+to help with categorization and search.
+* **Gradle**: The build automation tool used to manage dependencies, run builds, and execute tests.
+* **JavaFX**: A Java library for building graphical user interfaces (used for InSight’s UI).
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
