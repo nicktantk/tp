@@ -10,6 +10,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
+### Jie Yang
+
+<img src="images/jyang1206.png" width="200px">
+
+[[github](https://github.com/Jyang1206)]
+
+* Role: Team Lead
+* Responsibility: UI
+
 ### Nicholas
 
 <img src="images/nicktantk.png" width="200px">
