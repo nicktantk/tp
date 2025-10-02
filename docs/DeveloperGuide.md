@@ -287,16 +287,29 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …​               | I can …​                                | So that I can…​                                             |
+|----------|-----------------------|-----------------------------------------|-------------------------------------------------------------|
+| `* * *`  | user                  | add client contact information          | have all my contacts in one place                           |
+| `* * *`  | user                  | delete client contact information       | remove unnecessary contacts                                 |
+| `* * *`  | user                  | edit client contact information         | correct errors in original entries                          |
+| `* * *`  | user                  | add bookings for each client            | track past and upcoming bookings with my clients            |
+| `* * *`  | user                  | mark bookings                           | track which bookings have been completed                    |
+| `* * *`  | user                  | view booking details                    | be informed and prepared with upcoming bookings             |
+| `* * *`  | user                  | edit bookings                           | update the booking if a change is discussed with the client |
+| `* * *`  | user                  | delete bookings                         | remove unwanted bookings                                    |
+| `* * *`  | new user              | view available commands                 | be reminded of commands available if I forget them          |
+| `* *`    | time-constrained user | search for a client quickly             | save time searching for client details                      |
+| `* *`    | detail-oriented user  | add tags to bookings                    | record additional details for the booking                   |
+| `* *`    | new user              | clear sample data with a simple command | start afresh with my own clients                            |
+| `* *`    | user                  | add tags to clients                     | filter and group clients                                    |
+| `* *`    | user                  | undo my last action                     | rectify a mistake quickly                                   |
+| `* *`    | user                  | archive inactive clients                | main client list is clean                                   |
+| `* *`    | user                  | set booking priority                    | manage my workload                                          |
+| `* *`    | user                  | reschedule bookings easily              | handle client changes quickly                               |
+| `*`      | busy user             | get reminded about my upcoming bookings | not miss important appointments                             |
+| `*`      | user                  | see booking statistics                  | manage and plan for future workload                         |
+| `*`      | user                  | view a dashboard of upcoming bookings   | plan my schedule for the near future                        |
+| `*`      | user                  | view recent clients                     | find them easily                                            |
 
 ### Use cases
 
