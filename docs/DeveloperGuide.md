@@ -313,32 +313,82 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `InSight` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use Case: Add a Tag to a Client**
+
+**Purpose:** Allow the user to add a tag to an existing client after finding the client.
 
 **MSS**
+1. User requests to list clients.
+2. System displays a list of clients.
+3. User searches for a specific client by name or contact detail.
+4. System displays matching client(s).
+5. User selects the desired client from the search results.
+6. User requests to add a tag to the selected client.
+7. System prompts user to enter tag details.
+8. User inputs the tag details.
+9. System saves the tag under the client’s record.
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
-    Use case ends.
+   Use case ends.
 
 **Extensions**
+* 3a. No clients match the search query.
+    * 3a1. System shows a “No clients found” message.  
+      Use case ends.
 
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
-
+* 5a. User selects an invalid client index.
+    * 5a1. System shows an error message.  
       Use case resumes at step 2.
 
-*{More to be added}*
+
+**Use Case: Edit Client Booking Details**
+
+**Purpose:** Allow the user to edit details for a client’s existing booking.
+
+**MSS**
+1. User requests to list clients.
+2. System displays a list of clients.
+3. User selects a client from the list.
+4. System shows the client’s booking history.
+5. User selects a specific booking to edit.
+6. System displays the booking details for editing.
+7. User updates booking information.
+8. System saves the updated booking details.
+
+   Use case ends.
+
+**Extensions**
+* 3a. Client list is empty.  
+  Use case ends.
+
+* 5a. The chosen booking does not exist.
+    * 5a1. System shows an error message.  
+      Use case resumes at step 4.
+
+
+**Use Case: Delete a Client**
+
+**Purpose:** Allow the user to permanently delete a client’s record.
+
+**MSS**
+1. User requests to list clients.
+2. System displays a list of clients.
+3. User selects a client to delete.
+4. System prompts for confirmation to delete the client.
+5. User confirms deletion.
+6. System deletes the client’s record.
+
+   Use case ends.
+
+**Extensions**
+* 2a. Client list is empty.  
+  Use case ends.
+
+* 3a. User selects an invalid client index.
+    * 3a1. System shows an error message.  
+      Use case resumes at step 2.
+
 
 ### Non-Functional Requirements
 
