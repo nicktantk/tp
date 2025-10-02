@@ -300,15 +300,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | new user              | view available commands                 | be reminded of commands available if I forget them          |
 | `* *`    | time-constrained user | search for a client quickly             | save time searching for client details                      |
 | `* *`    | detail-oriented user  | add tags to bookings                    | record additional details for the booking                   |
-| `*`      | busy user             | get reminded about my upcoming bookings | not miss important appointments                             |
+| `* *`    | new user              | clear sample data with a simple command | start afresh with my own clients                            |
 | `* *`    | user                  | add tags to clients                     | filter and group clients                                    |
 | `* *`    | user                  | undo my last action                     | rectify a mistake quickly                                   |
 | `* *`    | user                  | archive inactive clients                | main client list is clean                                   |
 | `* *`    | user                  | set booking priority                    | manage my workload                                          |
 | `* *`    | user                  | reschedule bookings easily              | handle client changes quickly                               |
+| `*`      | busy user             | get reminded about my upcoming bookings | not miss important appointments                             |
 | `*`      | user                  | see booking statistics                  | manage and plan for future workload                         |
 | `*`      | user                  | view a dashboard of upcoming bookings   | plan my schedule for the near future                        |
-| `* *`    | new user              | clear sample data with a simple command | start afresh with my own clients                            |
 | `*`      | user                  | view recent clients                     | find them easily                                            |
 
 ### Use cases
