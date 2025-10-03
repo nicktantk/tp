@@ -274,14 +274,20 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Small photography/videography business owners who sell services directly to clients or other businesses
+* Spend more time than they'd like juggling admin tasks (scheduling, chasing payments, tracking conversations) instead of focusing on shoots or editing.
+* Values simplicity and tools that fit naturally into their creative flow
+* A fast typer
+* Prefers typing to mouse interactions
+* Needs to manage a large number of clients, influencers, and other stakeholders
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**:
+**For** Small photography/videography businesses who sell services (not products) directly to clients/businesses  
+**Who are** dissatisfied with client details scattered across email, WhatsApp, and spreadsheets, making it hard to track who booked when, what package they purchased, specific requests, theme etc.  
+**Our product is a** specially designed client relationship management system  
+**That provides** booking history, loyalty tracking, trend/influencer monitoring, and client feedback storage in one place  
+**Unlike** big enterprise CRMs (too costly, bloated) or plain address books (too limited, no sales context),  
+**We offer** a simple, creative-friendly tool that helps photographers deliver what clients really want — shoots inspired by current trends and influencers.  
 
 ### User stories
 
