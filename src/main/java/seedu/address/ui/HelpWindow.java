@@ -15,8 +15,8 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "addclient, editclient, deleteclient, listclients, " 
-+ "searchclient, addbooking, editbooking, viewbookings, tagbooking, viewclient, markbooking, help, exit";
+    public static final String USERGUIDE_URL = "addclient, editclient, deleteclient, listclients, " + 
+"searchclient, addbooking, editbooking, viewbookings, tagbooking, viewclient, markbooking, help, exit";
 
     public static final String HELP_MESSAGE = "Available Command: \n" + USERGUIDE_URL;
 
