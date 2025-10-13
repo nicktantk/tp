@@ -26,7 +26,8 @@ import seedu.address.model.booking.exceptions.DuplicateBookingException;
 public class UniqueBookingList implements Iterable<Booking> {
 
     private final ObservableList<Booking> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Booking> internalUnmodifiableList = FXCollections.unmodifiableObservableList(internalList);
+    private final ObservableList<Booking> internalUnmodifiableList =
+        FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent booking as the given argument.

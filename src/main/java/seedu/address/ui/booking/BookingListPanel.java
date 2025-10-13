@@ -8,6 +8,10 @@ import javafx.scene.layout.Region;
 import seedu.address.model.booking.Booking;
 import seedu.address.ui.UiPart;
 
+
+/**
+ * Panel containing the list of Bookings.
+ */
 public class BookingListPanel extends UiPart<Region> {
     private static final String FXML = "booking/BookingListPanel.fxml";
 
