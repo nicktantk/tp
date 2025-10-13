@@ -1,14 +1,14 @@
 package seedu.address.model.booking;
 
-import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents a booking made by a client/person.
@@ -34,7 +34,8 @@ public class Booking {
      * @param notes       Additional notes for the booking.
      * @param isDone      Completion status of booking
      */
-    public Booking(Description description, Person client, LocalDate date, PackageType packageType, Set<Tag> notes, boolean isDone) {
+    public Booking(Description description, Person client, LocalDate date,
+                   PackageType packageType, Set<Tag> notes, boolean isDone) {
         requireAllNonNull(client, date, packageType, notes, isDone);
         this.description = description;
         this.client = client;
@@ -46,6 +47,7 @@ public class Booking {
 
     /**
      * Returns the client/person associated with this booking.
+     *
      * @return the client
      */
     public Person getClient() {
@@ -54,6 +56,7 @@ public class Booking {
 
     /**
      * Returns the description associated with this booking.
+     *
      * @return the description
      */
     public Description getDescription() {
@@ -62,6 +65,7 @@ public class Booking {
 
     /**
      * Returns the date of the booking.
+     *
      * @return the booking date
      */
     public LocalDate getDate() {
@@ -70,32 +74,35 @@ public class Booking {
 
     /**
      * Returns the completion status of the booking
+     *
      * @return boolean value of if the booking is done
      */
-    public boolean isDone(){
+    public boolean isDone() {
         return this.isDone;
     }
 
     /**
      * Sets the completion status of the booking to be done
+     *
      * @return new Booking with completed booking status
      */
-    public Booking markBooking(){
+    public Booking markBooking() {
         return new Booking(this.description, this.client, this.date, this.packageType, this.notes, true);
     }
 
     /**
      * Sets the completion status of the booking to be not done
+     *
      * @return new Booking with completed booking status
      */
-    public Booking unMarkBooking(){
+    public Booking unMarkBooking() {
         return new Booking(this.description, this.client, this.date, this.packageType, this.notes, false);
     }
 
 
-
     /**
      * Returns the package type of the booking.
+     *
      * @return the package type
      */
     public PackageType getPackageType() {
@@ -104,6 +111,7 @@ public class Booking {
 
     /**
      * Returns the notes for the booking.
+     *
      * @return the notes
      */
     public Set<Tag> getNotes() {
@@ -123,7 +131,7 @@ public class Booking {
                 && otherBooking.getClient().equals(getClient());
     }
 
-   @Override
+    @Override
     public String toString() {
         return String.format("Booking[client=%s, date=%s, packageType=%s, notes=%s]",
                 client, date, packageType, notes);
@@ -140,11 +148,10 @@ public class Booking {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Booking)) {
+        if (!(other instanceof Booking otherBooking)) {
             return false;
         }
 
-        Booking otherBooking = (Booking) other;
         return description.equals(otherBooking.description)
                 && client.equals(otherBooking.client)
                 && date.equals(otherBooking.date)
@@ -152,6 +159,7 @@ public class Booking {
                 && notes.equals(otherBooking.notes)
                 && isDone == otherBooking.isDone;
     }
+
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own

@@ -1,15 +1,15 @@
 package seedu.address.model;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.booking.Booking;
 import seedu.address.model.booking.UniqueBookingList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
-
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Wraps all data at the address-book level
@@ -26,7 +26,8 @@ public class AddressBook implements ReadOnlyAddressBook {
      *
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
-     */ {
+     */
+    {
         persons = new UniquePersonList();
         bookings = new UniqueBookingList();
     }
@@ -83,7 +84,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Replaces the given Booking {@code target} in the list with {@code editedBooking}.
      * {@code target} must exist in the address book.
-     * The booking identity of {@code editedBooking} must not be the same as another existing booking in the address book.
+     * The booking identity of {@code editedBooking} must not be the same as
+     * another existing booking in the address book.
      */
     public void setBooking(Booking target, Booking editedBooking) {
         requireNonNull(editedBooking);
@@ -172,11 +174,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof AddressBook)) {
+        if (!(other instanceof AddressBook otherAddressBook)) {
             return false;
         }
 
-        AddressBook otherAddressBook = (AddressBook) other;
         return persons.equals(otherAddressBook.persons);
     }
 

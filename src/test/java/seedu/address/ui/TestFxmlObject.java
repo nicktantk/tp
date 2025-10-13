@@ -1,8 +1,8 @@
 package seedu.address.ui;
 
-import java.util.Objects;
-
 import javafx.beans.DefaultProperty;
+
+import java.util.Objects;
 
 /**
  * A test object which can be constructed via an FXML file.
@@ -13,7 +13,8 @@ public class TestFxmlObject {
 
     private String text;
 
-    public TestFxmlObject() {}
+    public TestFxmlObject() {
+    }
 
     public TestFxmlObject(String text) {
         setText(text);
@@ -34,11 +35,10 @@ public class TestFxmlObject {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof TestFxmlObject)) {
+        if (!(other instanceof TestFxmlObject otherTestFxmlObject)) {
             return false;
         }
 
-        TestFxmlObject otherTestFxmlObject = (TestFxmlObject) other;
         return Objects.equals(text, otherTestFxmlObject.text);
     }
 

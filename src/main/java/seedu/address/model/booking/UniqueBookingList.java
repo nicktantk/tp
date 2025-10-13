@@ -119,11 +119,10 @@ public class UniqueBookingList implements Iterable<Booking> {
             return true;
         }
 
-        if (!(other instanceof UniqueBookingList)) {
+        if (!(other instanceof UniqueBookingList otherUniqueBookingList)) {
             return false;
         }
 
-        UniqueBookingList otherUniqueBookingList = (UniqueBookingList) other;
         return internalList.equals(otherUniqueBookingList.internalList);
     }
 

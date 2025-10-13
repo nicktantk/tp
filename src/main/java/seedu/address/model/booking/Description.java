@@ -45,10 +45,9 @@ public class Description {
         if (other == this) {
             return true;
         }
-        if (!(other instanceof Description)) {
+        if (!(other instanceof Description otherDescription)) {
             return false;
         }
-        Description otherDescription = (Description) other;
         return value.equals(otherDescription.value);
     }
 

@@ -1,5 +1,7 @@
 package seedu.address.ui.booking;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -8,8 +10,9 @@ import javafx.scene.layout.Region;
 import seedu.address.model.booking.Booking;
 import seedu.address.ui.UiPart;
 
-import java.util.Comparator;
-
+/**
+ * A UI component that displays information of a {@code Booking}.
+ */
 public class BookingCard extends UiPart<Region> {
     private static final String FXML = "booking/BookingListCard.fxml";
 
@@ -44,7 +47,7 @@ public class BookingCard extends UiPart<Region> {
         date.setText("Date: " + booking.getDate().toString());
         packageType.setText(booking.getPackageType().toString());
         booking.getNotes().stream().sorted(Comparator.comparing(notes -> notes.tagName))
-                .forEach(tag -> notes.getChildren().add(new Label (tag.tagName)));
+                .forEach(tag -> notes.getChildren().add(new Label(tag.tagName)));
         String isDone = booking.isDone() ? "Done" : "Pending";
         status.getStyleClass().removeAll(isDone);
         status.getStyleClass().add(isDone);
