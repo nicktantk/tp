@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -10,6 +11,7 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
@@ -159,14 +161,25 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.show();
     }
 
+
     /**
-     * Closes the application.
+     * Closes the application with a delay.
      */
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
+        PauseTransition pause = new PauseTransition(Duration.seconds(guiSettings.getExitDelay()));
+        pause.setOnFinished(event -> exitApp());
+        pause.play();
+    }
+
+    /**
+     * Closes the application.
+     */
+    @FXML
+    private void exitApp() {
         helpWindow.hide();
         primaryStage.hide();
     }

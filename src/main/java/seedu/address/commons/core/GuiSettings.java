@@ -14,9 +14,11 @@ public class GuiSettings implements Serializable {
 
     private static final double DEFAULT_HEIGHT = 600;
     private static final double DEFAULT_WIDTH = 740;
+    private static final int DEFAULT_EXIT_DELAY = 1;
 
     private final double windowWidth;
     private final double windowHeight;
+    private final int exitDelay;
     private final Point windowCoordinates;
 
     /**
@@ -25,6 +27,7 @@ public class GuiSettings implements Serializable {
     public GuiSettings() {
         windowWidth = DEFAULT_WIDTH;
         windowHeight = DEFAULT_HEIGHT;
+        exitDelay = DEFAULT_EXIT_DELAY;
         windowCoordinates = null; // null represent no coordinates
     }
 
@@ -34,6 +37,7 @@ public class GuiSettings implements Serializable {
     public GuiSettings(double windowWidth, double windowHeight, int xPosition, int yPosition) {
         this.windowWidth = windowWidth;
         this.windowHeight = windowHeight;
+        exitDelay = DEFAULT_EXIT_DELAY;
         windowCoordinates = new Point(xPosition, yPosition);
     }
 
@@ -43,6 +47,10 @@ public class GuiSettings implements Serializable {
 
     public double getWindowHeight() {
         return windowHeight;
+    }
+
+    public double getExitDelay() {
+        return exitDelay;
     }
 
     public Point getWindowCoordinates() {
