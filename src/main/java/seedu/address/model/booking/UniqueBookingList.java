@@ -1,15 +1,15 @@
 package seedu.address.model.booking;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.address.model.booking.exceptions.BookingNotFoundException;
+import seedu.address.model.booking.exceptions.DuplicateBookingException;
 
 import java.util.Iterator;
 import java.util.List;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.address.model.booking.exceptions.DuplicateBookingException;
-import seedu.address.model.booking.exceptions.BookingNotFoundException;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * A list of bookings that enforces uniqueness between its elements and does not allow nulls.
@@ -18,7 +18,7 @@ import seedu.address.model.booking.exceptions.BookingNotFoundException;
  * to ensure that the booking being added or updated is unique in terms of identity in the UniqueBookingList.
  * However, the removal of a booking uses Booking#equals(Object) so as to ensure that the booking
  * with exactly the same fields will be removed.
- *
+ * <p>
  * Supports a minimal set of list operations.
  *
  * @see Booking#isSameBooking(Booking)
@@ -26,8 +26,7 @@ import seedu.address.model.booking.exceptions.BookingNotFoundException;
 public class UniqueBookingList implements Iterable<Booking> {
 
     private final ObservableList<Booking> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Booking> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
+    private final ObservableList<Booking> internalUnmodifiableList = FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent booking as the given argument.
@@ -80,6 +79,10 @@ public class UniqueBookingList implements Iterable<Booking> {
         }
     }
 
+    /**
+     * Replaces the contents of this list with {@code bookings}.
+     * {@code bookings} must not contain duplicate bookings.
+     */
     public void setBookings(UniqueBookingList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);

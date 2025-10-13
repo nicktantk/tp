@@ -3,7 +3,6 @@ package seedu.address.model.booking;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
-import java.awt.print.Book;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Objects;

@@ -32,6 +32,9 @@ public class BookingCard extends UiPart<Region> {
     @FXML
     private Label status;
 
+    /**
+     * Creates a {@code Booking} with the given {@code Booking} and index to display.
+     */
     public BookingCard(Booking booking, int displayedIndex) {
         super(FXML);
         this.booking = booking;

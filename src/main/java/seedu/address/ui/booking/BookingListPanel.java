@@ -14,12 +14,18 @@ public class BookingListPanel extends UiPart<Region> {
     @FXML
     private ListView<Booking> bookingListView;
 
+    /**
+     * Creates a {@code BookingListPanel} with the given {@code ObservableList}.
+     */
     public BookingListPanel(ObservableList<Booking> bookingList) {
         super(FXML);
         bookingListView.setItems(bookingList);
         bookingListView.setCellFactory(listView -> new BookingListViewCell());
     }
 
+    /**
+     * Custom {@code ListCell} that displays the graphics of a {@code Booking} using a {@code BookingCard}.
+     */
     class BookingListViewCell extends ListCell<Booking> {
         @Override
         protected void updateItem(Booking booking, boolean empty) {
