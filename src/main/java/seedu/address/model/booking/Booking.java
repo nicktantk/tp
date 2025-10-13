@@ -12,7 +12,7 @@ import java.util.Objects;
 public class Booking {
     private final Person client;
     private final LocalDate date;
-    private final String packageType;
+    private final PackageType packageType;
     private final String notes;
 
     /**
@@ -23,7 +23,7 @@ public class Booking {
      * @param packageType The type of package booked.
      * @param notes       Additional notes for the booking.
      */
-    public Booking(Person client, LocalDate date, String packageType, String notes) {
+    public Booking(Person client, LocalDate date, PackageType packageType, String notes) {
         this.client = client;
         this.date = date;
         this.packageType = packageType;
@@ -50,7 +50,7 @@ public class Booking {
      * Returns the package type of the booking.
      * @return the package type
      */
-    public String getPackageType() {
+    public PackageType getPackageType() {
         return packageType;
     }
 
@@ -75,14 +75,10 @@ public class Booking {
                 && otherBooking.getClient().equals(getClient());
     }
 
-    @Override
+   @Override
     public String toString() {
-        return "Booking{" +
-                "client=" + client +
-                ", date=" + date +
-                ", packageType='" + packageType + '\'' +
-                ", notes='" + notes + '\'' +
-                '}';
+        return String.format("Booking[client=%s, date=%s, packageType=%s, notes=%s]",
+                client, date, packageType, notes);
     }
 
     /**
