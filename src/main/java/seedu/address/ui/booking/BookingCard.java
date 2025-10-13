@@ -36,7 +36,7 @@ public class BookingCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         client.setText("Client: " + booking.getClient().getName().toString());
         date.setText("Date: " + booking.getDate().toString());
-        packageType.setText("Package: " + booking.getPackageType().toString());
+        packageType.setText(booking.getPackageType().toString());
         booking.getNotes().stream().sorted(Comparator.comparing(notes -> notes.tagName))
                 .forEach(tag -> notes.getChildren().add(new Label (tag.tagName)));
 
