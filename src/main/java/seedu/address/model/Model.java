@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.booking.Booking;
 import seedu.address.model.person.Person;
 
 /**
@@ -84,4 +85,38 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+
+    /**
+     * Returns true if a booking with the same identity as {@code booking} exists in the address book.
+     */
+    boolean hasBooking(Booking booking);
+
+    /**
+     * Deletes the given booking.
+     * The booking must exist in the address book.
+     */
+    void deleteBooking(Booking target);
+
+    /**
+     * Adds the given booking.
+     * {@code booking} must not already exist in the address book.
+     */
+    void addBooking(Booking booking);
+
+    /**
+     * Replaces the given booking {@code target} with {@code editedBooking}.
+     * {@code target} must exist in the address book.
+     * The booking identity of {@code editedBooking} must not be the same as another existing booking in the address book.
+     */
+    void setBooking(Booking target, Booking editedBooking);
+
+    /** Returns an unmodifiable view of the filtered booking list */
+    ObservableList<Booking> getFilteredBookingList();
+
+    /**
+     * Updates the filter of the filtered booking list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredBookingList(Predicate<Booking> predicate);
 }
