@@ -1,13 +1,15 @@
 package seedu.address.model;
 
-import static java.util.Objects.requireNonNull;
+import javafx.collections.ObservableList;
+import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.booking.Booking;
+import seedu.address.model.booking.UniqueBookingList;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.UniquePersonList;
 
 import java.util.List;
 
-import javafx.collections.ObservableList;
-import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Wraps all data at the address-book level
@@ -16,6 +18,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniqueBookingList bookings;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -23,12 +26,13 @@ public class AddressBook implements ReadOnlyAddressBook {
      *
      * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
      *   among constructors.
-     */
-    {
+     */ {
         persons = new UniquePersonList();
+        bookings = new UniqueBookingList();
     }
 
-    public AddressBook() {}
+    public AddressBook() {
+    }
 
     /**
      * Creates an AddressBook using the Persons in the {@code toBeCopied}
@@ -49,12 +53,59 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the booking list with {@code bookings}.
+     * {@code bookings} must not contain duplicate bookings.
+     */
+    public void setBookings(List<Booking> bookings) {
+        this.bookings.setBookings(bookings);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setBookings(newData.getBookingList());
+    }
+
+    //// booking-level operations
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeBooking(Booking key) {
+        bookings.remove(key);
+    }
+
+    /**
+     * Replaces the given Booking {@code target} in the list with {@code editedBooking}.
+     * {@code target} must exist in the address book.
+     * The booking identity of {@code editedBooking} must not be the same as another existing booking in the address book.
+     */
+    public void setBooking(Booking target, Booking editedBooking) {
+        requireNonNull(editedBooking);
+
+        bookings.setBooking(target, editedBooking);
+    }
+
+    /**
+     * Returns true if a Booking with the same identity as {@code booking} exists in the address book.
+     */
+    public boolean hasBooking(Booking booking) {
+        requireNonNull(booking);
+        return bookings.contains(booking);
+    }
+
+    /**
+     * Adds a booking to the address book.
+     * The booking must not already exist in the address book.
+     */
+
+    public void addBooking(Booking booking) {
+        bookings.add(booking);
     }
 
     //// person-level operations
@@ -94,18 +145,24 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
-    //// util methods
+    /// / util methods
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("persons", persons)
+                .add("bookings", bookings)
                 .toString();
     }
 
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Booking> getBookingList() {
+        return bookings.asUnmodifiableObservableList();
     }
 
     @Override

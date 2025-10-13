@@ -27,7 +27,7 @@ public class JsonSerializableAddressBookTest {
         AddressBook addressBookFromFile = dataFromFile.toModelType();
         AddressBook typicalPersonsAddressBook = TypicalPersons.getTypicalAddressBook();
         assertEquals(addressBookFromFile, typicalPersonsAddressBook);
-
+    }
 
     @Test
     public void toModelType_invalidPersonFile_throwsIllegalValueException() throws Exception {
