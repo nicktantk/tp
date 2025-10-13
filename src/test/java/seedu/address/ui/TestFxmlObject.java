@@ -1,8 +1,8 @@
 package seedu.address.ui;
 
-import javafx.beans.DefaultProperty;
-
 import java.util.Objects;
+
+import javafx.beans.DefaultProperty;
 
 /**
  * A test object which can be constructed via an FXML file.
