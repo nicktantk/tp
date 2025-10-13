@@ -13,7 +13,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents a booking made by a client/person.
- * Each booking contains a reference to the client, the date of the booking,
+ * Each booking contains a description of the booking,
+ * reference to the client, the date of the booking,
  * the package type, and any additional notes.
  */
 public class Booking {
@@ -22,18 +23,21 @@ public class Booking {
     private final PackageType packageType;
     private final Set<Tag> notes = new HashSet<>();
     private final boolean isDone;
+    private final Description description;
 
     /**
      * Constructs a Booking.
      *
+     * @param description A short description of the booking
      * @param client      The client/person making the booking.
      * @param date        The date of the booking.
      * @param packageType The type of package booked.
      * @param notes       Additional notes for the booking.
      * @param isDone      Completion status of booking
      */
-    public Booking(Person client, LocalDate date, PackageType packageType, Set<Tag> notes, boolean isDone) {
+    public Booking(Description description, Person client, LocalDate date, PackageType packageType, Set<Tag> notes, boolean isDone) {
         requireAllNonNull(client, date, packageType, notes, isDone);
+        this.description = description;
         this.client = client;
         this.date = date;
         this.packageType = packageType;
@@ -47,6 +51,14 @@ public class Booking {
      */
     public Person getClient() {
         return client;
+    }
+
+    /**
+     * Returns the description associated with this booking.
+     * @return the description
+     */
+    public Description getDescription() {
+        return description;
     }
 
     /**
@@ -70,7 +82,7 @@ public class Booking {
      * @return new Booking with completed booking status
      */
     public Booking markBooking(){
-        return new Booking(this.client, this.date, this.packageType, this.notes, true);
+        return new Booking(this.description, this.client, this.date, this.packageType, this.notes, true);
     }
 
     /**
@@ -78,7 +90,7 @@ public class Booking {
      * @return new Booking with completed booking status
      */
     public Booking unMarkBooking(){
-        return new Booking(this.client, this.date, this.packageType, this.notes, false);
+        return new Booking(this.description, this.client, this.date, this.packageType, this.notes, false);
     }
 
 
@@ -134,7 +146,8 @@ public class Booking {
         }
 
         Booking otherBooking = (Booking) other;
-        return client.equals(otherBooking.client)
+        return description.equals(otherBooking.description)
+                && client.equals(otherBooking.client)
                 && date.equals(otherBooking.date)
                 && packageType.equals(otherBooking.packageType)
                 && notes.equals(otherBooking.notes)
@@ -143,6 +156,6 @@ public class Booking {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(client, date, packageType, notes);
+        return Objects.hash(description, client, date, packageType, notes);
     }
 }

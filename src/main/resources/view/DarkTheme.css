@@ -362,3 +362,38 @@
     -fx-font-size: 11;
 }
 
+#status.Done {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+    -fx-text-fill: white;
+    -fx-background-color: #00ff11;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
+}
+
+#status.Pending {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+    -fx-text-fill: white;
+    -fx-background-color: #ff0000;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
+}
+
+#notes {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#notes .label {
+    -fx-text-fill: white;
+    -fx-background-color: #503e91;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
+}

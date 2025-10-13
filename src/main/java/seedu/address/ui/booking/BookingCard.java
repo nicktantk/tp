@@ -20,6 +20,8 @@ public class BookingCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
+    private Label description;
+    @FXML
     private Label client;
     @FXML
     private Label date;
@@ -34,13 +36,16 @@ public class BookingCard extends UiPart<Region> {
         super(FXML);
         this.booking = booking;
         id.setText(displayedIndex + ". ");
+        description.setText(booking.getDescription().value);
         client.setText("Client: " + booking.getClient().getName().toString());
         date.setText("Date: " + booking.getDate().toString());
         packageType.setText(booking.getPackageType().toString());
         booking.getNotes().stream().sorted(Comparator.comparing(notes -> notes.tagName))
                 .forEach(tag -> notes.getChildren().add(new Label (tag.tagName)));
-
-        status.setText(booking.isDone() ? "Done" : "Pending");
+        String isDone = booking.isDone() ? "Done" : "Pending";
+        status.getStyleClass().removeAll(isDone);
+        status.getStyleClass().add(isDone);
+        status.setText(isDone);
     }
 
     @Override

@@ -11,8 +11,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
 import seedu.address.model.*;
-import seedu.address.model.booking.Booking;
-import seedu.address.model.booking.PackageType;
+import seedu.address.model.booking.*;
 import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -75,6 +74,7 @@ public class MainApp extends Application {
 
         // Create a sample booking
         Booking sampleBooking = new Booking(
+                new Description("Wedding shoot"),
                 samplePerson,
                 LocalDate.now(),
                 PackageType.PORTRAIT,
