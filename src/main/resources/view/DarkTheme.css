@@ -40,7 +40,6 @@
 
     
 /* Hover effect for dropdown items */
-
 .menu-item:hover {
     -fx-background-color: #152d66;
 }
