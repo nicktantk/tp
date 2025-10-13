@@ -152,9 +152,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("persons", persons)
-                .add("bookings", bookings)
-                .toString();
+            .add("persons", persons)
+            .add("bookings", bookings)
+            .toString();
     }
 
     @Override
