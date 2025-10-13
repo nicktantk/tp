@@ -1,10 +1,5 @@
 package seedu.address;
 
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.Optional;
-import java.util.logging.Logger;
-
 import javafx.application.Application;
 import javafx.stage.Stage;
 import seedu.address.commons.core.Config;
@@ -15,21 +10,30 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.UserPrefs;
+import seedu.address.model.*;
+import seedu.address.model.booking.Booking;
+import seedu.address.model.booking.PackageType;
+import seedu.address.model.person.*;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.AddressBookStorage;
-import seedu.address.storage.JsonAddressBookStorage;
-import seedu.address.storage.JsonUserPrefsStorage;
-import seedu.address.storage.Storage;
-import seedu.address.storage.StorageManager;
-import seedu.address.storage.UserPrefsStorage;
+import seedu.address.storage.*;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
+
+import java.io.IOException;
+import java.nio.file.Path;
+import java.time.LocalDate;
+import java.util.Optional;
+import java.util.Set;
+import java.util.logging.Logger;
+import seedu.address.model.person.Person;
+import seedu.address.model.booking.Booking;
+import seedu.address.model.booking.PackageType;
+import seedu.address.model.tag.Tag;
+
+import java.time.LocalDate;
+import java.util.Set;
+
 
 /**
  * Runs the application.
@@ -60,8 +64,26 @@ public class MainApp extends Application {
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         storage = new StorageManager(addressBookStorage, userPrefsStorage);
 
-        model = initModelManager(storage, userPrefs);
+        // Example: create a sample person (use an existing one if available)
+        Person samplePerson = new Person(
+                new Name("Alice Example"),
+                new Phone("12345678"),
+                new Email("alice@example.com"),
+                new Address("123, Wonderland Ave"),
+                Set.of(new Tag("vip"))
+        );
 
+        // Create a sample booking
+        Booking sampleBooking = new Booking(
+                samplePerson,
+                LocalDate.now(),
+                PackageType.PORTRAIT,
+                Set.of(new Tag("outdoor"), new Tag("morning")),
+                false // not done
+        );
+
+        model = initModelManager(storage, userPrefs);
+        model.addBooking(sampleBooking);
         logic = new LogicManager(model, storage);
 
         ui = new UiManager(logic);
