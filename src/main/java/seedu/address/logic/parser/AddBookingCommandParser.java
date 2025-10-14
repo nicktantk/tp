@@ -1,9 +1,9 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PACKAGETYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -40,7 +40,8 @@ public class AddBookingCommandParser implements Parser<AddBookingCommand> {
      */
     public AddBookingCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_NAME, PREFIX_DATETIME, PREFIX_PACKAGETYPE, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args,
+                        PREFIX_DESCRIPTION, PREFIX_NAME, PREFIX_DATETIME, PREFIX_PACKAGETYPE, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_NAME, PREFIX_DATETIME, PREFIX_PACKAGETYPE)
                 || !argMultimap.getPreamble().isEmpty()) {
