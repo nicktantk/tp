@@ -15,6 +15,7 @@ import seedu.address.logic.commands.AddBookingCommand;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.booking.Booking;
+import seedu.address.model.booking.DateTime;
 import seedu.address.model.booking.Description;
 import seedu.address.model.booking.PackageType;
 import seedu.address.model.person.Address;
@@ -55,7 +56,7 @@ public class AddBookingCommandParser implements Parser<AddBookingCommand> {
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DESCRIPTION, PREFIX_NAME, PREFIX_DATETIME, PREFIX_PACKAGETYPE);
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        LocalDateTime dateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_DATETIME).get());
+        DateTime dateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_DATETIME).get());
         PackageType packageType = ParserUtil.parsePackageType(argMultimap.getValue(PREFIX_PACKAGETYPE).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 

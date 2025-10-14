@@ -15,6 +15,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.booking.Booking;
+import seedu.address.model.booking.DateTime;
 import seedu.address.model.booking.Description;
 import seedu.address.model.booking.PackageType;
 import seedu.address.model.person.Name;
@@ -33,7 +34,7 @@ public class JsonAdaptedBooking {
     private final String name;
     private final String dateTime;
     private final String packageType;
-    private final List<JsonAdaptedTag> notes = new ArrayList<>();
+    private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final String isDone;
 
     /**
@@ -52,8 +53,8 @@ public class JsonAdaptedBooking {
         this.packageType = packageType;
         this.isDone = isDone;
 
-        if (notes != null) {
-            this.notes.addAll(tags);
+        if (tags != null) {
+            this.tags.addAll(tags);
         }
     }
 
@@ -66,7 +67,7 @@ public class JsonAdaptedBooking {
         dateTime = source.getDateTime().toString();
         packageType = source.getPackageType().toString();
         isDone = Boolean.toString(source.isDone());
-        notes.addAll(source.getTags().stream()
+        tags.addAll(source.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList()));
     }
@@ -78,7 +79,7 @@ public class JsonAdaptedBooking {
      */
     public Booking toModelType() throws IllegalValueException {
         final List<Tag> bookingNotes = new ArrayList<>();
-        for (JsonAdaptedTag tag : notes) {
+        for (JsonAdaptedTag tag : tags) {
             bookingNotes.add(tag.toModelType());
         }
 
@@ -100,20 +101,13 @@ public class JsonAdaptedBooking {
 
         if (dateTime == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                LocalDate.class.getSimpleName()));
+                    DateTime.class.getSimpleName()));
         }
+        if (!DateTime.isValidDateTime(dateTime)) {
+            throw new IllegalValueException(DateTime.MESSAGE_CONSTRAINTS);
+        }
+        final DateTime modelDateTime = new DateTime(dateTime);
 
-        LocalDateTime modelDate;
-        try {
-            modelDate = LocalDateTime.parse(dateTime);
-        } catch (DateTimeParseException e) {
-            try {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                modelDate = LocalDateTime.parse(dateTime, formatter);
-            } catch (DateTimeParseException ex) {
-                throw new IllegalValueException("Use: dd/MM/yyyy>");
-            }
-        }
         if (packageType == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 PackageType.class.getSimpleName()));
@@ -130,7 +124,7 @@ public class JsonAdaptedBooking {
 
         final Set<Tag> modelNotes = new HashSet<>(bookingNotes);
 
-        return new Booking(modelDescription, modelName, modelDate, modelPackageType, modelNotes, modelIsDone);
+        return new Booking(modelDescription, modelName, modelDateTime, modelPackageType, modelNotes, modelIsDone);
     }
 }
 

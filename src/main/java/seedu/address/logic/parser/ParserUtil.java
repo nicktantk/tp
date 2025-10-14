@@ -12,6 +12,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.booking.DateTime;
 import seedu.address.model.booking.Description;
 import seedu.address.model.booking.PackageType;
 import seedu.address.model.person.Address;
@@ -143,17 +144,13 @@ public class ParserUtil {
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
-    public static LocalDateTime parseDateTime(String dateTime) throws ParseException {
+    public static DateTime parseDateTime(String dateTime) throws ParseException {
         requireNonNull(dateTime);
         String trimmedDateTime = dateTime.trim();
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
-
-        try {
-            return LocalDateTime.parse(trimmedDateTime, formatter);
-        } catch (DateTimeParseException e) {
-            throw new ParseException("Invalid date-time format. Expected format: dd/MM/yyyy HHmm");
+        if (!DateTime.isValidDateTime(trimmedDateTime)) {
+            throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
         }
+        return new DateTime(trimmedDateTime);
     }
 
 

@@ -21,7 +21,7 @@ import seedu.address.model.tag.Tag;
 public class Booking {
     private final Description description;
     private final Name name;
-    private final LocalDateTime dateTime;
+    private final DateTime dateTime;
     private final PackageType packageType;
     private final Set<Tag> tags = new HashSet<>();
     private final boolean isDone;
@@ -36,7 +36,7 @@ public class Booking {
      * @param tags        Additional tags for the booking.
      * @param isDone      Completion status of booking
      */
-    public Booking(Description description, Name name, LocalDateTime dateTime,
+    public Booking(Description description, Name name, DateTime dateTime,
                    PackageType packageType, Set<Tag> tags, boolean isDone) {
         requireAllNonNull(description, name, dateTime, packageType, tags, isDone);
         this.description = description;
@@ -70,7 +70,7 @@ public class Booking {
      *
      * @return the booking date
      */
-    public LocalDateTime getDateTime() {
+    public DateTime getDateTime() {
         return dateTime;
     }
 
