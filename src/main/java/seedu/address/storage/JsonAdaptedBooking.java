@@ -78,9 +78,9 @@ public class JsonAdaptedBooking {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Booking toModelType() throws IllegalValueException {
-        final List<Tag> bookingNotes = new ArrayList<>();
+        final List<Tag> bookingTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {
-            bookingNotes.add(tag.toModelType());
+            bookingTags.add(tag.toModelType());
         }
 
         if (name == null) {
@@ -122,9 +122,9 @@ public class JsonAdaptedBooking {
 
         boolean modelIsDone = Boolean.parseBoolean(isDone);
 
-        final Set<Tag> modelNotes = new HashSet<>(bookingNotes);
+        final Set<Tag> modelTags = new HashSet<>(bookingTags);
 
-        return new Booking(modelDescription, modelName, modelDateTime, modelPackageType, modelNotes, modelIsDone);
+        return new Booking(modelDescription, modelName, modelDateTime, modelPackageType, modelTags, modelIsDone);
     }
 }
 

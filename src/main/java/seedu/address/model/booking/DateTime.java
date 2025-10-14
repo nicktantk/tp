@@ -46,14 +46,18 @@ public class DateTime {
         }
     }
 
-    @Override
-    public String toString() {
+    public String toFormattedString() {
         DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
         LocalDateTime dateTime = LocalDateTime.parse(value, inputFormatter);
 
         DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd MMMM yyyy HHmm'hrs'");
         String formatted = dateTime.format(outputFormatter);
         return formatted;
+    }
+
+    @Override
+    public String toString() {
+        return value;
     }
 
     @Override
