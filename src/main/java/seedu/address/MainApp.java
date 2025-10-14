@@ -71,27 +71,7 @@ public class MainApp extends Application {
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         storage = new StorageManager(addressBookStorage, userPrefsStorage);
 
-        // Example: create a sample person (use an existing one if available)
-        Person samplePerson = new Person(
-                new Name("Alice Example"),
-                new Phone("12345678"),
-                new Email("alice@example.com"),
-                new Address("123, Wonderland Ave"),
-                Set.of(new Tag("vip"))
-        );
-
-        // Create a sample booking
-        Booking sampleBooking = new Booking(
-                new Description("Wedding shoot"),
-                samplePerson,
-                LocalDate.now(),
-                PackageType.PORTRAIT,
-                Set.of(new Tag("outdoor"), new Tag("morning")),
-                false // not done
-        );
-
         model = initModelManager(storage, userPrefs);
-        model.addBooking(sampleBooking);
         logic = new LogicManager(model, storage);
 
         ui = new UiManager(logic);
