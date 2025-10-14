@@ -66,6 +66,10 @@ class JsonSerializableAddressBook {
             Booking booking = jsonAdaptedBooking.toModelType();
             Person client = booking.getClient();
 
+            if (!addressBook.getPersonList().contains(client)) {
+                throw new IllegalValueException(MESSAGE_MISSING_CLIENT);
+            }
+
             if (addressBook.hasBooking(booking)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_BOOKING);
             }
