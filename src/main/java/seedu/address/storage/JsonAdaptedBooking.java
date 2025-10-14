@@ -98,7 +98,7 @@ public class JsonAdaptedBooking {
 
         LocalDate modelDate;
         try {
-             modelDate = LocalDate.parse(date);
+            modelDate = LocalDate.parse(date);
         } catch (DateTimeParseException e) {
             try {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/uuuu");
@@ -124,7 +124,6 @@ public class JsonAdaptedBooking {
         final Set<Tag> modelNotes = new HashSet<>(bookingNotes);
 
         return new Booking(modelDescription, modelClient, modelDate, modelPackageType, modelNotes, modelIsDone);
-       
     }
 }
 

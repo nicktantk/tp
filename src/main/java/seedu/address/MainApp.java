@@ -2,9 +2,7 @@ package seedu.address;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.time.LocalDate;
 import java.util.Optional;
-import java.util.Set;
 import java.util.logging.Logger;
 
 import javafx.application.Application;
@@ -23,15 +21,6 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.booking.Booking;
-import seedu.address.model.booking.Description;
-import seedu.address.model.booking.PackageType;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
