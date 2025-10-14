@@ -128,7 +128,8 @@ public class Booking {
         }
 
         return otherBooking != null
-                && otherBooking.getClient().equals(getClient());
+                && otherBooking.getClient().equals(getClient())
+                && otherBooking.getDescription().equals(getDescription());
     }
 
     @Override
