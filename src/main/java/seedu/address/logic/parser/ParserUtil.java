@@ -143,7 +143,7 @@ public class ParserUtil {
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
-    public static LocalDateTime parseDateTime(String dateTime) throws DateTimeParseException {
+    public static LocalDateTime parseDateTime(String dateTime) throws ParseException {
         requireNonNull(dateTime);
         String trimmedDateTime = dateTime.trim();
 
@@ -152,8 +152,7 @@ public class ParserUtil {
         try {
             return LocalDateTime.parse(trimmedDateTime, formatter);
         } catch (DateTimeParseException e) {
-            throw new DateTimeParseException("Invalid date-time format. Expected format: dd/MM/yyyy HHmm",
-                    trimmedDateTime, 0);
+            throw new ParseException("Invalid date-time format. Expected format: dd/MM/yyyy HHmm");
         }
     }
 
