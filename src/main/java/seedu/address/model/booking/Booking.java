@@ -3,10 +3,12 @@ package seedu.address.model.booking;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -17,31 +19,31 @@ import seedu.address.model.tag.Tag;
  * the package type, and any additional notes.
  */
 public class Booking {
-    private final Person client;
-    private final LocalDate date;
-    private final PackageType packageType;
-    private final Set<Tag> notes = new HashSet<>();
-    private final boolean isDone;
     private final Description description;
+    private final Name name;
+    private final LocalDateTime dateTime;
+    private final PackageType packageType;
+    private final Set<Tag> tags = new HashSet<>();
+    private final boolean isDone;
 
     /**
      * Constructs a Booking.
      *
      * @param description A short description of the booking
-     * @param client      The client/person making the booking.
-     * @param date        The date of the booking.
+     * @param name        The client/person making the booking.
+     * @param dateTime    The date and time of the booking.
      * @param packageType The type of package booked.
-     * @param notes       Additional notes for the booking.
+     * @param tags        Additional tags for the booking.
      * @param isDone      Completion status of booking
      */
-    public Booking(Description description, Person client, LocalDate date,
-                   PackageType packageType, Set<Tag> notes, boolean isDone) {
-        requireAllNonNull(client, date, packageType, notes, isDone);
+    public Booking(Description description, Name name, LocalDateTime dateTime,
+                   PackageType packageType, Set<Tag> tags, boolean isDone) {
+        requireAllNonNull(description, name, dateTime, packageType, tags, isDone);
         this.description = description;
-        this.client = client;
-        this.date = date;
+        this.name = name;
+        this.dateTime = dateTime;
         this.packageType = packageType;
-        this.notes.addAll(notes);
+        this.tags.addAll(tags);
         this.isDone = isDone;
     }
 
@@ -50,8 +52,8 @@ public class Booking {
      *
      * @return the client
      */
-    public Person getClient() {
-        return client;
+    public Name getName() {
+        return name;
     }
 
     /**
@@ -68,8 +70,8 @@ public class Booking {
      *
      * @return the booking date
      */
-    public LocalDate getDate() {
-        return date;
+    public LocalDateTime getDateTime() {
+        return dateTime;
     }
 
     /**
@@ -87,7 +89,7 @@ public class Booking {
      * @return new Booking with completed booking status
      */
     public Booking markBooking() {
-        return new Booking(this.description, this.client, this.date, this.packageType, this.notes, true);
+        return new Booking(this.description, this.name, this.dateTime, this.packageType, this.tags, true);
     }
 
     /**
@@ -96,7 +98,7 @@ public class Booking {
      * @return new Booking with completed booking status
      */
     public Booking unMarkBooking() {
-        return new Booking(this.description, this.client, this.date, this.packageType, this.notes, false);
+        return new Booking(this.description, this.name, this.dateTime, this.packageType, this.tags, false);
     }
 
 
@@ -114,8 +116,8 @@ public class Booking {
      *
      * @return the notes
      */
-    public Set<Tag> getNotes() {
-        return notes;
+    public Set<Tag> getTags() {
+        return tags;
     }
 
     /**
@@ -128,14 +130,13 @@ public class Booking {
         }
 
         return otherBooking != null
-                && otherBooking.getClient().equals(getClient())
-                && otherBooking.getDescription().equals(getDescription());
+                && otherBooking.getDateTime().equals(this.getDateTime());
     }
 
     @Override
     public String toString() {
         return String.format("Booking[client=%s, date=%s, packageType=%s, notes=%s]",
-                client, date, packageType, notes);
+                name, dateTime, packageType, tags);
     }
 
     /**
@@ -154,16 +155,16 @@ public class Booking {
         }
 
         return description.equals(otherBooking.description)
-                && client.equals(otherBooking.client)
-                && date.equals(otherBooking.date)
+                && name.equals(otherBooking.name)
+                && dateTime.equals(otherBooking.dateTime)
                 && packageType.equals(otherBooking.packageType)
-                && notes.equals(otherBooking.notes)
+                && tags.equals(otherBooking.tags)
                 && isDone == otherBooking.isDone;
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(description, client, date, packageType, notes);
+        return Objects.hash(description, name, dateTime, packageType, tags);
     }
 }

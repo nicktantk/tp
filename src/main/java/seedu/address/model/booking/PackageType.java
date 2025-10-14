@@ -15,5 +15,8 @@ public enum PackageType {
     NEWBORN,
     PET,
     GRADUATION,
-    OTHER
+    OTHER;
+
+    public static final String MESSAGE_CONSTRAINTS = "PackageType must be one of the following:    " +
+            "PORTRAIT, FAMILY, EVENT, WEDDING, CORPORATE, PRODUCT, MATERNITY, NEWBORN, PET, GRADUATION, OTHER";
 }

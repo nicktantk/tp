@@ -2,6 +2,9 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,6 +12,8 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.booking.Description;
+import seedu.address.model.booking.PackageType;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -122,4 +127,49 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     */
+    public static Description parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!Description.isValidDescription(trimmedDescription)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+        }
+        return new Description(trimmedDescription);
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     */
+    public static LocalDateTime parseDateTime(String dateTime) throws DateTimeParseException {
+        requireNonNull(dateTime);
+        String trimmedDateTime = dateTime.trim();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+
+        try {
+            return LocalDateTime.parse(trimmedDateTime, formatter);
+        } catch (DateTimeParseException e) {
+            throw new DateTimeParseException("Invalid date-time format. Expected format: dd/MM/yyyy HHmm",
+                    trimmedDateTime, 0);
+        }
+    }
+
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     */
+    public static PackageType parsePackageType(String packageType) throws ParseException {
+        requireNonNull(packageType);
+        String trimmedPackageType = packageType.trim().toUpperCase();
+
+        try {
+            return PackageType.valueOf(trimmedPackageType);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(PackageType.MESSAGE_CONSTRAINTS);
+        }
+    }
+
 }

@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.booking.Booking;
 import seedu.address.model.booking.Description;
 import seedu.address.model.booking.PackageType;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -27,9 +29,9 @@ public class JsonAdaptedBooking {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Booking's %s field is missing!";
 
-    private final JsonAdaptedPerson client;
     private final String description;
-    private final String date;
+    private final String name;
+    private final String dateTime;
     private final String packageType;
     private final List<JsonAdaptedTag> notes = new ArrayList<>();
     private final String isDone;
@@ -38,13 +40,15 @@ public class JsonAdaptedBooking {
      * Constructs a {@code JsonAdaptedBooking} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedBooking(@JsonProperty("client") JsonAdaptedPerson client,
-                              @JsonProperty("description") String description,
-                              @JsonProperty("date") String date, @JsonProperty("packageType") String packageType,
-                              @JsonProperty("notes") List<JsonAdaptedTag> tags, @JsonProperty("isDone") String isDone) {
-        this.client = client;
+    public JsonAdaptedBooking(@JsonProperty("description") String description,
+                              @JsonProperty("name") String name,
+                              @JsonProperty("dateTime") String dateTime,
+                              @JsonProperty("packageType") String packageType,
+                              @JsonProperty("tags") List<JsonAdaptedTag> tags,
+                              @JsonProperty("isDone") String isDone) {
         this.description = description;
-        this.date = date;
+        this.name = name;
+        this.dateTime = dateTime;
         this.packageType = packageType;
         this.isDone = isDone;
 
@@ -57,12 +61,12 @@ public class JsonAdaptedBooking {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedBooking(Booking source) {
-        client = new JsonAdaptedPerson(source.getClient());
+        name = source.getName().toString();
         description = source.getDescription().value;
-        date = source.getDate().toString();
+        dateTime = source.getDateTime().toString();
         packageType = source.getPackageType().toString();
         isDone = Boolean.toString(source.isDone());
-        notes.addAll(source.getNotes().stream()
+        notes.addAll(source.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList()));
     }
@@ -78,10 +82,13 @@ public class JsonAdaptedBooking {
             bookingNotes.add(tag.toModelType());
         }
 
-        Person modelClient = client.toModelType();
-        if (modelClient == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Person.class.getSimpleName()));
+        if (name == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
+        if (!Name.isValidName(name)) {
+            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        }
+        final Name modelName = new Name(name);
         if (description == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 Description.class.getSimpleName()));
@@ -91,20 +98,20 @@ public class JsonAdaptedBooking {
         }
         final Description modelDescription = new Description(description);
 
-        if (date == null) {
+        if (dateTime == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 LocalDate.class.getSimpleName()));
         }
 
-        LocalDate modelDate;
+        LocalDateTime modelDate;
         try {
-            modelDate = LocalDate.parse(date);
+            modelDate = LocalDateTime.parse(dateTime);
         } catch (DateTimeParseException e) {
             try {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/uuuu");
-                modelDate = LocalDate.parse(date, formatter);
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                modelDate = LocalDateTime.parse(dateTime, formatter);
             } catch (DateTimeParseException ex) {
-                throw new IllegalValueException("Use: <yyyy-mm-dd | dd/MM/yyyy>");
+                throw new IllegalValueException("Use: dd/MM/yyyy>");
             }
         }
         if (packageType == null) {
@@ -123,7 +130,7 @@ public class JsonAdaptedBooking {
 
         final Set<Tag> modelNotes = new HashSet<>(bookingNotes);
 
-        return new Booking(modelDescription, modelClient, modelDate, modelPackageType, modelNotes, modelIsDone);
+        return new Booking(modelDescription, modelName, modelDate, modelPackageType, modelNotes, modelIsDone);
     }
 }
 
