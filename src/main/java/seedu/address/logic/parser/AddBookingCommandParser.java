@@ -7,22 +7,16 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PACKAGETYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddBookingCommand;
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.booking.Booking;
 import seedu.address.model.booking.DateTime;
 import seedu.address.model.booking.Description;
 import seedu.address.model.booking.PackageType;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**

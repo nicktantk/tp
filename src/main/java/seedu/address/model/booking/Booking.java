@@ -2,14 +2,11 @@ package seedu.address.model.booking;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
 /**

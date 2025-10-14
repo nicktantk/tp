@@ -34,7 +34,9 @@ public class DateTime {
      * Returns true if a given string is a valid description.
      */
     public static boolean isValidDateTime(String test) {
-        if (test == null) return false;
+        if (test == null) {
+            return false;
+        }
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
 
@@ -46,6 +48,9 @@ public class DateTime {
         }
     }
 
+    /**
+     * Returns string in "14 October 2025 1200hrs" format
+     */
     public String toFormattedString() {
         DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
         LocalDateTime dateTime = LocalDateTime.parse(value, inputFormatter);
