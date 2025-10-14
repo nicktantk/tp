@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -21,6 +22,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.booking.Booking;
+import seedu.address.model.booking.DateTime;
 import seedu.address.model.booking.Description;
 import seedu.address.model.booking.PackageType;
 import seedu.address.model.person.Person;
@@ -58,8 +60,8 @@ public class AddressBookTest {
         // Create a sample booking
         Booking sampleBooking = new Booking(
             new Description("Wedding shoot"),
-            editedAlice,
-            LocalDate.now(),
+            ALICE.getName(),
+            new DateTime("14/10/2025 1200"),
             PackageType.PORTRAIT,
             Set.of(new Tag("outdoor"), new Tag("morning")),
             false // not done
