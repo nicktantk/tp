@@ -1,7 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_BOOKINGS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -9,6 +12,8 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.booking.Booking;
+import seedu.address.model.booking.BookingHasNamePredicate;
 import seedu.address.model.person.Person;
 
 /**
@@ -42,7 +47,18 @@ public class DeleteCommand extends Command {
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePerson(personToDelete);
+        updateBookings(model, personToDelete);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredBookingList(PREDICATE_SHOW_ALL_BOOKINGS);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
+    }
+
+    private static void updateBookings(Model model, Person personToDelete) {
+        model.updateFilteredBookingList(new BookingHasNamePredicate(personToDelete.getName()));
+        List<Booking> bookingsToDelete = new ArrayList<>(model.getFilteredBookingList());
+        for (Booking booking : bookingsToDelete) {
+            model.deleteBooking(booking);
+        }
     }
 
     @Override
