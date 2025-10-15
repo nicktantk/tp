@@ -43,6 +43,21 @@ public class Booking {
         this.tags.addAll(tags);
         this.isDone = isDone;
     }
+    /**
+     * Constructs a Booking with a specified Name and BookingDescriptor
+     *
+     * @param bookingDescriptor The BookingDescriptor object
+     * @param name              The client name of the booking.
+     * @param isDone      Completion status of booking
+     */
+    public Booking(Name name, BookingDescriptor bookingDescriptor, boolean isDone) {
+        this.description = bookingDescriptor.getDescription();
+        this.name = name;
+        this.dateTime = bookingDescriptor.getDateTime();
+        this.packageType = bookingDescriptor.getPackageType();
+        this.tags.addAll(bookingDescriptor.getTags());
+        this.isDone = isDone;
+    }
 
     /**
      * Returns the client/person associated with this booking.

@@ -25,7 +25,7 @@ public class ViewBookingCommand extends Command {
             + "Parameters: INDEX (must be a postive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_VIEW_BOOKING_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_BOOKINGS_LISTED_FOR_PERSON_OVERVIEW = "%1$d bookings listed for client %2$s.";
 
     private final Index targetIndex;
 
@@ -47,7 +47,7 @@ public class ViewBookingCommand extends Command {
         model.updateFilteredBookingList(new BookingHasNamePredicate(personToFilter.getName()));
 
         return new CommandResult(
-                String.format(Messages.MESSAGE_BOOKINGS_LISTED_FOR_PERSON_OVERVIEW,
+                String.format(MESSAGE_BOOKINGS_LISTED_FOR_PERSON_OVERVIEW,
                         model.getFilteredBookingList().size(),
                         personToFilter.getName().toString()));
     }

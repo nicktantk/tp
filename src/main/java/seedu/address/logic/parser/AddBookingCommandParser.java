@@ -10,8 +10,8 @@ import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddBookingCommand;
-import seedu.address.logic.commands.AddBookingCommand.AddBookingDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.booking.BookingDescriptor;
 
 
 /**
@@ -53,17 +53,17 @@ public class AddBookingCommandParser implements Parser<AddBookingCommand> {
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DESCRIPTION, PREFIX_DATETIME, PREFIX_PACKAGETYPE);
 
-        AddBookingDescriptor addBookingDescriptor = new AddBookingDescriptor();
-        addBookingDescriptor.setDescription(
+        BookingDescriptor bookingDescriptor = new BookingDescriptor();
+        bookingDescriptor.setDescription(
                 ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
-        addBookingDescriptor.setDateTime(
+        bookingDescriptor.setDateTime(
                 ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_DATETIME).get()));
-        addBookingDescriptor.setPackageType(
+        bookingDescriptor.setPackageType(
                 ParserUtil.parsePackageType(argMultimap.getValue(PREFIX_PACKAGETYPE).get()));
-        addBookingDescriptor.setTags(
+        bookingDescriptor.setTags(
                 ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG)));
 
-        return new AddBookingCommand(index, addBookingDescriptor);
+        return new AddBookingCommand(index, bookingDescriptor);
     }
 
 }
