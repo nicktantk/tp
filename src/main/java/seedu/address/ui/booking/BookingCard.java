@@ -43,10 +43,10 @@ public class BookingCard extends UiPart<Region> {
         this.booking = booking;
         id.setText(displayedIndex + ". ");
         description.setText(booking.getDescription().value);
-        client.setText("Client: " + booking.getClient().getName().toString());
-        date.setText("Date: " + booking.getDate().toString());
+        client.setText("Client: " + booking.getName().toString());
+        date.setText("Date: " + booking.getDateTime().toFormattedString());
         packageType.setText(booking.getPackageType().toString());
-        booking.getNotes().stream().sorted(Comparator.comparing(notes -> notes.tagName))
+        booking.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> notes.getChildren().add(new Label(tag.tagName)));
         String isDone = booking.isDone() ? "Done" : "Pending";
         status.getStyleClass().removeAll(isDone);

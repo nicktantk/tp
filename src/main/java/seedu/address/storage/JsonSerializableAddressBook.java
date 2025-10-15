@@ -12,6 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.booking.Booking;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
 /**
@@ -64,9 +65,9 @@ class JsonSerializableAddressBook {
 
         for (JsonAdaptedBooking jsonAdaptedBooking : bookings) {
             Booking booking = jsonAdaptedBooking.toModelType();
-            Person client = booking.getClient();
+            Name name = booking.getName();
 
-            if (!addressBook.getPersonList().contains(client)) {
+            if (!addressBook.hasName(name)) {
                 throw new IllegalValueException(MESSAGE_MISSING_CLIENT);
             }
 
