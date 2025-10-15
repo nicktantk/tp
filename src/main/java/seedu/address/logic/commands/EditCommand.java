@@ -6,8 +6,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_BOOKINGS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -21,6 +23,9 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.booking.Booking;
+import seedu.address.model.booking.BookingDescriptor;
+import seedu.address.model.booking.BookingHasNamePredicate;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -100,8 +105,21 @@ public class EditCommand extends Command {
         }
 
         model.setPerson(personToEdit, editedPerson);
+        if (!personToEdit.getName().equals(editedPerson.getName())) {
+            updateBookings(model, personToEdit, editedPerson);
+        }
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredBookingList(PREDICATE_SHOW_ALL_BOOKINGS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
+    }
+
+    private static void updateBookings(Model model, Person personToEdit, Person editedPerson) {
+        model.updateFilteredBookingList(new BookingHasNamePredicate(personToEdit.getName()));
+        List<Booking> bookingsToUpdate = new ArrayList<>(model.getFilteredBookingList());
+        for (Booking booking : bookingsToUpdate) {
+            BookingDescriptor updatedBookingDescriptor = new BookingDescriptor(booking);
+            model.setBooking(booking, new Booking(editedPerson.getName(), updatedBookingDescriptor, booking.isDone()));
+        }
     }
 
     @Override
