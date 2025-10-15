@@ -18,7 +18,7 @@ import seedu.address.model.booking.Booking;
  */
 public class AddBookingCommand extends Command {
 
-    public static final String COMMAND_WORD = "addBooking";
+    public static final String COMMAND_WORD = "addbooking";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a booking to the address book. "
             + "Parameters: "

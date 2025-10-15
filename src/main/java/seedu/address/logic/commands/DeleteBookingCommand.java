@@ -16,7 +16,7 @@ import seedu.address.model.booking.Booking;
  */
 public class DeleteBookingCommand extends Command {
 
-    public static final String COMMAND_WORD = "deleteBooking";
+    public static final String COMMAND_WORD = "deletebooking";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the booking identified by the index number used in the displayed booking list.\n"

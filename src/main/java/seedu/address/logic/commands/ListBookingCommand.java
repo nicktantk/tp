@@ -10,7 +10,7 @@ import seedu.address.model.Model;
  */
 public class ListBookingCommand extends Command {
 
-    public static final String COMMAND_WORD = "listBooking";
+    public static final String COMMAND_WORD = "listbooking";
 
     public static final String MESSAGE_SUCCESS = "Listed all bookings";
 
