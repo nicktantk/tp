@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.booking.Booking;
 
 /**
- *Mark the status of a booking section in a given index
+ * Mark the status of a booking section in a given index
  */
 public class MarkBookingCommand extends Command {
 
