@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.MarkBookingCommand;
-import seedu.address.logic.commands.ViewBookingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
