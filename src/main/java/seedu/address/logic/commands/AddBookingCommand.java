@@ -38,7 +38,7 @@ public class AddBookingCommand extends Command {
             + PREFIX_TAG + "summer";
 
     public static final String MESSAGE_SUCCESS = "New booking added: %1$s";
-    public static final String MESSAGE_DUPLICATE_BOOKING = "This booking already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_BOOKING = "There is already a booking at this time slot.";
 
     private final Index index;
     private final BookingDescriptor bookingDescriptor;

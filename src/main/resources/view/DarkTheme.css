@@ -84,6 +84,13 @@
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 
+/* === LABEL DISPLAY === */
+.label-display {
+    -fx-font-family: "Jetbrains Mono";
+    -fx-font-size: 20pt;
+    -fx-text-fill: #ffffff;
+}
+
 /* === RESULT DISPLAY === */
 .result-display {
     -fx-background-color: #081023;
