@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -10,12 +11,14 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.ui.booking.BookingListPanel;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -27,14 +30,12 @@ public class MainWindow extends UiPart<Stage> {
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
-    private Stage primaryStage;
-    private Logic logic;
-
+    private final Stage primaryStage;
+    private final Logic logic;
+    private final HelpWindow helpWindow;
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
-    private HelpWindow helpWindow;
-
     @FXML
     private StackPane commandBoxPlaceholder;
 
@@ -49,6 +50,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private StackPane bookingListPanelPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -78,6 +82,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -121,6 +126,9 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        BookingListPanel bookingListPanel = new BookingListPanel(logic.getFilteredBookingList());
+        bookingListPanelPlaceholder.getChildren().add(bookingListPanel.getRoot());
     }
 
     /**
@@ -151,14 +159,25 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.show();
     }
 
+
     /**
-     * Closes the application.
+     * Closes the application with a delay.
      */
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
+        PauseTransition pause = new PauseTransition(Duration.seconds(guiSettings.getExitDelay()));
+        pause.setOnFinished(event -> exitApp());
+        pause.play();
+    }
+
+    /**
+     * Closes the application.
+     */
+    @FXML
+    private void exitApp() {
         helpWindow.hide();
         primaryStage.hide();
     }

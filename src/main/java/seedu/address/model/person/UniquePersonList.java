@@ -17,7 +17,7 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
  * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is
  * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so
  * as to ensure that the person with exactly the same fields will be removed.
- *
+ * <p>
  * Supports a minimal set of list operations.
  *
  * @see Person#isSamePerson(Person)
@@ -34,6 +34,14 @@ public class UniquePersonList implements Iterable<Person> {
     public boolean contains(Person toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSamePerson);
+    }
+
+    /**
+     * Returns true if the list contains an equivalent named person as the given argument.
+     */
+    public boolean containsName(Name name) {
+        requireNonNull(name);
+        return internalList.stream().anyMatch(person -> person.getName().equals(name));
     }
 
     /**
@@ -116,11 +124,10 @@ public class UniquePersonList implements Iterable<Person> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof UniquePersonList)) {
+        if (!(other instanceof UniquePersonList otherUniquePersonList)) {
             return false;
         }
 
-        UniquePersonList otherUniquePersonList = (UniquePersonList) other;
         return internalList.equals(otherUniquePersonList.internalList);
     }
 

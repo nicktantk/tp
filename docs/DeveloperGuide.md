@@ -4,7 +4,7 @@
   pageNav: 3
 ---
 
-# AB-3 Developer Guide
+# InSight Developer Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -274,72 +274,181 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Small photography/videography business owners who sell services directly to clients or other businesses
+* Spend more time than they'd like juggling admin tasks (scheduling, chasing payments, tracking conversations) instead of focusing on shoots or editing.
+* Values simplicity and tools that fit naturally into their creative flow
+* A fast typer
+* Prefers typing to mouse interactions
+* Needs to manage a large number of clients, influencers, and other stakeholders
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**:
+**For** Small photography/videography businesses who sell services (not products) directly to clients/businesses  
+**Who are** dissatisfied with client details scattered across email, WhatsApp, and spreadsheets, making it hard to track who booked when, what package they purchased, specific requests, theme etc.  
+**Our product is a** specially designed client relationship management system  
+**That provides** booking history, loyalty tracking, trend/influencer monitoring, and client feedback storage in one place  
+**Unlike** big enterprise CRMs (too costly, bloated) or plain address books (too limited, no sales context),  
+**We offer** a simple, creative-friendly tool that helps photographers deliver what clients really want — shoots inspired by current trends and influencers.  
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …​               | I can …​                                | So that I can…​                                             |
+|----------|-----------------------|-----------------------------------------|-------------------------------------------------------------|
+| `* * *`  | user                  | add client contact information          | have all my contacts in one place                           |
+| `* * *`  | user                  | delete client contact information       | remove unnecessary contacts                                 |
+| `* * *`  | user                  | edit client contact information         | correct errors in original entries                          |
+| `* * *`  | user                  | add bookings for each client            | track past and upcoming bookings with my clients            |
+| `* * *`  | user                  | mark bookings                           | track which bookings have been completed                    |
+| `* * *`  | user                  | view booking details                    | be informed and prepared with upcoming bookings             |
+| `* * *`  | user                  | edit bookings                           | update the booking if a change is discussed with the client |
+| `* * *`  | user                  | delete bookings                         | remove unwanted bookings                                    |
+| `* * *`  | new user              | view available commands                 | be reminded of commands available if I forget them          |
+| `* *`    | time-constrained user | search for a client quickly             | save time searching for client details                      |
+| `* *`    | detail-oriented user  | add tags to bookings                    | record additional details for the booking                   |
+| `* *`    | new user              | clear sample data with a simple command | start afresh with my own clients                            |
+| `* *`    | user                  | add tags to clients                     | filter and group clients                                    |
+| `* *`    | user                  | undo my last action                     | rectify a mistake quickly                                   |
+| `* *`    | user                  | archive inactive clients                | main client list is clean                                   |
+| `* *`    | user                  | set booking priority                    | manage my workload                                          |
+| `* *`    | user                  | reschedule bookings easily              | handle client changes quickly                               |
+| `*`      | busy user             | get reminded about my upcoming bookings | not miss important appointments                             |
+| `*`      | user                  | see booking statistics                  | manage and plan for future workload                         |
+| `*`      | user                  | view a dashboard of upcoming bookings   | plan my schedule for the near future                        |
+| `*`      | user                  | view recent clients                     | find them easily                                            |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `InSight` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use Case: Add a Tag to a Client**
+
+**Purpose:** Allow the user to add a tag to an existing client after finding the client.
 
 **MSS**
+1. User requests to list clients.
+2. System displays a list of clients.
+3. User searches for a specific client by name or contact detail.
+4. System displays matching client(s).
+5. User selects the desired client from the search results.
+6. User requests to add a tag to the selected client.
+7. System prompts user to enter tag details.
+8. User inputs the tag details.
+9. System saves the tag under the client’s record.
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
-    Use case ends.
+   Use case ends.
 
 **Extensions**
+* 3a. No clients match the search query.
+    * 3a1. System shows a “No clients found” message.  
+      Use case ends.
 
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
-
+* 5a. User selects an invalid client index.
+    * 5a1. System shows an error message.  
       Use case resumes at step 2.
 
-*{More to be added}*
+
+**Use Case: Edit Client Booking Details**
+
+**Purpose:** Allow the user to edit details for a client’s existing booking.
+
+**MSS**
+1. User requests to list clients.
+2. System displays a list of clients.
+3. User selects a client from the list.
+4. System shows the client’s booking history.
+5. User selects a specific booking to edit.
+6. System displays the booking details for editing.
+7. User updates booking information.
+8. System saves the updated booking details.
+
+   Use case ends.
+
+**Extensions**
+* 3a. Client list is empty.  
+  Use case ends.
+
+* 5a. The chosen booking does not exist.
+    * 5a1. System shows an error message.  
+      Use case resumes at step 4.
+
+
+**Use Case: Delete a Client**
+
+**Purpose:** Allow the user to permanently delete a client’s record.
+
+**MSS**
+1. User requests to list clients.
+2. System displays a list of clients.
+3. User selects a client to delete.
+4. System prompts for confirmation to delete the client.
+5. User confirms deletion.
+6. System deletes the client’s record.
+
+   Use case ends.
+
+**Extensions**
+* 2a. Client list is empty.  
+  Use case ends.
+
+* 3a. User selects an invalid client index.
+    * 3a1. System shows an error message.  
+      Use case resumes at step 2.
+
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. `Constraint-Platform_Independent`
+- The software must run on Windows, Linux, and macOS, and must not use any OS-dependent libraries or features.
 
-*{More to be added}*
+2. `Constraint-Java-Version`
+- The application must work on a computer that has only Java 11 installed (i.e., it must not require any other Java version).
+
+3. `Constraint-Portable`
+- The software must be usable without requiring an installer; users should be able to run the JAR file directly.
+
+4. `Constraint-Single-User`
+- The product must be designed for a single user and must not support multi-user access or concurrent data file usage.
+
+5. `Constraint-Typing-Preferred`
+- The user interface must be optimized for users who type fast and prefer typing over other input methods.
+
+6. `Constraint-Human-Editable-File`
+- All data must be stored locally in a human-editable text file format.
+
+7. `Constraint-No-DBMS`
+- The application must not use a database management system (DBMS) such as MySQL to store data.
+
+8. `Constraint-OO`
+- The software must primarily follow the object-oriented programming design.
+
+9. `Constraint-Incremental`
+- The product must be developed in a breadth-first, incremental manner, with consistent delivery of working features throughout the project duration.
+
+10. `Constraint-No-Remote-Server`
+- The software must not depend on any remote server for its core functionality.
+
+11. `Constraint-External-Software`
+- Any third-party libraries used must be free, open-source, have permissive licenses, and must not require installation by the user.
+
+12. `Constraint-Screen-Resolution`
+- The GUI must work well at 1920x1080 resolution and higher (at 100% and 125% scaling), and be usable at 1280x720 and higher (at 150% scaling).
+
+13. `Constraint-Single-File`
+- The application and all dependencies must be packaged into a single JAR file (or a single ZIP file if necessary).
+
+14. `Constraint-File-Size`
+- The JAR/ZIP file size must not exceed 100MB; PDF documentation files must not exceed 15MB each.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-
+* **Loyalty Tracking**: A feature that records repeat interactions to identify frequent or returning clients.
+* **Tag**: A label that can be attached to a booking or client (e.g., “Wedding,” “Corporate,” “Outdoor Shoot”) 
+to help with categorization and search.
+* **Gradle**: The build automation tool used to manage dependencies, run builds, and execute tests.
+* **JavaFX**: A Java library for building graphical user interfaces (used for InSight’s UI).
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
