@@ -10,7 +10,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Parses the input argument
  */
 public class MarkBookingCommandParser implements Parser<MarkBookingCommand> {
-   /**
+    /**
      * Parses the given {@code String} of arguments in the context of the ViewBookingCommand
      * and returns a ViewBookingCommand object for execution.
      *
