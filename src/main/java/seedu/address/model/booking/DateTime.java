@@ -76,8 +76,23 @@ public class DateTime {
         return value.equals(otherDateTime.value);
     }
 
-    @Override
-    public int hashCode() {
-        return value.hashCode();
+    /**
+     * Compares this DateTime with another DateTime chronologically.
+     * Returns a negative integer if this DateTime is before the other,
+     * zero if they are equal, or a positive integer if this DateTime is after the other.
+     *
+     * @param other The other DateTime to compare to.
+     * @return A negative integer, zero, or a positive integer as this DateTime
+     *         is before, equal to, or after the specified DateTime.
+     */
+    public int compareTo(DateTime other) {
+        requireNonNull(other);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+        LocalDateTime thisDateTime = LocalDateTime.parse(this.value, formatter);
+        LocalDateTime otherDateTime = LocalDateTime.parse(other.value, formatter);
+
+        return thisDateTime.compareTo(otherDateTime);
     }
+
 }
