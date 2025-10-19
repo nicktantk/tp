@@ -28,7 +28,7 @@ public class BookingBuilder {
     private DateTime dateTime;
     private PackageType packageType;
     private Set<Tag> tags;
-    private Boolean isDone;
+    private Boolean isDone = DEFAULT_ISDONE;
 
     /**
      * Creates a {@code BookingBuilder} with the default details.
@@ -52,6 +52,7 @@ public class BookingBuilder {
         dateTime = bookingToCopy.getDateTime();
         packageType = bookingToCopy.getPackageType();
         tags = new HashSet<>(bookingToCopy.getTags());
+        isDone = bookingToCopy.isDone();
     }
 
     /**
