@@ -20,7 +20,7 @@ public class MarkBookingCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Marks a booking.\n"
             + "Parameters: "
-            + "INDEX (must be a positive integer) "
+            + "INDEX (must be a positive integer) \n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_SUCCESS = "Booking %1$s has been marked";

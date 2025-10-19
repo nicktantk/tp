@@ -10,8 +10,8 @@ public class CommandList {
     public static final List<CommandInfo> ALL_COMMANDS = List.of(
             new CommandInfo(AddCommand.COMMAND_WORD, AddCommand.MESSAGE_USAGE),
             new CommandInfo(AddBookingCommand.COMMAND_WORD, AddBookingCommand.MESSAGE_USAGE),
-            new CommandInfo(ListCommand.COMMAND_WORD, "N.A"),
-            new CommandInfo(ListBookingCommand.COMMAND_WORD, "N.A"),
+            new CommandInfo(ListCommand.COMMAND_WORD, "list: Lists all clients"),
+            new CommandInfo(ListBookingCommand.COMMAND_WORD, "listbooking: Lists all bookings"),
             new CommandInfo(DeleteCommand.COMMAND_WORD, DeleteCommand.MESSAGE_USAGE),
             new CommandInfo(DeleteBookingCommand.COMMAND_WORD, DeleteBookingCommand.MESSAGE_USAGE),
             new CommandInfo(FindCommand.COMMAND_WORD, FindCommand.MESSAGE_USAGE),
@@ -19,9 +19,9 @@ public class CommandList {
             new CommandInfo(MarkBookingCommand.COMMAND_WORD, MarkBookingCommand.MESSAGE_USAGE),
             new CommandInfo(UnmarkBookingCommand.COMMAND_WORD, UnmarkBookingCommand.MESSAGE_USAGE),
             new CommandInfo(EditCommand.COMMAND_WORD, EditCommand.MESSAGE_USAGE),
-            new CommandInfo(ClearCommand.COMMAND_WORD, "N.A"),
+            new CommandInfo(ClearCommand.COMMAND_WORD, "clear: Clears the AddressBook"),
             new CommandInfo(HelpCommand.COMMAND_WORD, HelpCommand.MESSAGE_USAGE),
-            new CommandInfo(ExitCommand.COMMAND_WORD, "N.A")
+            new CommandInfo(ExitCommand.COMMAND_WORD, "exit: Exits the AddressBook")
     );
 
     /** Lightweight container for command metadata. */
