@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -49,5 +50,24 @@ public class UnmarkBookingCommand extends Command {
         model.setBooking(booking, markedbooking);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(markedbooking)));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        // instanceof handles nulls
+        if (!(other instanceof UnmarkBookingCommand otherCommand)) {
+            return false;
+        }
+        return bookingindex.equals(otherCommand.bookingindex);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("bookingindex", bookingindex)
+                .toString();
     }
 }
