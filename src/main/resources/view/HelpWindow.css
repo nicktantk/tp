@@ -1,3 +1,4 @@
+/* ==== HEADER ==== */
 #copyButton, #helpMessage {
     -fx-text-fill: white;
 }
@@ -11,9 +12,66 @@
 }
 
 #copyButton:armed {
-    -fx-background-color: darkgray;
+    -fx-background-color: derive(#1d1d1d, 20%);
 }
 
 #helpMessageContainer {
     -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-padding: 5 5 5 5;
+}
+
+#commandUsage {
+    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-border-color: transparent;
+}
+
+#commandUsage > .viewport {
+    -fx-background-color: gray;
+    -fx-background-insets: 0;
+}
+
+.scroll-bar:vertical,
+.scroll-bar:horizontal {
+    -fx-opacity: 0;
+    -fx-max-width: 0;
+    -fx-max-height: 0;
+}
+
+.scroll-pane > .corner {
+    -fx-background-color: derive(#1d1d1d, 20%);
+}
+
+/* ==== CONTAINER ==== */
+#commandContainer {
+    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-padding: 15 20 15 20;
+}
+
+/* ==== COMMAND BOXES ==== */
+.command-box {
+    -fx-background-color:  derive(#1d1d1d, 20%);
+    -fx-background-radius: 8;
+    -fx-padding: 10 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 1);
+}
+
+.command-intro {
+    -fx-font-family: "Consolas";
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #e0e0e0;
+
+}
+
+/* ==== COMMAND LABELS ==== */
+.command-title {
+    -fx-font-family: "Consolas";
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1561c0;
+}
+
+.command-usage {
+    -fx-font-size: 12px;
+    -fx-text-fill: #e0e0e0;
 }
