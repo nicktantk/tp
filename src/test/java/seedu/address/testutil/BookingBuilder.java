@@ -12,22 +12,23 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
- * A utility class to help with building Booking objects for testing.
+ * A utility class to help with building Person objects.
  */
 public class BookingBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_DESCRIPTION = "Wedding Photoshoot";
-    public static final String DEFAULT_DATETIME = "2025-10-20 14:00";
+    public static final String DEFAULT_DESCRIPTION = "Wedding shoot";
+    public static final String DEFAULT_DATETIME = "19/10/2025 1200";
     public static final String DEFAULT_PACKAGETYPE = "WEDDING";
-    public static final boolean DEFAULT_ISDONE = false;
+    public static final Tag DEFAULT_TAG = new Tag("Outdoor");
+    public static final Boolean DEFAULT_ISDONE = Boolean.FALSE;
 
     private Name name;
     private Description description;
     private DateTime dateTime;
     private PackageType packageType;
     private Set<Tag> tags;
-    private boolean isDone;
+    private Boolean isDone = DEFAULT_ISDONE;
 
     /**
      * Creates a {@code BookingBuilder} with the default details.
@@ -38,6 +39,7 @@ public class BookingBuilder {
         dateTime = new DateTime(DEFAULT_DATETIME);
         packageType = PackageType.valueOf(DEFAULT_PACKAGETYPE);
         tags = new HashSet<>();
+        tags.add(DEFAULT_TAG);
         isDone = DEFAULT_ISDONE;
     }
 
@@ -53,37 +55,58 @@ public class BookingBuilder {
         isDone = bookingToCopy.isDone();
     }
 
+    /**
+     * Sets the {@code Name} of the {@code Booking} that we are building.
+     */
     public BookingBuilder withName(String name) {
         this.name = new Name(name);
         return this;
     }
 
-    public BookingBuilder withDescription(String description) {
-        this.description = new Description(description);
-        return this;
-    }
-
-    public BookingBuilder withDateTime(String dateTime) {
-        this.dateTime = new DateTime(dateTime);
-        return this;
-    }
-
-    public BookingBuilder withPackageType(String packageType) {
-        this.packageType = PackageType.valueOf(packageType);
-        return this;
-    }
-
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Booking} that we are building.
+     */
     public BookingBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
-    public BookingBuilder withIsDone(boolean isDone) {
-        this.isDone = isDone;
+    /**
+     * Sets the {@code PackageType} of the {@code Booking} that we are building.
+     */
+    public BookingBuilder withPackageType(String packageType) {
+        this.packageType = PackageType.valueOf(packageType);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Description} of the {@code Booking} that we are building.
+     */
+    public BookingBuilder withDescription(String description) {
+        this.description = new Description(description);
+        return this;
+    }
+
+    /**
+     * Sets the {@code DateTime()} of the {@code Booking} that we are building.
+     */
+    public BookingBuilder withDateTime(String dateTime) {
+        this.dateTime = new DateTime(dateTime);
+        return this;
+    }
+
+    /**
+     * Sets the code {@code IsDone()} of the {@code Booking} that we are building.
+     * @param isDone
+     * @return
+     */
+    public BookingBuilder withIsDone(Boolean isDone) {
+        this.isDone = DEFAULT_ISDONE;
         return this;
     }
 
     public Booking build() {
         return new Booking(description, name, dateTime, packageType, tags, isDone);
     }
+
 }

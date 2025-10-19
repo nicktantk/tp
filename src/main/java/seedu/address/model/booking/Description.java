@@ -10,10 +10,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Description {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Description can be any non-blank string, up to 20 characters.";
+            "Description can be any non-blank string, up to 40 characters.";
 
     // Allows any non-blank string up to 200 characters
-    public static final String VALIDATION_REGEX = "[^\\s].{0,20}";
+    public static final String VALIDATION_REGEX = "[^\\s].{0,40}";
 
     public final String value;
 
