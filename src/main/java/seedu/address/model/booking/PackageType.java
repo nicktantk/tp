@@ -31,4 +31,13 @@ public enum PackageType {
             + "BIRTHDAY, "
             + "ANNIVERSARY, "
             + "OTHER";
+
+    public static boolean isValidPackageType(String input) {
+        try {
+            PackageType.valueOf(input.toUpperCase());
+            return true; // matches a valid enum constant
+        } catch (IllegalArgumentException e) {
+            return false; // not a valid enum name
+        }
+    }
 }

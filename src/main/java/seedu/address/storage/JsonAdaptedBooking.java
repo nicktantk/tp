@@ -69,7 +69,7 @@ public class JsonAdaptedBooking {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted booking object into the model's {@code Booking} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
@@ -107,6 +107,9 @@ public class JsonAdaptedBooking {
         if (packageType == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 PackageType.class.getSimpleName()));
+        }
+        if (!PackageType.isValidPackageType(packageType)) {
+            throw new IllegalValueException(PackageType.MESSAGE_CONSTRAINTS);
         }
 
         PackageType modelPackageType = PackageType.valueOf(packageType);
