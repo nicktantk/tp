@@ -57,16 +57,6 @@ public class TypicalBookings {
             .withPackageType("FAMILY")
             .withTags("largegroup").build();
 
-    // Manually added
-    public static final BookingDescriptor HOON_BOOKINGDESCRIPTOR = new BookingDescriptorBuilder()
-            .withDescription("Hoon networking")
-            .withDateTime("12/05/2025 1700")
-            .withPackageType("CORPORATE").build();
-
-    public static final BookingDescriptor IDA_BOOKINGDESCRIPTOR = new BookingDescriptorBuilder()
-            .withDescription("Ida housewarming")
-            .withDateTime("20/06/2025 1600")
-            .withPackageType("OTHER").build();
 
     // Actual Bookings (with client names from TypicalPersons)
     public static final Booking ALICE_BOOKING = new BookingBuilder()
@@ -125,20 +115,6 @@ public class TypicalBookings {
             .withTags("largegroup")
             .build();
 
-    // Manually added bookings
-    public static final Booking HOON_BOOKING = new BookingBuilder()
-            .withName("Hoon Meier")
-            .withDescription("Hoon networking")
-            .withDateTime("12/05/2025 1700")
-            .withPackageType("CORPORATE")
-            .build();
-
-    public static final Booking IDA_BOOKING = new BookingBuilder()
-            .withName("Ida Mueller")
-            .withDescription("Ida housewarming")
-            .withDateTime("20/06/2025 1600")
-            .withPackageType("OTHER")
-            .build();
 
     public static final String KEYWORD_MATCHING_WEDDING = "wedding"; // A keyword that matches WEDDING
 
@@ -170,7 +146,7 @@ public class TypicalBookings {
     public static List<Booking> getTypicalBookings() {
         return new ArrayList<>(Arrays.asList(ALICE_BOOKING, BENSON_BOOKING,
                 CARL_BOOKING, DANIEL_BOOKING, ELLE_BOOKING,
-                FIONA_BOOKING, GEORGE_BOOKING, HOON_BOOKING, IDA_BOOKING));
+                FIONA_BOOKING, GEORGE_BOOKING));
     }
 
     /**
@@ -179,6 +155,6 @@ public class TypicalBookings {
     public static List<BookingDescriptor> getTypicalBookingDescriptors() {
         return new ArrayList<>(Arrays.asList(ALICE_BOOKINGDESCRIPTOR, BENSON_BOOKINGDESCRIPTOR,
                 CARL_BOOKINGDESCRIPTOR, DANIEL_BOOKINGDESCRIPTOR, ELLE_BOOKINGDESCRIPTOR,
-                FIONA_BOOKINGDESCRIPTOR, GEORGE_BOOKINGDESCRIPTOR, HOON_BOOKINGDESCRIPTOR, IDA_BOOKINGDESCRIPTOR));
+                FIONA_BOOKINGDESCRIPTOR, GEORGE_BOOKINGDESCRIPTOR));
     }
 }
