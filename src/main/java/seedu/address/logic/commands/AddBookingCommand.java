@@ -24,7 +24,7 @@ public class AddBookingCommand extends Command {
 
     public static final String COMMAND_WORD = "addbooking";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a booking to the address book. \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a booking to InSight. \n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + PREFIX_DATETIME + "dd/mm/yyyy HHmm "
