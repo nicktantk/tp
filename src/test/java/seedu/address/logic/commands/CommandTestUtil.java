@@ -3,8 +3,11 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PACKAGETYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -17,8 +20,12 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.booking.Booking;
+import seedu.address.model.booking.BookingDescriptor;
+import seedu.address.model.booking.MatchDateTimePredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.BookingDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -26,6 +33,7 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
  */
 public class CommandTestUtil {
 
+    // Person related constants
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -37,7 +45,17 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
+    // Booking-related constants
+    public static final String VALID_DESCRIPTION_WEDDING = "Wedding reception at Grand Hotel";
+    public static final String VALID_DESCRIPTION_BIRTHDAY = "Birthday celebration";
+    public static final String VALID_DATETIME_WEDDING = "15/06/2025 1800";
+    public static final String VALID_DATETIME_BIRTHDAY = "20/07/2025 2000";
+    public static final String VALID_PACKAGETYPE_WEDDING = "WEDDING";
+    public static final String VALID_PACKAGETYPE_BIRTHDAY = "BIRTHDAY";
+    public static final String VALID_TAG_PREMIUM = "premium";
+    public static final String VALID_TAG_OUTDOOR = "outdoor";
 
+    // Person command descriptors
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -49,17 +67,37 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
+    // Booking command descriptors
+    public static final String DESCRIPTION_DESC_WEDDING = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_WEDDING;
+    public static final String DESCRIPTION_DESC_BIRTHDAY = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_BIRTHDAY;
+    public static final String DATETIME_DESC_WEDDING = " " + PREFIX_DATETIME + VALID_DATETIME_WEDDING;
+    public static final String DATETIME_DESC_BIRTHDAY = " " + PREFIX_DATETIME + VALID_DATETIME_BIRTHDAY;
+    public static final String PACKAGE_DESC_WEDDING = " " + PREFIX_PACKAGETYPE + VALID_PACKAGETYPE_WEDDING;
+    public static final String PACKAGE_DESC_BIRTHDAY = " " + PREFIX_PACKAGETYPE + VALID_PACKAGETYPE_BIRTHDAY;
+    public static final String TAG_DESC_PREMIUM = " " + PREFIX_TAG + VALID_TAG_PREMIUM;
+    public static final String TAG_DESC_OUTDOOR = " " + PREFIX_TAG + VALID_TAG_OUTDOOR;
+
+    // Invalid person command descriptors
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
-    public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
-    public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
-
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
+
+    // Invalid booking command descriptors
+    public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION; // empty description
+    public static final String INVALID_DATETIME_DESC = " " + PREFIX_DATETIME + "2025-13-45 25:00"; // invalid date
+    public static final String INVALID_PACKAGE_DESC = " " + PREFIX_PACKAGETYPE + "INVALID"; // invalid package type
+
+    public static final BookingDescriptor DESC_WEDDING;
+    public static final BookingDescriptor DESC_BIRTHDAY;
+
+    // Invalid general command decriptors
+    public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
+    public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -68,6 +106,16 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_WEDDING = new BookingDescriptorBuilder()
+                .withDescription(VALID_DESCRIPTION_WEDDING)
+                .withDateTime(VALID_DATETIME_WEDDING)
+                .withPackageType(VALID_PACKAGETYPE_WEDDING)
+                .withTags(VALID_TAG_PREMIUM).build();
+        DESC_BIRTHDAY = new BookingDescriptorBuilder()
+                .withDescription(VALID_DESCRIPTION_BIRTHDAY)
+                .withDateTime(VALID_DATETIME_BIRTHDAY)
+                .withPackageType(VALID_PACKAGETYPE_BIRTHDAY)
+                .withTags(VALID_TAG_OUTDOOR, VALID_TAG_PREMIUM).build();
     }
 
     /**
@@ -126,5 +174,20 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredPersonList().size());
     }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the booking at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showBookingAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredBookingList().size());
+
+        Booking booking = model.getFilteredBookingList().get(targetIndex.getZeroBased());
+        model.updateFilteredBookingList(new MatchDateTimePredicate(booking.getDateTime()));
+
+        assertEquals(1, model.getFilteredBookingList().size());
+    }
+
+
 
 }
