@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.AddressBook;
+import seedu.address.testutil.TypicalBookings;
 import seedu.address.testutil.TypicalPersons;
 
 public class JsonSerializableAddressBookTest {
@@ -19,6 +20,43 @@ public class JsonSerializableAddressBookTest {
     private static final Path TYPICAL_PERSONS_FILE = TEST_DATA_FOLDER.resolve("typicalPersonsAddressBook.json");
     private static final Path INVALID_PERSON_FILE = TEST_DATA_FOLDER.resolve("invalidPersonAddressBook.json");
     private static final Path DUPLICATE_PERSON_FILE = TEST_DATA_FOLDER.resolve("duplicatePersonAddressBook.json");
+    private static final Path TYPICAL_BOOKING_FILE = TEST_DATA_FOLDER.resolve("typicalBookingsAddressBook.json");
+    private static final Path DUPLICATE_BOOKING_FILE = TEST_DATA_FOLDER.resolve("duplicateBookingAddressBook.json");
+    private static final Path INVALID_BOOKING_FILE = TEST_DATA_FOLDER.resolve("invalidBookingAddressBook.json");
+    private static final Path BOOKING_WITH_MISSING_CLIENT = TEST_DATA_FOLDER.resolve("bookingWithMissingClient.json");
+
+    @Test
+    public void toModelType_typicalBookingsFile_success() throws Exception {
+        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_BOOKING_FILE,
+                JsonSerializableAddressBook.class).get();
+        AddressBook addressBookFromFile = dataFromFile.toModelType();
+        AddressBook typicalBookingsAddressBook = TypicalBookings.getTypicalAddressBook();
+        assertEquals(addressBookFromFile, typicalBookingsAddressBook);
+    }
+
+    @Test
+    public void toModelType_invalidBookingFile_throwsIllegalValueException() throws Exception {
+        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(INVALID_BOOKING_FILE,
+                JsonSerializableAddressBook.class).get();
+        assertThrows(IllegalValueException.class, dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_bookingWithMissingClient_throwsIllegalValueException() throws Exception {
+        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(BOOKING_WITH_MISSING_CLIENT,
+                JsonSerializableAddressBook.class).get();
+
+        String expectedMessage = JsonSerializableAddressBook.MESSAGE_MISSING_CLIENT;
+        assertThrows(IllegalValueException.class, expectedMessage, dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_duplicateBookings_throwsIllegalValueException() throws Exception {
+        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_BOOKING_FILE,
+                JsonSerializableAddressBook.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableAddressBook.MESSAGE_DUPLICATE_BOOKING,
+                dataFromFile::toModelType);
+    }
 
     @Test
     public void toModelType_typicalPersonsFile_success() throws Exception {

@@ -1,0 +1,23 @@
+{
+  "persons": [ {
+    "name": "Alice Pauline",
+    "phone": "9482424",
+    "email": "invalid@email!3e",
+    "address": "4th street"
+  } ],
+  "bookings" : [ {
+    "description" : "Wedding Shoot",
+    "name" : "A@)123",
+    "dateTime" : "14/10/2025 1200",
+    "packageType" : "PORTRAIT",
+    "tags" : [ "outdoor", "summer" ],
+    "isDone" : "false"
+  }, {
+    "description" : "Wedding Shoot",
+    "name" : "Alice Pauline",
+    "dateTime" : "14/10/2025 1200",
+    "packageType" : "PORTRAIT",
+    "tags" : [ "outdoor", "summer" ],
+    "isDone" : "false"
+  } ]
+}

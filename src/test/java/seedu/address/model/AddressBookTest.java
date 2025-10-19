@@ -4,8 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BIRTHDAY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalBookings.ALICE_BOOKING;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -23,47 +25,41 @@ import seedu.address.model.booking.Booking;
 import seedu.address.model.booking.DateTime;
 import seedu.address.model.booking.Description;
 import seedu.address.model.booking.PackageType;
+import seedu.address.model.booking.exceptions.DuplicateBookingException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.tag.Tag;
+import seedu.address.testutil.BookingBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
 
     private final AddressBook addressBook = new AddressBook();
 
-    @Test
-    public void constructor() {
+    @Test public void constructor() {
         assertEquals(Collections.emptyList(), addressBook.getPersonList());
     }
 
-    @Test
-    public void resetData_null_throwsNullPointerException() {
+    @Test public void resetData_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
     }
 
-    @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
+    @Test public void resetData_withValidReadOnlyAddressBook_replacesData() {
         AddressBook newData = getTypicalAddressBook();
         addressBook.resetData(newData);
         assertEquals(newData, addressBook);
     }
 
-    @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
+    @Test public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-            .build();
+        Person editedAlice =
+                new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
 
         // Create a sample booking
-        Booking sampleBooking = new Booking(
-            new Description("Wedding shoot"),
-            ALICE.getName(),
-            new DateTime("14/10/2025 1200"),
-            PackageType.PORTRAIT,
-            Set.of(new Tag("outdoor"), new Tag("morning")),
-            false // not done
-        );
+        Booking sampleBooking =
+                new Booking(new Description("Wedding shoot"), ALICE.getName(), new DateTime("14/10/2025 1200"),
+                        PackageType.PORTRAIT, Set.of(new Tag("outdoor"), new Tag("morning")), false // not done
+                );
 
         List<Booking> newBookings = List.of(sampleBooking);
 
@@ -73,39 +69,46 @@ public class AddressBookTest {
         assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
     }
 
-    @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
+    @Test public void resetData_withDuplicateBookings_throwsDuplicateBookingException() {
+        Booking editedAliceBooking =
+                new BookingBuilder(ALICE_BOOKING).withDescription(VALID_DESCRIPTION_BIRTHDAY).build();
+
+        List<Booking> newBookings = List.of(editedAliceBooking, ALICE_BOOKING);
+
+        List<Person> newPersons = List.of(ALICE);
+        AddressBookStub newData = new AddressBookStub(newPersons, newBookings);
+
+        assertThrows(DuplicateBookingException.class, () -> addressBook.resetData(newData));
+    }
+
+    @Test public void hasPerson_nullPerson_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
     }
 
-    @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    @Test public void hasPerson_personNotInAddressBook_returnsFalse() {
         assertFalse(addressBook.hasPerson(ALICE));
     }
 
-    @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    @Test public void hasPerson_personInAddressBook_returnsTrue() {
         addressBook.addPerson(ALICE);
         assertTrue(addressBook.hasPerson(ALICE));
     }
 
-    @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    @Test public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
-            .build();
+        Person editedAlice =
+                new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(addressBook.hasPerson(editedAlice));
     }
 
-    @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
+    @Test public void getPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
     }
 
-    @Test
-    public void toStringMethod() {
-        String expected = AddressBook.class.getCanonicalName() + "{persons=" + addressBook.getPersonList()
-            + ", bookings=" + addressBook.getBookingList() + "}";
+    @Test public void toStringMethod() {
+        String expected =
+                AddressBook.class.getCanonicalName() + "{persons=" + addressBook.getPersonList() + ", bookings="
+                        + addressBook.getBookingList() + "}";
         assertEquals(expected, addressBook.toString());
     }
 
@@ -121,13 +124,11 @@ public class AddressBookTest {
             this.bookings.setAll(bookings);
         }
 
-        @Override
-        public ObservableList<Person> getPersonList() {
+        @Override public ObservableList<Person> getPersonList() {
             return persons;
         }
 
-        @Override
-        public ObservableList<Booking> getBookingList() {
+        @Override public ObservableList<Booking> getBookingList() {
             return bookings;
         }
     }
