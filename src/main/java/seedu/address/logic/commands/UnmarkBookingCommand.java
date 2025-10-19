@@ -17,10 +17,10 @@ public class UnmarkBookingCommand extends Command {
 
     public static final String COMMAND_WORD = "unmarkbooking";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Mark the status of booking in the INDEX. \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unmarks a booking.\n"
             + "Parameters: "
             + "INDEX (must be a positive integer) "
-            + "Example: " + COMMAND_WORD + " 1 ";
+            + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_SUCCESS = "Booking %1$s has been marked";
     public static final String MESSAGE_NOTFOUND = "Invalid booking ID: %1$s";
@@ -28,7 +28,9 @@ public class UnmarkBookingCommand extends Command {
 
     private final Index bookingindex;
 
-    public UnmarkBookingCommand(Index bookingindex) { this.bookingindex = bookingindex; }
+    public UnmarkBookingCommand(Index bookingindex) {
+        this.bookingindex = bookingindex;
+    }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {

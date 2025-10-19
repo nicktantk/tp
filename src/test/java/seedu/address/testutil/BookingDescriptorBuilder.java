@@ -4,12 +4,11 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.address.model.booking.BookingDescriptor;
-import seedu.address.model.booking.Description;
-import seedu.address.model.booking.DateTime;
-import seedu.address.model.booking.PackageType;
-import seedu.address.model.person.Name;
 import seedu.address.model.booking.Booking;
+import seedu.address.model.booking.BookingDescriptor;
+import seedu.address.model.booking.DateTime;
+import seedu.address.model.booking.Description;
+import seedu.address.model.booking.PackageType;
 import seedu.address.model.tag.Tag;
 
 /**

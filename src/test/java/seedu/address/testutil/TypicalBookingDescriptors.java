@@ -1,13 +1,13 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_WEDDING;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BIRTHDAY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_WEDDING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_BIRTHDAY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PACKAGETYPE_WEDDING;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_WEDDING;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BIRTHDAY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_WEDDING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PACKAGETYPE_BIRTHDAY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_PREMIUM;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PACKAGETYPE_WEDDING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_OUTDOOR;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_PREMIUM;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,7 +36,7 @@ public class TypicalBookingDescriptors {
             .withDescription("Carl's wedding reception")
             .withDateTime("10/01/2025 1900")
             .withPackageType("wedding")
-            .withTags("hotel","fountain").build();
+            .withTags("hotel", "fountain").build();
 
     public static final BookingDescriptor DANIEL_BOOKINGDESCRIPTOR = new BookingDescriptorBuilder()
             .withDescription("Daniel's anniversary dinner")

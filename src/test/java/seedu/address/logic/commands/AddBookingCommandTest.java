@@ -32,7 +32,6 @@ import seedu.address.model.booking.BookingDescriptor;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.BookingBuilder;
 import seedu.address.testutil.BookingDescriptorBuilder;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddBookingCommandTest {
@@ -50,7 +49,7 @@ public class AddBookingCommandTest {
         ModelStubAcceptingBookingAdded modelStub = new ModelStubAcceptingBookingAdded();
         Booking validBooking = new BookingBuilder().build();
         BookingDescriptor descriptor = new BookingDescriptorBuilder(validBooking).build();
-        Index index =  Index.fromZeroBased(0);
+        Index index = Index.fromZeroBased(0);
 
         CommandResult commandResult = new AddBookingCommand(index, descriptor).execute(modelStub);
 
@@ -63,11 +62,12 @@ public class AddBookingCommandTest {
     public void execute_duplicateBooking_throwsCommandException() {
         Booking validBooking = new BookingBuilder().build();
         BookingDescriptor descriptor = new BookingDescriptorBuilder(validBooking).build();
-        Index index =  Index.fromZeroBased(0);
+        Index index = Index.fromZeroBased(0);
         AddBookingCommand addBookingCommand = new AddBookingCommand(index, descriptor);
         ModelStub modelStub = new ModelStubWithBooking(validBooking);
 
-        assertThrows(CommandException.class, AddBookingCommand.MESSAGE_DUPLICATE_BOOKING, () -> addBookingCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddBookingCommand.MESSAGE_DUPLICATE_BOOKING, (
+        ) -> addBookingCommand.execute(modelStub));
     }
 
     @Test
@@ -85,7 +85,7 @@ public class AddBookingCommandTest {
         BookingDescriptor noonDescriptor = new BookingDescriptorBuilder(noon).build();
         Booking midnight = new BookingBuilder().withDateTime("19/10/2025 0000").build();
         BookingDescriptor midnightDescriptor = new BookingDescriptorBuilder(midnight).build();
-        Index index =  Index.fromZeroBased(0);
+        Index index = Index.fromZeroBased(0);
 
         AddBookingCommand addNoonCommand = new AddBookingCommand(index, noonDescriptor);
         AddBookingCommand addMidnightCommand = new AddBookingCommand(index, midnightDescriptor);
@@ -110,7 +110,8 @@ public class AddBookingCommandTest {
     @Test
     public void toStringMethod() {
         AddBookingCommand addBookingCommand = new AddBookingCommand(INDEX_FIRST_PERSON, ALICE_BOOKINGDESCRIPTOR);
-        String expected = AddBookingCommand.class.getCanonicalName() + "{index=" + INDEX_FIRST_PERSON + ", BookingDescriptor=" + ALICE_BOOKINGDESCRIPTOR + "}";
+        String expected = AddBookingCommand.class.getCanonicalName() + "{index=" + INDEX_FIRST_PERSON
+                + ", BookingDescriptor=" + ALICE_BOOKINGDESCRIPTOR + "}";
         assertEquals(expected, addBookingCommand.toString());
     }
 

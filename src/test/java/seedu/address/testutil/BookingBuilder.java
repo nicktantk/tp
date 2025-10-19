@@ -4,11 +4,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.booking.Booking;
-import seedu.address.model.person.Name;
-import seedu.address.model.booking.Description;
 import seedu.address.model.booking.DateTime;
+import seedu.address.model.booking.Description;
 import seedu.address.model.booking.PackageType;
-import seedu.address.model.booking.BookingDescriptor;
+import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -95,6 +94,11 @@ public class BookingBuilder {
         return this;
     }
 
+    /**
+     * Sets the code {@code IsDone()} of the {@code Booking} that we are building.
+     * @param isDone
+     * @return
+     */
     public BookingBuilder withIsDone(Boolean isDone) {
         this.isDone = DEFAULT_ISDONE;
         return this;

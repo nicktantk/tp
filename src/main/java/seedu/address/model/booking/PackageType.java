@@ -19,5 +19,16 @@ public enum PackageType {
     OTHER;
 
     public static final String MESSAGE_CONSTRAINTS = "PackageType must be one of the following: "
-            + "PORTRAIT, FAMILY, EVENT, WEDDING, CORPORATE, PRODUCT, MATERNITY, BABY, GRADUATION, BIRTHDAY, ANNIVERSARY, OTHER";
+            + "PORTRAIT,"
+            + "FAMILY, "
+            + "EVENT, "
+            + "WEDDING, "
+            + "CORPORATE, "
+            + "PRODUCT, "
+            + "MATERNITY, "
+            + "BABY, "
+            + "GRADUATION, "
+            + "BIRTHDAY, "
+            + "ANNIVERSARY, "
+            + "OTHER";
 }
