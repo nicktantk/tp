@@ -15,6 +15,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("d/");
     public static final Prefix PREFIX_DATETIME = new Prefix("dt/");
     public static final Prefix PREFIX_PACKAGETYPE = new Prefix("p/");
+    public static final Prefix PREFIX_STATUS = new Prefix("s/");
 
 
 }
