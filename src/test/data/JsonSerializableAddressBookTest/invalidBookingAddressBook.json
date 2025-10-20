@@ -3,7 +3,7 @@
     "name": "Alice Pauline",
     "phone": "9482424",
     "email": "invalid@email!3e",
-    "status": "Active",
+    "status": "ACTIVE",
     "address": "4th street"
   } ],
   "bookings" : [ {

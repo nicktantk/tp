@@ -22,7 +22,6 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_STATUS = "ACTIVE";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final Tag DEFAULT_TAG = new Tag("Stupid");
 
     private Name name;
     private Phone phone;
@@ -41,7 +40,6 @@ public class PersonBuilder {
         status = Status.valueOf(DEFAULT_STATUS);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
-        tags.add(DEFAULT_TAG);
     }
 
     /**
