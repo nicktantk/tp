@@ -93,7 +93,7 @@ public class ParserUtil {
      */
     public static Status parseStatus(String status) throws ParseException {
         requireNonNull(status);
-        String trimmedStatus = status.trim();
+        String trimmedStatus = status.trim().toUpperCase();
         if (!Status.isValidStatus(trimmedStatus)) {
             throw new ParseException(Status.MESSAGE_CONSTRAINTS);
         }
