@@ -15,7 +15,9 @@ public class ListBookingCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all bookings";
 
-
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all Bookings within InSight. \n"
+            + "Parameters: NIL \n"
+            + "Example: " + COMMAND_WORD;
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
