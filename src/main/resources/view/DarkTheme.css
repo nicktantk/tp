@@ -168,8 +168,6 @@
     -fx-background-radius: 4;
     -fx-padding: 2 6;
     -fx-font-size: 11;
-}
-#tags .label {
     -fx-background-color: #5e81ac;
 }
 
@@ -183,6 +181,13 @@
 }
 
 /* === BOOKING STATUS === */
+#status {
+    -fx-text-fill: white;
+    -fx-background-radius: 4;
+    -fx-padding: 2 6;
+    -fx-font-size: 11;
+    -fx-background-color: #5e81ac;
+}
 #status.Done {
     -fx-text-fill: white;
     -fx-background-color: #27ae60;
