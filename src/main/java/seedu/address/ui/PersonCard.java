@@ -26,22 +26,14 @@ public class PersonCard extends UiPart<Region> {
 
     public final Person person;
 
-    @FXML
-    private HBox cardPane;
-    @FXML
-    private Label name;
-    @FXML
-    private Label id;
-    @FXML
-    private Label phone;
-    @FXML
-    private Label address;
-    @FXML
-    private Label status;
-    @FXML
-    private Label email;
-    @FXML
-    private FlowPane tags;
+    @FXML private HBox cardPane;
+    @FXML private Label name;
+    @FXML private Label id;
+    @FXML private Label phone;
+    @FXML private Label address;
+    @FXML private Label status;
+    @FXML private Label email;
+    @FXML private FlowPane tags;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -51,12 +43,13 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        status.setText(person.getStatus().toString());
+        String statusType = person.getStatus().toString();
+        status.setText(statusType);
+        status.getStyleClass().add(statusType);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
+        person.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 }
