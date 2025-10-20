@@ -35,7 +35,7 @@ public interface Logic {
     /**
      * Returns an unmodifiable view of the filtered list of persons
      */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Person> getModifiedPersonList();
 
     /**
      * Returns the user prefs' address book file path.
@@ -55,5 +55,5 @@ public interface Logic {
     /**
      * Returns an unmodifiable view of the filtered list of bookings
      */
-    ObservableList<Booking> getFilteredBookingList();
+    ObservableList<Booking> getModifiedBookingList();
 }

@@ -91,7 +91,7 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Person> lastShownList = model.getModifiedPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -108,14 +108,14 @@ public class EditCommand extends Command {
         if (!personToEdit.getName().equals(editedPerson.getName())) {
             updateBookings(model, personToEdit, editedPerson);
         }
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        model.updateFilteredBookingList(PREDICATE_SHOW_ALL_BOOKINGS);
+        model.filterPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.filterBookingList(PREDICATE_SHOW_ALL_BOOKINGS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
     }
 
     private static void updateBookings(Model model, Person personToEdit, Person editedPerson) {
-        model.updateFilteredBookingList(new BookingHasNamePredicate(personToEdit.getName()));
-        List<Booking> bookingsToUpdate = new ArrayList<>(model.getFilteredBookingList());
+        model.filterBookingList(new BookingHasNamePredicate(personToEdit.getName()));
+        List<Booking> bookingsToUpdate = new ArrayList<>(model.getModifiedBookingList());
         for (Booking booking : bookingsToUpdate) {
             BookingDescriptor updatedBookingDescriptor = new BookingDescriptor(booking);
             model.setBooking(booking, new Booking(editedPerson.getName(), updatedBookingDescriptor, booking.isDone()));

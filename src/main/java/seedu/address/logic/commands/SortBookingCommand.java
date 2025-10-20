@@ -18,7 +18,7 @@ public class SortBookingCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         Comparator<Booking> dateTimeComparator = new DateTimeComparator();
-        model.updateSortedBookingList(dateTimeComparator);
+        model.sortBookingList(dateTimeComparator);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

@@ -36,7 +36,7 @@ public class MarkBookingCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Booking> lastShownList = model.getFilteredBookingList();
+        List<Booking> lastShownList = model.getModifiedBookingList();
 
         if (bookingindex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(MESSAGE_NOTFOUND);

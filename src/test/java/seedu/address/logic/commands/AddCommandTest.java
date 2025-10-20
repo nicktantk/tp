@@ -150,12 +150,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public ObservableList<Person> getModifiedPersonList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void filterPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -180,22 +180,22 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Booking> getFilteredBookingList() {
+        public ObservableList<Booking> getModifiedBookingList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredBookingList(Predicate<Booking> predicate) {
+        public void filterBookingList(Predicate<Booking> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateSortedBookingList(Comparator<Booking> comparator) {
+        public void sortBookingList(Comparator<Booking> comparator) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateSortedPersonList(Comparator<Person> comparator) {
+        public void sortPersonList(Comparator<Person> comparator) {
             throw new AssertionError("This method should not be called.");
         }
     }
