@@ -11,9 +11,6 @@ public enum Status {
     INACTIVE,
     RETURNING;
 
-    /**
-     * Returns true if a given string is a valid Status.
-     */
     public static final String MESSAGE_CONSTRAINTS = "Status must be one of the following: "
         + "PROSPECT,"
         + "POTENTIAL, "
@@ -21,7 +18,9 @@ public enum Status {
         + "INACTIVE, "
         + "RETURNING ";
 
-
+    /**
+     * Returns true if a given string is a valid Status.
+     */
     public static boolean isValidStatus(String input) {
         try {
             Status.valueOf(input.toUpperCase());
