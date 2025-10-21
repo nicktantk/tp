@@ -5,7 +5,9 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_BOOKINGS;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
+import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -45,18 +47,20 @@ public class DeleteCommand extends Command {
         }
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
+        if (hasUndeletedBookings(model, personToDelete)) {
+            throw new CommandException(Messages.MESSAGE_UNDELETED_BOOKINGS_PRESENT);
+        }
         model.deletePerson(personToDelete);
-        updateBookings(model, personToDelete);
+
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
     }
 
-    private static void updateBookings(Model model, Person personToDelete) {
+    private static boolean hasUndeletedBookings(Model model, Person personToDelete) {
+        Predicate<Booking> currPredicate = model.getFilteredBookingsPredicate();
         model.updateFilteredBookingList(new BookingHasNamePredicate(personToDelete.getName()));
-        List<Booking> bookingsToDelete = new ArrayList<>(model.getFilteredBookingList());
-        for (Booking booking : bookingsToDelete) {
-            model.deleteBooking(booking);
-        }
-        model.updateFilteredBookingList(PREDICATE_SHOW_ALL_BOOKINGS);
+        boolean hasUndeletedBookings = !model.getFilteredBookingList().isEmpty();
+        model.updateFilteredBookingList(currPredicate);
+        return hasUndeletedBookings;
     }
 
     @Override

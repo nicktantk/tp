@@ -14,7 +14,7 @@ import seedu.address.model.person.MatchPersonPredicate;
 import seedu.address.model.person.Person;
 
 /**
- * Lists all booking for a specific client identified using it's displayed index from the address book.
+ * Lists all bookings for a specific client identified using it's displayed index from the address book.
  */
 public class ViewBookingCommand extends Command {
 

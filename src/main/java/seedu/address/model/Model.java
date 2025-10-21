@@ -94,6 +94,11 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    /**
+     * Returns the predicate of the current state of the filtered person list
+     */
+    Predicate<Person> getFilteredPersonsPredicate();
+
 
     /**
      * Returns true if a booking with the same identity as {@code booking} exists in the address book.
@@ -131,4 +136,9 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredBookingList(Predicate<Booking> predicate);
+
+    /**
+     * Returns the predicate of the current state of the filtered person list
+     */
+    Predicate<Booking> getFilteredBookingsPredicate();
 }

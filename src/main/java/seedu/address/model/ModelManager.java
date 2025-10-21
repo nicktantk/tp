@@ -131,6 +131,13 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    @Override
+    public Predicate<Person> getFilteredPersonsPredicate() {
+        @SuppressWarnings("All predicates of filteredPersons are of type Predicate<Person>")
+        Predicate<Person> predicate = (Predicate<Person>) filteredPersons.getPredicate();
+        return predicate;
+    }
+
     //=========== Filtered Booking List Accessors =============================================================
 
     @Override
@@ -165,6 +172,13 @@ public class ModelManager implements Model {
     public void updateFilteredBookingList(Predicate<Booking> predicate) {
         requireNonNull(predicate);
         filteredBookings.setPredicate(predicate);
+    }
+
+    @Override
+    public Predicate<Booking> getFilteredBookingsPredicate() {
+        @SuppressWarnings("All predicates of filteredBookings are of type Predicate<Booking>")
+        Predicate<Booking> predicate = (Predicate<Booking>) filteredBookings.getPredicate();
+        return predicate;
     }
 
     @Override
