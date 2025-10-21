@@ -2,10 +2,13 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.PersonHasStatusPredicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
@@ -17,21 +20,40 @@ public class FindCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "Parameters: name + [name1 name2...] or "
+            + "status + [status1 status2...]\n"
+            + "Example: " + COMMAND_WORD + " name alice bob charlie\n"
+            + "Another example: " + COMMAND_WORD + " status active returning";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final String findBy;
+    private final List<String> keywords;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
-        this.predicate = predicate;
+    /**
+     * Finds persons either by name of status
+     * @param findBy
+     * @param keywords
+     */
+    public FindCommand(String findBy, List<String> keywords) {
+        this.findBy = findBy;
+        this.keywords = keywords;
     }
 
     @Override
     public CommandResult execute(Model model) {
-        requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+        if (findBy.equals("NAME")) {
+            requireNonNull(model);
+            NameContainsKeywordsPredicate pred = new NameContainsKeywordsPredicate(keywords);
+            model.updateFilteredPersonList(pred);
+            return new CommandResult(
+                    String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+
+        } else {
+            requireNonNull(model);
+            PersonHasStatusPredicate pred = new PersonHasStatusPredicate(keywords);
+            model.updateFilteredPersonList(pred);
+            return new CommandResult(
+                    String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+        }
     }
 
     @Override
@@ -45,13 +67,14 @@ public class FindCommand extends Command {
             return false;
         }
 
-        return predicate.equals(otherFindCommand.predicate);
+        return findBy.equals(otherFindCommand.findBy) && keywords.equals(otherFindCommand.keywords);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("predicate", predicate)
+                .add("findBy", findBy)
+                .add("keywords", keywords)
                 .toString();
     }
 }
