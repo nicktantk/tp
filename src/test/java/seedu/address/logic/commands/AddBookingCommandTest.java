@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalBookings.ALICE_BOOKINGDESCRIPTOR;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getPersonsOnlyAddressBook;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -36,7 +36,7 @@ import seedu.address.testutil.PersonBuilder;
 
 public class AddBookingCommandTest {
 
-    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private final Model model = new ModelManager(getPersonsOnlyAddressBook(), new UserPrefs());
 
 
     @Test
@@ -216,6 +216,16 @@ public class AddBookingCommandTest {
 
         @Override
         public void updateFilteredBookingList(Predicate<Booking> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Predicate<Person> getFilteredPersonsPredicate() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Predicate<Booking> getFilteredBookingsPredicate() {
             throw new AssertionError("This method should not be called.");
         }
     }

@@ -37,6 +37,8 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredBookings = new FilteredList<>(this.addressBook.getBookingList());
+        filteredPersons.setPredicate(PREDICATE_SHOW_ALL_PERSONS);
+        filteredBookings.setPredicate(PREDICATE_SHOW_ALL_BOOKINGS);
     }
 
     public ModelManager() {
