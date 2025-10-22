@@ -43,16 +43,16 @@ public class FindCommand extends Command {
         if (findBy.equals("NAME")) {
             requireNonNull(model);
             NameContainsKeywordsPredicate pred = new NameContainsKeywordsPredicate(keywords);
-            model.updateFilteredPersonList(pred);
+            model.filterPersonList(pred);
             return new CommandResult(
-                    String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                    String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getModifiedPersonList().size()));
 
         } else {
             requireNonNull(model);
             PersonHasStatusPredicate pred = new PersonHasStatusPredicate(keywords);
-            model.updateFilteredPersonList(pred);
+            model.filterPersonList(pred);
             return new CommandResult(
-                    String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                    String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getModifiedPersonList().size()));
         }
     }
 

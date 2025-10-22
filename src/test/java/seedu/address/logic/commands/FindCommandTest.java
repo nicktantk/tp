@@ -66,7 +66,7 @@ public class FindCommandTest {
 
         // Let FindCommand build the appropriate predicate internally; expectedModel should mirror that
         // For integration test, update via the same rules that FindCommand uses for an empty list
-        expectedModel.updateFilteredPersonList(person -> false); // no matches when no keywords
+        expectedModel.filterPersonList(person -> false); // no matches when no keywords
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getModifiedPersonList());
@@ -82,7 +82,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(key, keywords);
 
         // Expected model mirrors the predicate logic that FindCommand applies for key="name"
-        expectedModel.updateFilteredPersonList(new NameContainsKeywordsPredicate(keywords));
+        expectedModel.filterPersonList(new NameContainsKeywordsPredicate(keywords));
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getModifiedPersonList());
