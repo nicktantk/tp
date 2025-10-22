@@ -30,4 +30,40 @@ public class FindCommandParserTest {
         assertParseSuccess(parser, "name \n Alice \n \t Bob  \t", expectedFindCommand);
     }
 
+    @Test
+    public void parse_missingKeywordsAfterKey_throwsParseException() {
+        // key only, no remainder
+        assertParseFailure(parser, "name",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
+        // key with whitespace remainder but no actual keywords
+        assertParseFailure(parser, "status    ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_invalidFindByKey_throwsParseException() {
+        // unsupported key should be rejected by ParserUtil.parseFindBy
+        assertParseFailure(parser, "email alice bob", "Find by either name or status.");
+
+        // random token as key
+        assertParseFailure(parser, "foo bar", "Find by either name or status.");
+    }
+
+    @Test
+    public void parse_statusArgs_returnsFindCommand() {
+        // Valid status keywords should be uppercased by ParserUtil.parseStatusToString
+        FindCommand expected = new FindCommand("STATUS", Arrays.asList("ACTIVE", "PROSPECT"));
+        assertParseSuccess(parser, "status active prospect", expected);
+
+        // Extra whitespace/newlines between tokens
+        assertParseSuccess(parser, "  status   ACTIVE  \n   prospect \t", expected);
+    }
+
+    @Test
+    public void parse_nameArgsMixedCase_returnsFindCommand() {
+        // Name keywords are normalized to uppercase by parseNameToString
+        FindCommand expected = new FindCommand("NAME", Arrays.asList("ALICE", "BOB", "CHARLIE"));
+        assertParseSuccess(parser, "NaMe   Alice   bob   CHARLIE", expected);
+    }
 }
