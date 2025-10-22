@@ -5,7 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_BOOKING;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_BOOKING;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,18 +15,32 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.AddBookingCommand;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.DeleteBookingCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditBookingCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListBookingCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.MarkBookingCommand;
+import seedu.address.logic.commands.UnmarkBookingCommand;
+import seedu.address.logic.commands.ViewBookingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.booking.Booking;
+import seedu.address.model.booking.BookingDescriptor;
+import seedu.address.model.booking.EditBookingDescriptor;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.BookingBuilder;
+import seedu.address.testutil.BookingDescriptorBuilder;
+import seedu.address.testutil.BookingUtil;
+import seedu.address.testutil.EditBookingDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -41,6 +57,15 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_addBooking() throws Exception {
+        Booking booking = new BookingBuilder().build();
+        BookingDescriptor descriptor = new BookingDescriptorBuilder(booking).build();
+        AddBookingCommand command = (AddBookingCommand) parser.parseCommand(AddBookingCommand.COMMAND_WORD
+                + " " + INDEX_FIRST_PERSON.getOneBased() + " " + BookingUtil.getBookingDetails(booking));
+        assertEquals(new AddBookingCommand(INDEX_FIRST_PERSON, descriptor), command);
+    }
+
+    @Test
     public void parseCommand_clear() throws Exception {
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
@@ -54,6 +79,34 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_deleteBooking() throws Exception {
+        DeleteBookingCommand command = (DeleteBookingCommand) parser.parseCommand(
+                DeleteBookingCommand.COMMAND_WORD + " " + INDEX_FIRST_BOOKING.getOneBased());
+        assertEquals(new DeleteBookingCommand(INDEX_FIRST_BOOKING), command);
+    }
+
+    @Test
+    public void parseCommand_viewBooking() throws Exception {
+        ViewBookingCommand command = (ViewBookingCommand) parser.parseCommand(
+                ViewBookingCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new ViewBookingCommand(INDEX_FIRST_PERSON), command);
+    }
+
+    @Test
+    public void parseCommand_markBooking() throws Exception {
+        MarkBookingCommand command = (MarkBookingCommand) parser.parseCommand(
+                MarkBookingCommand.COMMAND_WORD + " " + INDEX_FIRST_BOOKING.getOneBased());
+        assertEquals(new MarkBookingCommand(INDEX_FIRST_BOOKING), command);
+    }
+
+    @Test
+    public void parseCommand_unmarkBooking() throws Exception {
+        UnmarkBookingCommand command = (UnmarkBookingCommand) parser.parseCommand(
+                UnmarkBookingCommand.COMMAND_WORD + " " + INDEX_FIRST_BOOKING.getOneBased());
+        assertEquals(new UnmarkBookingCommand(INDEX_FIRST_BOOKING), command);
+    }
+
+    @Test
     public void parseCommand_edit() throws Exception {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
@@ -61,6 +114,17 @@ public class AddressBookParserTest {
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
+
+    @Test
+    public void parseCommand_editBooking() throws Exception {
+        Booking booking = new BookingBuilder().build();
+        EditBookingDescriptor descriptor = new EditBookingDescriptorBuilder(booking).build();
+        EditBookingCommand command = (EditBookingCommand) parser.parseCommand(EditBookingCommand.COMMAND_WORD
+                + " " + INDEX_FIRST_BOOKING.getOneBased() + " "
+                + BookingUtil.getEditBookingDescriptorDetails(descriptor));
+        assertEquals(new EditBookingCommand(INDEX_FIRST_BOOKING, descriptor), command);
+    }
+
 
     @Test
     public void parseCommand_exit() throws Exception {
@@ -86,6 +150,12 @@ public class AddressBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_listBooking() throws Exception {
+        assertTrue(parser.parseCommand(ListBookingCommand.COMMAND_WORD) instanceof ListBookingCommand);
+        assertTrue(parser.parseCommand(ListBookingCommand.COMMAND_WORD + " 3") instanceof ListBookingCommand);
     }
 
     @Test
