@@ -32,8 +32,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_BOOKING;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_BOOKING;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_BOOKING;
 
-import javax.swing.*;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;

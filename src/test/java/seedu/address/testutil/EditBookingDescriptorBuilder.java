@@ -11,6 +11,9 @@ import seedu.address.model.booking.EditBookingDescriptor;
 import seedu.address.model.booking.PackageType;
 import seedu.address.model.tag.Tag;
 
+/**
+ * A utility class to help with building EditBookingDescriptor objects.
+ */
 public class EditBookingDescriptorBuilder {
 
     private final EditBookingDescriptor descriptor;

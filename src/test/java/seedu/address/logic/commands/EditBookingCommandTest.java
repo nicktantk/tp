@@ -13,9 +13,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_PREMIUM;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showBookingAtIndex;
+import static seedu.address.testutil.TypicalBookings.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_BOOKING;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_BOOKING;
-import static seedu.address.testutil.TypicalBookings.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -31,7 +31,7 @@ import seedu.address.testutil.BookingBuilder;
 import seedu.address.testutil.EditBookingDescriptorBuilder;
 
 public class EditBookingCommandTest {
-   
+
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test

@@ -12,6 +12,9 @@ import seedu.address.model.booking.Booking;
 import seedu.address.model.booking.EditBookingDescriptor;
 import seedu.address.model.tag.Tag;
 
+/**
+ * A utility class for Booking.
+ */
 public class BookingUtil {
 
     /**
