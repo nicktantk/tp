@@ -35,6 +35,16 @@ public class EditBookingDescriptor {
     }
 
     /**
+     * Converts a {@code BookingDescriptor} into an EditBookingDescriptor
+     */
+    public EditBookingDescriptor(BookingDescriptor toCopy) {
+        setDescription(toCopy.getDescription());
+        setDateTime(toCopy.getDateTime());
+        setPackageType(toCopy.getPackageType());
+        setTags(toCopy.getTags());
+    }
+
+    /**
      * Returns true if at least one field is edited.
      */
     public boolean isAnyFieldEdited() {
