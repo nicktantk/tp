@@ -38,7 +38,7 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Person> lastShownList = model.getModifiedPersonList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -51,12 +51,12 @@ public class DeleteCommand extends Command {
     }
 
     private static void updateBookings(Model model, Person personToDelete) {
-        model.updateFilteredBookingList(new BookingHasNamePredicate(personToDelete.getName()));
-        List<Booking> bookingsToDelete = new ArrayList<>(model.getFilteredBookingList());
+        model.filterBookingList(new BookingHasNamePredicate(personToDelete.getName()));
+        List<Booking> bookingsToDelete = new ArrayList<>(model.getModifiedBookingList());
         for (Booking booking : bookingsToDelete) {
             model.deleteBooking(booking);
         }
-        model.updateFilteredBookingList(PREDICATE_SHOW_ALL_BOOKINGS);
+        model.filterBookingList(PREDICATE_SHOW_ALL_BOOKINGS);
     }
 
     @Override

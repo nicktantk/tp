@@ -3,6 +3,7 @@ package seedu.address.model.booking;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -100,6 +101,14 @@ public class UniqueBookingList implements Iterable<Booking> {
         }
 
         internalList.setAll(bookings);
+    }
+
+    /**
+     * Sorts the internal list using the given comparator.
+     */
+    public void sort(Comparator<Booking> comparator) {
+        requireNonNull(comparator);
+        internalList.sort(comparator);
     }
 
     /**

@@ -17,17 +17,29 @@ public class DateTime {
     public static final String MESSAGE_CONSTRAINTS =
             "Invalid date-time format. Expected format: dd/MM/yyyy HHmm";
 
-    public final String value;
+    public final LocalDateTime dateTime;
 
     /**
-     * Constructs a {@code Description}.
+     * Constructs a {@code DateTime}.
      *
-     * @param dateTime A valid dateTime.
+     * @param dateTime A valid dateTime in String.
      */
     public DateTime(String dateTime) {
         requireNonNull(dateTime);
         checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
-        value = dateTime;
+        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+        this.dateTime = LocalDateTime.parse(dateTime, inputFormatter);
+
+    }
+
+    /**
+     * Constructs a {@code Description}.
+     *
+     * @param dateTime A valid dateTime in LocalDateTime.
+     */
+    public DateTime(LocalDateTime dateTime) {
+        requireNonNull(dateTime);
+        this.dateTime = dateTime;
     }
 
     /**
@@ -52,17 +64,14 @@ public class DateTime {
      * Returns string in "14 October 2025 1200hrs" format
      */
     public String toFormattedString() {
-        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
-        LocalDateTime dateTime = LocalDateTime.parse(value, inputFormatter);
 
         DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd MMMM yyyy HHmm'hrs'");
-        String formatted = dateTime.format(outputFormatter);
-        return formatted;
+        return this.dateTime.format(outputFormatter);
     }
 
     @Override
     public String toString() {
-        return value;
+        return dateTime.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
     }
 
     @Override
@@ -73,11 +82,21 @@ public class DateTime {
         if (!(other instanceof DateTime otherDateTime)) {
             return false;
         }
-        return value.equals(otherDateTime.value);
+        return dateTime.equals(otherDateTime.dateTime);
     }
 
-    @Override
-    public int hashCode() {
-        return value.hashCode();
+    /**
+     * Compares this DateTime with another DateTime chronologically.
+     * Returns a negative integer if this DateTime is before the other,
+     * zero if they are equal, or a positive integer if this DateTime is after the other.
+     *
+     * @param other The other DateTime to compare to.
+     * @return A negative integer, zero, or a positive integer as this DateTime
+     *         is before, equal to, or after the specified DateTime.
+     */
+    public int compareTo(DateTime other) {
+        requireNonNull(other);
+        return dateTime.compareTo(other.dateTime);
     }
+
 }
