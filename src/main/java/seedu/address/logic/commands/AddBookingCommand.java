@@ -24,7 +24,7 @@ public class AddBookingCommand extends Command {
 
     public static final String COMMAND_WORD = "addbooking";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a booking to the address book. \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a booking to InSight. \n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + PREFIX_DATETIME + "dd/mm/yyyy HHmm "
@@ -58,7 +58,7 @@ public class AddBookingCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Person> lastShownList = model.getModifiedPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);

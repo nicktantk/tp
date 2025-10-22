@@ -155,11 +155,11 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
-        List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        List<Person> expectedFilteredList = new ArrayList<>(actualModel.getModifiedPersonList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
-        assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+        assertEquals(expectedFilteredList, actualModel.getModifiedPersonList());
     }
 
     /**
@@ -167,13 +167,13 @@ public class CommandTestUtil {
      * {@code model}'s address book.
      */
     public static void showPersonAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
+        assertTrue(targetIndex.getZeroBased() < model.getModifiedPersonList().size());
 
-        Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
+        Person person = model.getModifiedPersonList().get(targetIndex.getZeroBased());
         final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Collections.singletonList(splitName[0])));
+        model.filterPersonList(new NameContainsKeywordsPredicate(Collections.singletonList(splitName[0])));
 
-        assertEquals(1, model.getFilteredPersonList().size());
+        assertEquals(1, model.getModifiedPersonList().size());
     }
 
     /**
@@ -181,12 +181,12 @@ public class CommandTestUtil {
      * {@code model}'s address book.
      */
     public static void showBookingAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredBookingList().size());
+        assertTrue(targetIndex.getZeroBased() < model.getModifiedBookingList().size());
 
-        Booking booking = model.getFilteredBookingList().get(targetIndex.getZeroBased());
-        model.updateFilteredBookingList(new MatchDateTimePredicate(booking.getDateTime()));
+        Booking booking = model.getModifiedBookingList().get(targetIndex.getZeroBased());
+        model.filterBookingList(new MatchDateTimePredicate(booking.getDateTime()));
 
-        assertEquals(1, model.getFilteredBookingList().size());
+        assertEquals(1, model.getModifiedBookingList().size());
     }
 
 

@@ -37,19 +37,19 @@ public class ViewBookingCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Person> lastShownList = model.getModifiedPersonList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         Person personToFilter = lastShownList.get(targetIndex.getZeroBased());
-        model.updateFilteredPersonList(new MatchPersonPredicate(personToFilter));
-        model.updateFilteredBookingList(new BookingHasNamePredicate(personToFilter.getName()));
+        model.filterPersonList(new MatchPersonPredicate(personToFilter));
+        model.filterBookingList(new BookingHasNamePredicate(personToFilter.getName()));
 
         return new CommandResult(
                 String.format(MESSAGE_BOOKINGS_LISTED_FOR_PERSON_OVERVIEW,
-                        model.getFilteredBookingList().size(),
+                        model.getModifiedBookingList().size(),
                         personToFilter.getName().toString()));
     }
 

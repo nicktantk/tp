@@ -20,7 +20,7 @@ public class UnmarkBookingCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unmarks a booking.\n"
             + "Parameters: "
-            + "INDEX (must be a positive integer) "
+            + "INDEX (must be a positive integer) \n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_SUCCESS = "Booking %1$s has been marked";
@@ -36,7 +36,7 @@ public class UnmarkBookingCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Booking> lastShownList = model.getFilteredBookingList();
+        List<Booking> lastShownList = model.getModifiedBookingList();
 
         if (bookingindex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(MESSAGE_NOTFOUND);

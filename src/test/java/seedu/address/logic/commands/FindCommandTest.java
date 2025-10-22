@@ -69,7 +69,7 @@ public class FindCommandTest {
         expectedModel.updateFilteredPersonList(person -> false); // no matches when no keywords
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(Collections.emptyList(), model.getModifiedPersonList());
     }
 
     @Test
@@ -85,7 +85,7 @@ public class FindCommandTest {
         expectedModel.updateFilteredPersonList(new NameContainsKeywordsPredicate(keywords));
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getModifiedPersonList());
     }
 
     @Test
