@@ -49,18 +49,18 @@ UniqueBookingList -down-> "~* all" Booking
 UniquePersonList -down-> "~* all" Person
 
 ' Booking attributes (go down from Booking)
-Booking -down-> PackageType
-Booking -down-> Description
-Booking -down-> DateTime
-Booking -down-> "*" Tag
-Booking -down-> Name
+Booking *-down-> PackageType
+Booking *-down-> Description
+Booking *-down-> DateTime
+Booking *-down-> "*" Tag
+Booking *-down-> Name
 
 ' Person attributes (go down from Person)
-Person -down-> Name
-Person -down-> Phone
-Person -down-> Email
-Person -down-> Address
-Person -down-> "*" Tag
+Person *-down-> Name
+Person *-down-> Phone
+Person *-down-> Email
+Person *-down-> Address
+Person *-down-> "*" Tag
 
 ' ModelManager filtered relationships - go down to avoid crossing
 ModelManager -down-> "~* filtered" Booking
