@@ -156,20 +156,12 @@
     -fx-text-fill: #d8dee9;
 }
 
-/* === TAGS === */
-#tags, #packageType, #notes, #status {
-    -fx-hgap: 7;
-    -fx-vgap: 3;
-}
-
 /* contact tags */
 #tags .label {
     -fx-text-fill: white;
     -fx-background-radius: 4;
     -fx-padding: 2 6;
     -fx-font-size: 11;
-}
-#tags .label {
     -fx-background-color: #5e81ac;
 }
 
@@ -183,6 +175,52 @@
 }
 
 /* === BOOKING STATUS === */
+#status. * {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+#status.PROSPECT {
+    -fx-text-fill: white;
+    -fx-background-color: #ccc663;
+    -fx-background-radius: 4;
+    -fx-padding: 2 6;
+    -fx-font-size: 11;
+}
+
+#status.INACTIVE {
+    -fx-text-fill: white;
+    -fx-background-color: #df3682;
+    -fx-background-radius: 4;
+    -fx-padding: 2 6;
+    -fx-font-size: 11;
+}
+
+#status.ACTIVE {
+    -fx-text-fill: white;
+    -fx-background-color: #27ae60;
+    -fx-background-radius: 4;
+    -fx-padding: 2 6;
+    -fx-font-size: 11;
+}
+
+#status.POTENTIAL {
+    -fx-text-fill: white;
+    -fx-background-color: #e67e22;
+    -fx-background-radius: 4;
+    -fx-padding: 2 6;
+    -fx-font-size: 11;
+}
+
+#status.RETURNING {
+    -fx-text-fill: white;
+    -fx-background-color: #8e44ad;
+    -fx-background-radius: 4;
+    -fx-padding: 2 6;
+    -fx-font-size: 11;
+}
+
 #status.Done {
     -fx-text-fill: white;
     -fx-background-color: #27ae60;
@@ -247,34 +285,4 @@
 .scroll-bar .thumb {
     -fx-background-color: #4c566a;
     -fx-background-radius: 4;
-}
-
-/* === TABLE VIEW (optional) === */
-.table-view {
-    -fx-background-color: #2b2f3a;
-    -fx-control-inner-background: #2b2f3a;
-    -fx-table-cell-border-color: transparent;
-}
-.table-view .column-header-background {
-    -fx-background-color: transparent;
-}
-.table-view .column-header .label {
-    -fx-font-size: 14pt;
-    -fx-font-family: "Jetbrains Mono";
-    -fx-text-fill: white;
-}
-
-/* === DIALOGS === */
-.dialog-pane {
-    -fx-background-color: #2b2f3a;
-}
-.dialog-pane > *.label.content {
-    -fx-font-size: 13px;
-    -fx-font-weight: normal;
-    -fx-text-fill: #eceff4;
-}
-.dialog-pane:header *.header-panel *.label {
-    -fx-font-size: 16px;
-    -fx-font-style: italic;
-    -fx-text-fill: #88c0d0;
 }
