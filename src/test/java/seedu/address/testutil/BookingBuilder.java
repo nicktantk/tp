@@ -52,7 +52,7 @@ public class BookingBuilder {
         dateTime = bookingToCopy.getDateTime();
         packageType = bookingToCopy.getPackageType();
         tags = new HashSet<>(bookingToCopy.getTags());
-        isDone = bookingToCopy.isDone();
+        isDone = bookingToCopy.isPaid();
     }
 
     /**

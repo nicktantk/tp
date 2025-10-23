@@ -115,7 +115,7 @@ public class EditCommand extends Command {
         List<Booking> bookingsToUpdate = new ArrayList<>(model.getModifiedBookingList());
         for (Booking booking : bookingsToUpdate) {
             BookingDescriptor updatedBookingDescriptor = new BookingDescriptor(booking);
-            model.setBooking(booking, new Booking(editedPerson.getName(), updatedBookingDescriptor, booking.isDone()));
+            model.setBooking(booking, new Booking(editedPerson.getName(), updatedBookingDescriptor, booking.isPaid()));
         }
     }
 

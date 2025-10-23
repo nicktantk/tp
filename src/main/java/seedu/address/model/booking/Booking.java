@@ -91,7 +91,7 @@ public class Booking {
      *
      * @return boolean value of if the booking is done
      */
-    public boolean isDone() {
+    public boolean isPaid() {
         return this.isDone;
     }
 

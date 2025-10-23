@@ -18,7 +18,7 @@ public class UnmarkBookingCommand extends Command {
 
     public static final String COMMAND_WORD = "unmarkbooking";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unmarks a booking.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unmarks a booking as 'Not Paid'.\n"
             + "Parameters: "
             + "INDEX (must be a positive integer) \n"
             + "Example: " + COMMAND_WORD + " 1";
@@ -43,7 +43,7 @@ public class UnmarkBookingCommand extends Command {
         }
 
         Booking booking = lastShownList.get(bookingindex.getZeroBased());
-        if (!booking.isDone()) {
+        if (!booking.isPaid()) {
             throw new CommandException(MESSAGE_DUPLICATE);
         }
         Booking markedbooking = booking.unMarkBooking();
