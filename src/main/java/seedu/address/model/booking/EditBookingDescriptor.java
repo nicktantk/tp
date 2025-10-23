@@ -1,81 +1,86 @@
 package seedu.address.model.booking;
 
-import static java.util.Objects.requireNonNull;
-
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
 
 /**
- * Stores the details to initialise the booking with.
+ * Stores the details to edit the booking with. Each non-empty field value will replace the
+ * corresponding field value of the booking.
  */
-public class BookingDescriptor {
+public class EditBookingDescriptor {
     private Description description;
     private DateTime dateTime;
     private PackageType packageType;
-    private Set<Tag> tags = Collections.emptySet();
+    private Set<Tag> tags;
 
-    public BookingDescriptor() {
+    public EditBookingDescriptor() {
     }
 
     /**
      * Copy constructor.
      * A defensive copy of {@code tags} is used internally.
      */
-    public BookingDescriptor(BookingDescriptor toCopy) {
+    public EditBookingDescriptor(EditBookingDescriptor toCopy) {
         setDescription(toCopy.description);
         setDateTime(toCopy.dateTime);
         setPackageType(toCopy.packageType);
         setTags(toCopy.tags);
     }
+
     /**
-     * Constructor that copies the relevant fields from a {@code Booking} object.
+     * Converts a {@code BookingDescriptor} into an EditBookingDescriptor
      */
-    public BookingDescriptor(Booking booking) {
-        setDescription(booking.getDescription());
-        setDateTime(booking.getDateTime());
-        setPackageType(booking.getPackageType());
-        setTags(booking.getTags());
+    public EditBookingDescriptor(BookingDescriptor toCopy) {
+        setDescription(toCopy.getDescription());
+        setDateTime(toCopy.getDateTime());
+        setPackageType(toCopy.getPackageType());
+        setTags(toCopy.getTags());
     }
 
-    public Description getDescription() {
-        return description;
+    /**
+     * Returns true if at least one field is edited.
+     */
+    public boolean isAnyFieldEdited() {
+        return CollectionUtil.isAnyNonNull(description, dateTime, packageType, tags);
+    }
+
+    public Optional<Description> getDescription() {
+        return Optional.ofNullable(description);
     }
 
     public void setDescription(Description description) {
-        requireNonNull(description);
         this.description = description;
     }
 
-    public DateTime getDateTime() {
-        return dateTime;
+    public Optional<DateTime> getDateTime() {
+        return Optional.ofNullable(dateTime);
     }
 
     public void setDateTime(DateTime dateTime) {
-        requireNonNull(dateTime);
         this.dateTime = dateTime;
     }
 
-    public PackageType getPackageType() {
-        return packageType;
+    public Optional<PackageType> getPackageType() {
+        return Optional.ofNullable(packageType);
     }
 
     public void setPackageType(PackageType packageType) {
-        requireNonNull(packageType);
         this.packageType = packageType;
     }
-
     /**
      * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      * Returns {@code Optional#empty()} if {@code tags} is null.
      */
-    public Set<Tag> getTags() {
-        return (tags != null) ? Collections.unmodifiableSet(tags) : Collections.emptySet();
+    public Optional<Set<Tag>> getTags() {
+        return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
     }
 
     /**
@@ -83,7 +88,7 @@ public class BookingDescriptor {
      * A defensive copy of {@code tags} is used internally.
      */
     public void setTags(Set<Tag> tags) {
-        this.tags = (tags != null) ? new HashSet<>(tags) : Collections.emptySet();
+        this.tags = (tags != null) ? new HashSet<>(tags) : null;
     }
 
     @Override
@@ -93,14 +98,14 @@ public class BookingDescriptor {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof BookingDescriptor otherBookingDescriptor)) {
+        if (!(other instanceof EditBookingDescriptor otherEditPersonDescriptor)) {
             return false;
         }
 
-        return Objects.equals(description, otherBookingDescriptor.description)
-                && Objects.equals(dateTime, otherBookingDescriptor.dateTime)
-                && Objects.equals(packageType, otherBookingDescriptor.packageType)
-                && Objects.equals(tags, otherBookingDescriptor.tags);
+        return Objects.equals(description, otherEditPersonDescriptor.description)
+                && Objects.equals(dateTime, otherEditPersonDescriptor.dateTime)
+                && Objects.equals(packageType, otherEditPersonDescriptor.packageType)
+                && Objects.equals(tags, otherEditPersonDescriptor.tags);
     }
 
     @Override

@@ -18,7 +18,7 @@ import seedu.address.model.booking.BookingDescriptor;
 import seedu.address.model.person.Person;
 
 /**
- * Adds a person to the address book.
+ * Adds a booking to the address book.
  */
 public class AddBookingCommand extends Command {
 

@@ -26,7 +26,7 @@ public class DeleteBookingCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Booking bookingToDelete = model.getFilteredBookingList().get(INDEX_FIRST_BOOKING.getZeroBased());
+        Booking bookingToDelete = model.getModifiedBookingList().get(INDEX_FIRST_BOOKING.getZeroBased());
         DeleteBookingCommand deleteBookingCommand = new DeleteBookingCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(DeleteBookingCommand.MESSAGE_DELETE_BOOKING_SUCCESS,
@@ -40,7 +40,7 @@ public class DeleteBookingCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredBookingList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getModifiedBookingList().size() + 1);
         DeleteBookingCommand deleteBookingCommand = new DeleteBookingCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteBookingCommand, model, Messages.MESSAGE_INVALID_BOOKING_DISPLAYED_INDEX);
@@ -50,7 +50,7 @@ public class DeleteBookingCommandTest {
     public void execute_validIndexFilteredList_success() {
         showBookingAtIndex(model, INDEX_FIRST_BOOKING);
 
-        Booking bookingToDelete = model.getFilteredBookingList().get(INDEX_FIRST_BOOKING.getZeroBased());
+        Booking bookingToDelete = model.getModifiedBookingList().get(INDEX_FIRST_BOOKING.getZeroBased());
         DeleteBookingCommand deleteBookingCommand = new DeleteBookingCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(DeleteBookingCommand.MESSAGE_DELETE_BOOKING_SUCCESS,
@@ -110,8 +110,8 @@ public class DeleteBookingCommandTest {
      * Updates {@code model}'s filtered list to show no booking.
      */
     private void showNoBooking(Model model) {
-        model.updateFilteredBookingList(p -> false);
+        model.filterBookingList(p -> false);
 
-        assertTrue(model.getFilteredBookingList().isEmpty());
+        assertTrue(model.getModifiedBookingList().isEmpty());
     }
 }

@@ -113,7 +113,8 @@ public class JsonAdaptedPersonTest {
     @Test public void toModelType_nullStatus_throwsIllegalValueException() {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, null, VALID_ADDRESS, VALID_TAGS);
-        assertThrows(NullPointerException.class, person::toModelType);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
 
