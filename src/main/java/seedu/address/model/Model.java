@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -17,6 +18,9 @@ public interface Model {
      */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Booking> PREDICATE_SHOW_ALL_BOOKINGS = unused -> true;
+    Comparator<Person> COMPARATOR_SHOW_ORIGINAL_PERSONS = null;
+    Comparator<Booking> COMPARATOR_SHOW_ORIGINAL_BOOKINGS = null;
+
 
     /**
      * Returns the user prefs.
@@ -85,20 +89,26 @@ public interface Model {
     /**
      * Returns an unmodifiable view of the filtered person list
      */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Person> getModifiedPersonList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void filterPersonList(Predicate<Person> predicate);
 
     /**
      * Returns the predicate of the current state of the filtered person list
      */
     Predicate<Person> getFilteredPersonsPredicate();
 
+    /**
+     * Updates the sorting of the sorted person list to sort by the given {@code comparator}.
+     *
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void sortPersonList(Comparator<Person> comparator);
 
     /**
      * Returns true if a booking with the same identity as {@code booking} exists in the address book.
@@ -128,17 +138,24 @@ public interface Model {
     /**
      * Returns an unmodifiable view of the filtered booking list
      */
-    ObservableList<Booking> getFilteredBookingList();
+    ObservableList<Booking> getModifiedBookingList();
 
     /**
      * Updates the filter of the filtered booking list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredBookingList(Predicate<Booking> predicate);
+    void filterBookingList(Predicate<Booking> predicate);
 
     /**
      * Returns the predicate of the current state of the filtered person list
      */
     Predicate<Booking> getFilteredBookingsPredicate();
+
+    /**
+     * Updates the sorting of the sorted booking list to sort by the given {@code comparator}.
+     *
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void sortBookingList(Comparator<Booking> comparator);
 }

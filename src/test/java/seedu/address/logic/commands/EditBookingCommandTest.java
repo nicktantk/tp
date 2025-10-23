@@ -36,7 +36,7 @@ public class EditBookingCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Booking bookingToEdit = model.getFilteredBookingList().get(0);
+        Booking bookingToEdit = model.getModifiedBookingList().get(0);
         Booking editedBooking = new BookingBuilder().withName(bookingToEdit.getName().toString()).build();
         EditBookingDescriptor descriptor = new EditBookingDescriptorBuilder(editedBooking).build();
         EditBookingCommand editBookingCommand = new EditBookingCommand(INDEX_FIRST_BOOKING, descriptor);
@@ -52,8 +52,8 @@ public class EditBookingCommandTest {
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastBooking = Index.fromOneBased(model.getFilteredBookingList().size());
-        Booking lastBooking = model.getFilteredBookingList().get(indexLastBooking.getZeroBased());
+        Index indexLastBooking = Index.fromOneBased(model.getModifiedBookingList().size());
+        Booking lastBooking = model.getModifiedBookingList().get(indexLastBooking.getZeroBased());
 
         BookingBuilder bookingInList = new BookingBuilder(lastBooking);
         Booking editedBooking = bookingInList.withDescription(VALID_DESCRIPTION_WEDDING)
@@ -76,7 +76,7 @@ public class EditBookingCommandTest {
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditBookingCommand editBookingCommand = new EditBookingCommand(INDEX_FIRST_BOOKING,
                 new EditBookingDescriptor());
-        Booking editedBooking = model.getFilteredBookingList().get(INDEX_FIRST_BOOKING.getZeroBased());
+        Booking editedBooking = model.getModifiedBookingList().get(INDEX_FIRST_BOOKING.getZeroBased());
 
         String expectedMessage = String.format(EditBookingCommand.MESSAGE_EDIT_BOOKING_SUCCESS,
                 Messages.format(editedBooking));
@@ -90,7 +90,7 @@ public class EditBookingCommandTest {
     public void execute_filteredList_success() {
         showBookingAtIndex(model, INDEX_FIRST_BOOKING);
 
-        Booking bookingInFilteredList = model.getFilteredBookingList().get(INDEX_FIRST_BOOKING.getZeroBased());
+        Booking bookingInFilteredList = model.getModifiedBookingList().get(INDEX_FIRST_BOOKING.getZeroBased());
         Booking editedBooking = new BookingBuilder(bookingInFilteredList).withDescription(VALID_DESCRIPTION_BIRTHDAY)
                 .build();
         EditBookingCommand editBookingCommand = new EditBookingCommand(INDEX_FIRST_BOOKING,
@@ -100,14 +100,14 @@ public class EditBookingCommandTest {
                 Messages.format(editedBooking));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setBooking(model.getFilteredBookingList().get(0), editedBooking);
+        expectedModel.setBooking(model.getModifiedBookingList().get(0), editedBooking);
 
         assertCommandSuccess(editBookingCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_duplicateBookingUnfilteredList_failure() {
-        Booking firstBooking = model.getFilteredBookingList().get(INDEX_FIRST_BOOKING.getZeroBased());
+        Booking firstBooking = model.getModifiedBookingList().get(INDEX_FIRST_BOOKING.getZeroBased());
         EditBookingDescriptor descriptor = new EditBookingDescriptorBuilder(firstBooking).build();
         EditBookingCommand editBookingCommand = new EditBookingCommand(INDEX_SECOND_BOOKING, descriptor);
 
@@ -128,7 +128,7 @@ public class EditBookingCommandTest {
 
     @Test
     public void execute_invalidBookingIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredBookingList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getModifiedBookingList().size() + 1);
         EditBookingDescriptor descriptor = new EditBookingDescriptorBuilder().withDescription(VALID_DESCRIPTION_WEDDING)
                 .build();
         EditBookingCommand editBookingCommand = new EditBookingCommand(outOfBoundIndex, descriptor);

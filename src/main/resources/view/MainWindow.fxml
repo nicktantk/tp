@@ -59,7 +59,6 @@
                     </padding>
                 </StackPane>
 
-                <!-- Responsive HBox container -->
                 <HBox fx:id="container" styleClass="pane-with-border" VBox.vgrow="ALWAYS" spacing="5">
                     <VBox fx:id="personList" styleClass="pane-with-border"
                           HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">

@@ -37,7 +37,7 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Person> lastShownList = model.getModifiedPersonList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -54,9 +54,9 @@ public class DeleteCommand extends Command {
 
     private static boolean hasUndeletedBookings(Model model, Person personToDelete) {
         Predicate<Booking> currPredicate = model.getFilteredBookingsPredicate();
-        model.updateFilteredBookingList(new BookingHasNamePredicate(personToDelete.getName()));
-        boolean hasUndeletedBookings = !model.getFilteredBookingList().isEmpty();
-        model.updateFilteredBookingList(currPredicate);
+        model.filterBookingList(new BookingHasNamePredicate(personToDelete.getName()));
+        boolean hasUndeletedBookings = !model.getModifiedBookingList().isEmpty();
+        model.filterBookingList(currPredicate);
         return hasUndeletedBookings;
     }
 

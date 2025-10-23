@@ -30,7 +30,7 @@ public class BookingUtil {
     public static String getBookingDetails(Booking booking) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_DESCRIPTION + booking.getDescription().value + " ");
-        sb.append(PREFIX_DATETIME + booking.getDateTime().value + " ");
+        sb.append(PREFIX_DATETIME + booking.getDateTime().toString() + " ");
         sb.append(PREFIX_PACKAGETYPE + booking.getPackageType().name() + " ");
         booking.getTags().stream().forEach(
                 s -> sb.append(PREFIX_TAG + s.tagName + " ")
@@ -46,7 +46,7 @@ public class BookingUtil {
         descriptor.getDescription().ifPresent(description -> sb.append(PREFIX_DESCRIPTION)
                 .append(description).append(" "));
         descriptor.getDateTime().ifPresent(dateTime -> sb.append(PREFIX_DATETIME)
-                .append(dateTime.value).append(" "));
+                .append(dateTime.toString()).append(" "));
         descriptor.getPackageType().ifPresent(packageType -> sb.append(PREFIX_PACKAGETYPE)
                 .append(packageType.name()).append(" "));
         if (descriptor.getTags().isPresent()) {

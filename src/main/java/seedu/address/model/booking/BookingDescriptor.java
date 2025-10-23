@@ -1,5 +1,7 @@
 package seedu.address.model.booking;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -15,7 +17,7 @@ public class BookingDescriptor {
     private Description description;
     private DateTime dateTime;
     private PackageType packageType;
-    private Set<Tag> tags;
+    private Set<Tag> tags = Collections.emptySet();
 
     public BookingDescriptor() {
     }
@@ -45,6 +47,7 @@ public class BookingDescriptor {
     }
 
     public void setDescription(Description description) {
+        requireNonNull(description);
         this.description = description;
     }
 
@@ -53,6 +56,7 @@ public class BookingDescriptor {
     }
 
     public void setDateTime(DateTime dateTime) {
+        requireNonNull(dateTime);
         this.dateTime = dateTime;
     }
 
@@ -61,6 +65,7 @@ public class BookingDescriptor {
     }
 
     public void setPackageType(PackageType packageType) {
+        requireNonNull(packageType);
         this.packageType = packageType;
     }
 
@@ -78,7 +83,7 @@ public class BookingDescriptor {
      * A defensive copy of {@code tags} is used internally.
      */
     public void setTags(Set<Tag> tags) {
-        this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        this.tags = (tags != null) ? new HashSet<>(tags) : Collections.emptySet();
     }
 
     @Override

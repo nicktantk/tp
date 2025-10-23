@@ -22,6 +22,7 @@ public class Messages {
             "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_UNDELETED_BOOKINGS_PRESENT =
             "Client has undeleted bookings. Please delete all bookings before deleting client.";
+    public static final String MESSAGE_INVALID_FINDBY = "Invalid filter type!";
     /**
      * Returns an error message indicating the duplicate prefixes.
      */
@@ -44,6 +45,8 @@ public class Messages {
                 .append(person.getPhone())
                 .append("; Email: ")
                 .append(person.getEmail())
+                .append("; Status: ")
+                .append(person.getStatus())
                 .append("; Address: ")
                 .append(person.getAddress())
                 .append("; Tags: ");

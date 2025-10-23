@@ -77,7 +77,7 @@ public class EditBookingCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Booking> lastShownList = model.getFilteredBookingList();
+        List<Booking> lastShownList = model.getModifiedBookingList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_BOOKING_DISPLAYED_INDEX);

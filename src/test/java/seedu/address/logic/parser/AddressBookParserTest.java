@@ -34,7 +34,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.booking.Booking;
 import seedu.address.model.booking.BookingDescriptor;
 import seedu.address.model.booking.EditBookingDescriptor;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.logic.commands.SortBookingCommand;
+import seedu.address.logic.commands.SortCommand;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.BookingBuilder;
 import seedu.address.testutil.BookingDescriptorBuilder;
@@ -124,7 +125,6 @@ public class AddressBookParserTest {
         assertEquals(new EditBookingCommand(INDEX_FIRST_BOOKING, descriptor), command);
     }
 
-
     @Test
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
@@ -133,10 +133,16 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        List<String> nameKeywords = Arrays.asList("FOO", "BAR", "BAZ");
+        List<String> statusKeywords = Arrays.asList("PROSPECT", "POTENTIAL", "ACTIVE");
+        FindCommand findByNameCommand = (FindCommand) parser.parseCommand(
+                FindCommand.COMMAND_WORD + " name " + nameKeywords.stream().collect(Collectors.joining(" "))
+        );
+        FindCommand findByStatusCommand = (FindCommand) parser.parseCommand(
+                FindCommand.COMMAND_WORD + " status " + statusKeywords.stream().collect(Collectors.joining(" "))
+        );
+        assertEquals(new FindCommand("NAME", nameKeywords), findByNameCommand);
+        assertEquals(new FindCommand("STATUS", statusKeywords), findByStatusCommand);
     }
 
     @Test
@@ -155,6 +161,18 @@ public class AddressBookParserTest {
     public void parseCommand_listBooking() throws Exception {
         assertTrue(parser.parseCommand(ListBookingCommand.COMMAND_WORD) instanceof ListBookingCommand);
         assertTrue(parser.parseCommand(ListBookingCommand.COMMAND_WORD + " 3") instanceof ListBookingCommand);
+    }
+
+    @Test
+    public void parseCommand_sort() throws Exception {
+        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD) instanceof SortCommand);
+        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " 3") instanceof SortCommand);
+    }
+
+    @Test
+    public void parseCommand_sortBooking() throws Exception {
+        assertTrue(parser.parseCommand(SortBookingCommand.COMMAND_WORD) instanceof SortBookingCommand);
+        assertTrue(parser.parseCommand(SortBookingCommand.COMMAND_WORD + " 3") instanceof SortBookingCommand);
     }
 
     @Test

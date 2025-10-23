@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PACKAGETYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -40,6 +41,8 @@ public class CommandTestUtil {
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
+    public static final String VALID_STATUS_AMY = "ACTIVE";
+    public static final String VALID_STATUS_BOB = "INACTIVE";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
@@ -62,6 +65,8 @@ public class CommandTestUtil {
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
+    public static final String STATUS_DESC_AMY = " " + PREFIX_STATUS + VALID_STATUS_AMY;
+    public static final String STATUS_DESC_BOB = " " + PREFIX_STATUS + VALID_STATUS_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
@@ -100,21 +105,17 @@ public class CommandTestUtil {
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
+                .withEmail(VALID_EMAIL_AMY).withStatus(VALID_STATUS_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+                .withEmail(VALID_EMAIL_BOB).withStatus(VALID_STATUS_AMY).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
-        DESC_WEDDING = new BookingDescriptorBuilder()
-                .withDescription(VALID_DESCRIPTION_WEDDING)
-                .withDateTime(VALID_DATETIME_WEDDING)
-                .withPackageType(VALID_PACKAGETYPE_WEDDING)
+        DESC_WEDDING = new BookingDescriptorBuilder().withDescription(VALID_DESCRIPTION_WEDDING)
+                .withDateTime(VALID_DATETIME_WEDDING).withPackageType(VALID_PACKAGETYPE_WEDDING)
                 .withTags(VALID_TAG_PREMIUM).build();
-        DESC_BIRTHDAY = new BookingDescriptorBuilder()
-                .withDescription(VALID_DESCRIPTION_BIRTHDAY)
-                .withDateTime(VALID_DATETIME_BIRTHDAY)
-                .withPackageType(VALID_PACKAGETYPE_BIRTHDAY)
+        DESC_BIRTHDAY = new BookingDescriptorBuilder().withDescription(VALID_DESCRIPTION_BIRTHDAY)
+                .withDateTime(VALID_DATETIME_BIRTHDAY).withPackageType(VALID_PACKAGETYPE_BIRTHDAY)
                 .withTags(VALID_TAG_OUTDOOR, VALID_TAG_PREMIUM).build();
     }
 
@@ -154,11 +155,11 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
-        List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        List<Person> expectedFilteredList = new ArrayList<>(actualModel.getModifiedPersonList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
-        assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+        assertEquals(expectedFilteredList, actualModel.getModifiedPersonList());
     }
 
     /**
@@ -166,13 +167,13 @@ public class CommandTestUtil {
      * {@code model}'s address book.
      */
     public static void showPersonAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
+        assertTrue(targetIndex.getZeroBased() < model.getModifiedPersonList().size());
 
-        Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
+        Person person = model.getModifiedPersonList().get(targetIndex.getZeroBased());
         final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Collections.singletonList(splitName[0])));
+        model.filterPersonList(new NameContainsKeywordsPredicate(Collections.singletonList(splitName[0])));
 
-        assertEquals(1, model.getFilteredPersonList().size());
+        assertEquals(1, model.getModifiedPersonList().size());
     }
 
     /**
@@ -180,14 +181,13 @@ public class CommandTestUtil {
      * {@code model}'s address book.
      */
     public static void showBookingAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredBookingList().size());
+        assertTrue(targetIndex.getZeroBased() < model.getModifiedBookingList().size());
 
-        Booking booking = model.getFilteredBookingList().get(targetIndex.getZeroBased());
-        model.updateFilteredBookingList(new MatchDateTimePredicate(booking.getDateTime()));
+        Booking booking = model.getModifiedBookingList().get(targetIndex.getZeroBased());
+        model.filterBookingList(new MatchDateTimePredicate(booking.getDateTime()));
 
-        assertEquals(1, model.getFilteredBookingList().size());
+        assertEquals(1, model.getModifiedBookingList().size());
     }
-
 
 
 }
