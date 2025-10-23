@@ -31,7 +31,7 @@ public class UnmarkBookingCommandTest {
         Booking bookingToUnmark = model.getModifiedBookingList().get(INDEX_FIRST_BOOKING.getZeroBased());
 
         // Ensure the booking is marked
-        if (!bookingToUnmark.isDone()) {
+        if (!bookingToUnmark.isPaid()) {
             bookingToUnmark = bookingToUnmark.markBooking();
             model.setBooking(model.getModifiedBookingList().get(INDEX_FIRST_BOOKING.getZeroBased()), bookingToUnmark);
         }
@@ -63,7 +63,7 @@ public class UnmarkBookingCommandTest {
         Booking bookingToUnmark = model.getModifiedBookingList().get(INDEX_FIRST_BOOKING.getZeroBased());
 
         // Ensure the booking is marked
-        if (!bookingToUnmark.isDone()) {
+        if (!bookingToUnmark.isPaid()) {
             bookingToUnmark = bookingToUnmark.markBooking();
             model.setBooking(model.getModifiedBookingList().get(INDEX_FIRST_BOOKING.getZeroBased()), bookingToUnmark);
         }
@@ -79,7 +79,7 @@ public class UnmarkBookingCommandTest {
 
         Booking bookingInExpectedModel = expectedModel.getModifiedBookingList()
                 .get(INDEX_FIRST_BOOKING.getZeroBased());
-        if (!bookingInExpectedModel.isDone()) {
+        if (!bookingInExpectedModel.isPaid()) {
             bookingInExpectedModel = bookingInExpectedModel.markBooking();
             expectedModel.setBooking(
                     expectedModel.getModifiedBookingList().get(INDEX_FIRST_BOOKING.getZeroBased()),
@@ -108,7 +108,7 @@ public class UnmarkBookingCommandTest {
         Booking bookingToUnmark = model.getModifiedBookingList().get(INDEX_FIRST_BOOKING.getZeroBased());
 
         // Ensure the booking is not marked
-        if (bookingToUnmark.isDone()) {
+        if (bookingToUnmark.isPaid()) {
             Booking unmarkedBooking = bookingToUnmark.unMarkBooking();
             model.setBooking(bookingToUnmark, unmarkedBooking);
         }

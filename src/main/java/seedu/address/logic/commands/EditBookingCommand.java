@@ -71,7 +71,7 @@ public class EditBookingCommand extends Command {
         Set<Tag> updatedTags = editBookingDescriptor.getTags().orElse(bookingToEdit.getTags());
 
         return new Booking(updatedDescription, bookingToEdit.getName(), updatedDateTime, updatedPackageType,
-                updatedTags, bookingToEdit.isDone());
+                updatedTags, bookingToEdit.isPaid());
     }
 
     @Override

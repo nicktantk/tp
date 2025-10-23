@@ -31,7 +31,7 @@ public class MarkBookingCommandTest {
         Booking bookingToMark = model.getModifiedBookingList().get(INDEX_FIRST_BOOKING.getZeroBased());
 
         // Ensure the booking is not already marked
-        if (bookingToMark.isDone()) {
+        if (bookingToMark.isPaid()) {
             bookingToMark = bookingToMark.unMarkBooking();
             model.setBooking(model.getModifiedBookingList().get(INDEX_FIRST_BOOKING.getZeroBased()), bookingToMark);
         }
@@ -63,7 +63,7 @@ public class MarkBookingCommandTest {
         Booking bookingToMark = model.getModifiedBookingList().get(INDEX_FIRST_BOOKING.getZeroBased());
 
         // Ensure the booking is not already marked
-        if (bookingToMark.isDone()) {
+        if (bookingToMark.isPaid()) {
             bookingToMark = bookingToMark.unMarkBooking();
             model.setBooking(model.getModifiedBookingList().get(INDEX_FIRST_BOOKING.getZeroBased()), bookingToMark);
         }
@@ -79,7 +79,7 @@ public class MarkBookingCommandTest {
 
         Booking bookingInExpectedModel = expectedModel.getModifiedBookingList()
                 .get(INDEX_FIRST_BOOKING.getZeroBased());
-        if (bookingInExpectedModel.isDone()) {
+        if (bookingInExpectedModel.isPaid()) {
             bookingInExpectedModel = bookingInExpectedModel.unMarkBooking();
             expectedModel.setBooking(
                     expectedModel.getModifiedBookingList().get(INDEX_FIRST_BOOKING.getZeroBased()),
@@ -108,7 +108,7 @@ public class MarkBookingCommandTest {
         Booking bookingToMark = model.getModifiedBookingList().get(INDEX_FIRST_BOOKING.getZeroBased());
 
         // Ensure the booking is already marked
-        if (!bookingToMark.isDone()) {
+        if (!bookingToMark.isPaid()) {
             Booking markedBooking = bookingToMark.markBooking();
             model.setBooking(bookingToMark, markedBooking);
         }

@@ -32,7 +32,7 @@ public class JsonAdaptedBookingTest {
     private static final String VALID_DESCRIPTION = ALICE_BOOKING.getDescription().toString();
     private static final String VALID_DATETIME = ALICE_BOOKING.getDateTime().toString();
     private static final String VALID_PACKAGETYPE = ALICE_BOOKING.getPackageType().name();
-    private static final String VALID_ISDONE = String.valueOf(ALICE_BOOKING.isDone());
+    private static final String VALID_ISDONE = String.valueOf(ALICE_BOOKING.isPaid());
     private static final List<JsonAdaptedTag> VALID_TAGS = ALICE_BOOKING.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());

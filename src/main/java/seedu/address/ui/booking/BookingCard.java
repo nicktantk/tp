@@ -48,10 +48,10 @@ public class BookingCard extends UiPart<Region> {
         packageType.setText(booking.getPackageType().toString());
         booking.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> notes.getChildren().add(new Label(tag.tagName)));
-        String isDone = booking.isDone() ? "Done" : "Pending";
-        status.getStyleClass().removeAll(isDone);
-        status.getStyleClass().add(isDone);
-        status.setText(isDone);
+        String isPaid = booking.isPaid() ? "Paid" : "Not Paid";
+        status.getStyleClass().removeAll(isPaid);
+        status.getStyleClass().add(isPaid);
+        status.setText(isPaid);
     }
 
     @Override

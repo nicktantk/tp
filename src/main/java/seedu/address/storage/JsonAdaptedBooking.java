@@ -62,7 +62,7 @@ public class JsonAdaptedBooking {
         description = source.getDescription().value;
         dateTime = source.getDateTime().toString();
         packageType = source.getPackageType().toString();
-        isDone = Boolean.toString(source.isDone());
+        isDone = Boolean.toString(source.isPaid());
         tags.addAll(source.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList()));
