@@ -16,6 +16,10 @@ import seedu.address.model.booking.NowOrAfterPredicate;
 public class SortBookingCommand extends Command {
     public static final String COMMAND_WORD = "sortbooking";
     public static final String MESSAGE_SUCCESS = "Upcoming bookings sorted by date time.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts bookings by date time.\n"
+        + "Parameters: NIL \n"
+        + "Example: " + COMMAND_WORD;
+
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);

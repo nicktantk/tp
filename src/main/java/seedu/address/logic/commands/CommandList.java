@@ -19,6 +19,9 @@ public class CommandList {
             new CommandInfo(MarkBookingCommand.COMMAND_WORD, MarkBookingCommand.MESSAGE_USAGE),
             new CommandInfo(UnmarkBookingCommand.COMMAND_WORD, UnmarkBookingCommand.MESSAGE_USAGE),
             new CommandInfo(EditCommand.COMMAND_WORD, EditCommand.MESSAGE_USAGE),
+            new CommandInfo(EditBookingCommand.COMMAND_WORD, EditBookingCommand.MESSAGE_USAGE),
+            new CommandInfo(SortCommand.COMMAND_WORD, SortCommand.MESSAGE_USAGE),
+            new CommandInfo(SortBookingCommand.COMMAND_WORD, SortBookingCommand.MESSAGE_USAGE),
             new CommandInfo(ClearCommand.COMMAND_WORD, ClearCommand.MESSAGE_USAGE),
             new CommandInfo(HelpCommand.COMMAND_WORD, HelpCommand.MESSAGE_USAGE),
             new CommandInfo(ExitCommand.COMMAND_WORD, ExitCommand.MESSAGE_USAGE)
