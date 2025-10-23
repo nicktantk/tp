@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_FINDBY;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -56,6 +57,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String name} into a {@code String}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static String parseNameToString(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim().toUpperCase();
+        if (!Name.isValidName(trimmedName)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        return new Name(trimmedName).toString();
+    }
+
+    /**
      * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -98,6 +114,21 @@ public class ParserUtil {
             throw new ParseException(Status.MESSAGE_CONSTRAINTS);
         }
         return Status.valueOf(trimmedStatus);
+    }
+
+    /**
+     * Parses a {@code String status} into an {@code String}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code Status} is invalid.
+     */
+    public static String parseStatusToString(String status) throws ParseException {
+        requireNonNull(status);
+        String trimmedStatus = status.trim().toUpperCase();
+        if (!Status.isValidStatus(trimmedStatus)) {
+            throw new ParseException(Status.MESSAGE_CONSTRAINTS);
+        }
+        return Status.valueOf(trimmedStatus).toString();
     }
     /**
      * Parses a {@code String email} into an {@code Email}.
@@ -177,6 +208,18 @@ public class ParserUtil {
             return PackageType.valueOf(trimmedPackageType);
         } catch (IllegalArgumentException e) {
             throw new ParseException(PackageType.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     */
+    public static String parseFindBy(String findBy) throws ParseException {
+        requireNonNull(findBy);
+        if (findBy.equalsIgnoreCase("STATUS") || findBy.equalsIgnoreCase("NAME")) {
+            return findBy.toUpperCase();
+        } else {
+            throw new ParseException(MESSAGE_INVALID_FINDBY);
         }
     }
 

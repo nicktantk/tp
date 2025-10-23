@@ -25,7 +25,6 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SortBookingCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
@@ -72,10 +71,16 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        List<String> nameKeywords = Arrays.asList("FOO", "BAR", "BAZ");
+        List<String> statusKeywords = Arrays.asList("PROSPECT", "POTENTIAL", "ACTIVE");
+        FindCommand findByNameCommand = (FindCommand) parser.parseCommand(
+                FindCommand.COMMAND_WORD + " name " + nameKeywords.stream().collect(Collectors.joining(" "))
+        );
+        FindCommand findByStatusCommand = (FindCommand) parser.parseCommand(
+                FindCommand.COMMAND_WORD + " status " + statusKeywords.stream().collect(Collectors.joining(" "))
+        );
+        assertEquals(new FindCommand("NAME", nameKeywords), findByNameCommand);
+        assertEquals(new FindCommand("STATUS", statusKeywords), findByStatusCommand);
     }
 
     @Test
