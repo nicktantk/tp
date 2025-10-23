@@ -198,6 +198,16 @@ public class AddCommandTest {
         public void sortPersonList(Comparator<Person> comparator) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public Predicate<Person> getFilteredPersonsPredicate() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Predicate<Booking> getFilteredBookingsPredicate() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
