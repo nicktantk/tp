@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_FINDBY;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -44,10 +45,10 @@ public class FindCommandParserTest {
     @Test
     public void parse_invalidFindByKey_throwsParseException() {
         // unsupported key should be rejected by ParserUtil.parseFindBy
-        assertParseFailure(parser, "email alice bob", "Find by either name or status.");
+        assertParseFailure(parser, "email alice bob", MESSAGE_INVALID_FINDBY);
 
         // random token as key
-        assertParseFailure(parser, "foo bar", "Find by either name or status.");
+        assertParseFailure(parser, "foo bar", MESSAGE_INVALID_FINDBY);
     }
 
     @Test

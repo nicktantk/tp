@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_FINDBY;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -218,7 +219,7 @@ public class ParserUtil {
         if (findBy.equalsIgnoreCase("STATUS") || findBy.equalsIgnoreCase("NAME")) {
             return findBy.toUpperCase();
         } else {
-            throw new ParseException("Find by either name or status.");
+            throw new ParseException(MESSAGE_INVALID_FINDBY);
         }
     }
 
