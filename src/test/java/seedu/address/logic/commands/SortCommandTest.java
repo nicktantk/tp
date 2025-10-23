@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getPersonsOnlyAddressBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +17,7 @@ public class SortCommandTest {
 
     @Test
     public void execute_sortPersons_success() throws CommandException {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model model = new ModelManager(getPersonsOnlyAddressBook(), new UserPrefs());
         SortCommand sortCommand = new SortCommand();
 
         CommandResult result = sortCommand.execute(model);

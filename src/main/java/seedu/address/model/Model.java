@@ -97,6 +97,12 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void filterPersonList(Predicate<Person> predicate);
+
+    /**
+     * Returns the predicate of the current state of the filtered person list
+     */
+    Predicate<Person> getFilteredPersonsPredicate();
+
     /**
      * Updates the sorting of the sorted person list to sort by the given {@code comparator}.
      *
@@ -140,6 +146,12 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void filterBookingList(Predicate<Booking> predicate);
+
+    /**
+     * Returns the predicate of the current state of the filtered person list
+     */
+    Predicate<Booking> getFilteredBookingsPredicate();
+
     /**
      * Updates the sorting of the sorted booking list to sort by the given {@code comparator}.
      *

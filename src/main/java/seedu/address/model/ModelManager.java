@@ -42,6 +42,10 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         sortedFilteredPersons = new SortedList<>(filteredPersons);
         filteredBookings = new FilteredList<>(this.addressBook.getBookingList());
+
+        filteredPersons.setPredicate(PREDICATE_SHOW_ALL_PERSONS);
+        filteredBookings.setPredicate(PREDICATE_SHOW_ALL_BOOKINGS);
+
         sortedFilteredBookings = new SortedList<>(filteredBookings);
     }
 
@@ -120,6 +124,8 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    //=========== Filtered Booking List Accessors =============================================================
+
     @Override
     public boolean hasBooking(Booking booking) {
         requireNonNull(booking);
@@ -159,6 +165,14 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
+
+    @Override
+    public Predicate<Person> getFilteredPersonsPredicate() {
+        @SuppressWarnings("All predicates of filteredPersons are of type Predicate<Person>")
+        Predicate<Person> predicate = (Predicate<Person>) filteredPersons.getPredicate();
+        return predicate;
+    }
+
     @Override
     public void sortPersonList(Comparator<Person> comparator) {
         sortedFilteredPersons.setComparator(comparator);
@@ -183,6 +197,14 @@ public class ModelManager implements Model {
     public void sortBookingList(Comparator<Booking> comparator) {
         sortedFilteredBookings.setComparator(comparator);
     }
+
+    @Override
+    public Predicate<Booking> getFilteredBookingsPredicate() {
+        @SuppressWarnings("All predicates of filteredBookings are of type Predicate<Booking>")
+        Predicate<Booking> predicate = (Predicate<Booking>) filteredBookings.getPredicate();
+        return predicate;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

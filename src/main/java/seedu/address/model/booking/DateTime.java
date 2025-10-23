@@ -29,7 +29,6 @@ public class DateTime {
         checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
         DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
         this.dateTime = LocalDateTime.parse(dateTime, inputFormatter);
-
     }
 
     /**
