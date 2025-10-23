@@ -35,6 +35,8 @@ public class MainWindow extends UiPart<Stage> {
     private final HelpWindow helpWindow;
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private BookingListPanel bookingListPanel;
+
     private ResultDisplay resultDisplay;
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -127,7 +129,7 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        BookingListPanel bookingListPanel = new BookingListPanel(logic.getModifiedBookingList());
+        bookingListPanel = new BookingListPanel(logic.getModifiedBookingList());
         bookingListPanelPlaceholder.getChildren().add(bookingListPanel.getRoot());
     }
 
@@ -166,7 +168,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
+            (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         PauseTransition pause = new PauseTransition(Duration.seconds(guiSettings.getExitDelay()));
         pause.setOnFinished(event -> exitApp());
@@ -184,6 +186,11 @@ public class MainWindow extends UiPart<Stage> {
 
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
+    }
+
+
+    public BookingListPanel getBookingListPanel() {
+        return bookingListPanel;
     }
 
     /**
