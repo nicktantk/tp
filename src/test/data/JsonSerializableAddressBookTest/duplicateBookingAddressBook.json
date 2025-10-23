@@ -13,13 +13,13 @@
       "dateTime" : "14/10/2025 1200",
       "packageType" : "PORTRAIT",
       "tags" : [ "outdoor", "summer" ],
-      "isDone" : "false"
+      "isPaid" : "false"
     }, {
         "description" : "Wedding Shoot",
         "name" : "Alice Pauline",
         "dateTime" : "14/10/2025 1200",
         "packageType" : "PORTRAIT",
         "tags" : [ "outdoor", "summer" ],
-        "isDone" : "false"
+        "isPaid" : "false"
     } ]
 }

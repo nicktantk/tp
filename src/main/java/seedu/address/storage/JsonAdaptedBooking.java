@@ -31,7 +31,7 @@ public class JsonAdaptedBooking {
     private final String dateTime;
     private final String packageType;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
-    private final String isDone;
+    private final String isPaid;
 
     /**
      * Constructs a {@code JsonAdaptedBooking} with the given person details.
@@ -42,12 +42,12 @@ public class JsonAdaptedBooking {
                               @JsonProperty("dateTime") String dateTime,
                               @JsonProperty("packageType") String packageType,
                               @JsonProperty("tags") List<JsonAdaptedTag> tags,
-                              @JsonProperty("isDone") String isDone) {
+                              @JsonProperty("isPaid") String isPaid) {
         this.description = description;
         this.name = name;
         this.dateTime = dateTime;
         this.packageType = packageType;
-        this.isDone = isDone;
+        this.isPaid = isPaid;
 
         if (tags != null) {
             this.tags.addAll(tags);
@@ -62,7 +62,7 @@ public class JsonAdaptedBooking {
         description = source.getDescription().value;
         dateTime = source.getDateTime().toString();
         packageType = source.getPackageType().toString();
-        isDone = Boolean.toString(source.isPaid());
+        isPaid = Boolean.toString(source.isPaid());
         tags.addAll(source.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList()));
@@ -114,16 +114,16 @@ public class JsonAdaptedBooking {
 
         PackageType modelPackageType = PackageType.valueOf(packageType);
 
-        if (isDone == null) {
+        if (isPaid == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 Boolean.class.getSimpleName()));
         }
 
-        boolean modelIsDone = Boolean.parseBoolean(isDone);
+        boolean modelIsPaid = Boolean.parseBoolean(isPaid);
 
         final Set<Tag> modelTags = new HashSet<>(bookingTags);
 
-        return new Booking(modelDescription, modelName, modelDateTime, modelPackageType, modelTags, modelIsDone);
+        return new Booking(modelDescription, modelName, modelDateTime, modelPackageType, modelTags, modelIsPaid);
     }
 }
 

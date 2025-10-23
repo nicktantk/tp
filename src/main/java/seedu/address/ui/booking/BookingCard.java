@@ -48,7 +48,7 @@ public class BookingCard extends UiPart<Region> {
         packageType.setText(booking.getPackageType().toString());
         booking.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> notes.getChildren().add(new Label(tag.tagName)));
-        String isPaid = booking.isPaid() ? "Paid" : "Not Paid";
+        String isPaid = booking.isPaid() ? "PAID" : "UNPAID";
         status.getStyleClass().removeAll(isPaid);
         status.getStyleClass().add(isPaid);
         status.setText(isPaid);

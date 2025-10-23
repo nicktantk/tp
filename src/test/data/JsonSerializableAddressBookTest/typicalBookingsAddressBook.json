@@ -82,7 +82,7 @@
       "tags": [
         "party"
       ],
-      "isDone": false
+      "isPaid": false
     },
     {
       "name": "Benson Meier",
@@ -92,7 +92,7 @@
       "tags": [
         "product"
       ],
-      "isDone": false
+      "isPaid": false
     },
     {
       "name": "Carl Kurz",
@@ -103,7 +103,7 @@
         "hotel",
         "fountain"
       ],
-      "isDone": false
+      "isPaid": false
     },
     {
       "name": "Daniel Meier",
@@ -113,7 +113,7 @@
       "tags": [
         "candlelight"
       ],
-      "isDone": false
+      "isPaid": false
     },
     {
       "name": "Elle Meyer",
@@ -123,7 +123,7 @@
       "tags": [
         "school"
       ],
-      "isDone": false
+      "isPaid": false
     },
     {
       "name": "Fiona Kunz",
@@ -133,7 +133,7 @@
       "tags": [
         "Andrew"
       ],
-      "isDone": false
+      "isPaid": false
     },
     {
       "name": "George Best",
@@ -143,7 +143,7 @@
       "tags": [
         "largegroup"
       ],
-      "isDone": false
+      "isPaid": false
     }
   ]
 }
