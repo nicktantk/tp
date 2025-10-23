@@ -11,6 +11,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -72,7 +73,7 @@ public class AddBookingCommandTest {
 
     @Test
     public void execute_invalidPersonIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getModifiedPersonList().size() + 1);
         Booking validBooking = new BookingBuilder().build();
         BookingDescriptor descriptor = new BookingDescriptorBuilder(validBooking).build();
         AddBookingCommand addBookingCommand = new AddBookingCommand(outOfBoundIndex, descriptor);
@@ -180,12 +181,12 @@ public class AddBookingCommandTest {
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public ObservableList<Person> getModifiedPersonList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void filterPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -210,12 +211,22 @@ public class AddBookingCommandTest {
         }
 
         @Override
-        public ObservableList<Booking> getFilteredBookingList() {
+        public ObservableList<Booking> getModifiedBookingList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredBookingList(Predicate<Booking> predicate) {
+        public void filterBookingList(Predicate<Booking> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortBookingList(Comparator<Booking> comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortPersonList(Comparator<Person> comparator) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -241,7 +252,7 @@ public class AddBookingCommandTest {
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public ObservableList<Person> getModifiedPersonList() {
             return javafx.collections.FXCollections.observableArrayList(persons);
         }
     }
@@ -277,7 +288,7 @@ public class AddBookingCommandTest {
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public ObservableList<Person> getModifiedPersonList() {
             return javafx.collections.FXCollections.observableArrayList(persons);
         }
     }

@@ -4,11 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.booking.Booking;
@@ -24,6 +26,8 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Booking> filteredBookings;
+    private final SortedList<Person> sortedFilteredPersons;
+    private final SortedList<Booking> sortedFilteredBookings;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -36,7 +40,9 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        sortedFilteredPersons = new SortedList<>(filteredPersons);
         filteredBookings = new FilteredList<>(this.addressBook.getBookingList());
+        sortedFilteredBookings = new SortedList<>(filteredBookings);
     }
 
     public ModelManager() {
@@ -104,7 +110,7 @@ public class ModelManager implements Model {
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        filterPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
@@ -113,25 +119,6 @@ public class ModelManager implements Model {
 
         addressBook.setPerson(target, editedPerson);
     }
-
-    //=========== Filtered Person List Accessors =============================================================
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
-    }
-
-    @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
-    }
-
-    //=========== Filtered Booking List Accessors =============================================================
 
     @Override
     public boolean hasBooking(Booking booking) {
@@ -147,7 +134,7 @@ public class ModelManager implements Model {
     @Override
     public void addBooking(Booking booking) {
         addressBook.addBooking(booking);
-        updateFilteredBookingList(b -> true); // Show all bookings after add
+        filterBookingList(b -> true); // Show all bookings after add
     }
 
     @Override
@@ -156,17 +143,46 @@ public class ModelManager implements Model {
         addressBook.setBooking(target, editedBooking);
     }
 
+    //=========== Sort/Filter Person List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
     @Override
-    public ObservableList<Booking> getFilteredBookingList() {
-        return filteredBookings;
+    public ObservableList<Person> getModifiedPersonList() {
+        return sortedFilteredPersons;
     }
 
     @Override
-    public void updateFilteredBookingList(Predicate<Booking> predicate) {
+    public void filterPersonList(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        filteredPersons.setPredicate(predicate);
+    }
+    @Override
+    public void sortPersonList(Comparator<Person> comparator) {
+        sortedFilteredPersons.setComparator(comparator);
+    }
+
+    //=========== Sort/Filter Booking List Accessors =============================================================
+    /**
+     * Returns an unmodifiable view of the list of {@code Booking} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Booking> getModifiedBookingList() {
+        return sortedFilteredBookings;
+    }
+
+    @Override
+    public void filterBookingList(Predicate<Booking> predicate) {
         requireNonNull(predicate);
         filteredBookings.setPredicate(predicate);
     }
-
+    @Override
+    public void sortBookingList(Comparator<Booking> comparator) {
+        sortedFilteredBookings.setComparator(comparator);
+    }
     @Override
     public boolean equals(Object other) {
         if (other == this) {

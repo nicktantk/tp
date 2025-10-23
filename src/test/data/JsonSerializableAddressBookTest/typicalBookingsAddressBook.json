@@ -5,6 +5,7 @@
       "name": "Alice Pauline",
       "phone": "94351253",
       "email": "alice@example.com",
+      "status": "ACTIVE",
       "address": "123, Jurong West Ave 6, #08-111",
       "tags": [
         "friends"
@@ -14,6 +15,7 @@
       "name": "Benson Meier",
       "phone": "98765432",
       "email": "johnd@example.com",
+      "status": "ACTIVE",
       "address": "311, Clementi Ave 2, #02-25",
       "tags": [
         "owesMoney",
@@ -24,6 +26,7 @@
       "name": "Carl Kurz",
       "phone": "95352563",
       "email": "heinz@example.com",
+      "status": "ACTIVE",
       "address": "wall street",
       "tags": [
         "Stupid"
@@ -33,6 +36,7 @@
       "name": "Daniel Meier",
       "phone": "87652533",
       "email": "cornelia@example.com",
+      "status": "ACTIVE",
       "address": "10th street",
       "tags": [
         "friends"
@@ -42,6 +46,7 @@
       "name": "Elle Meyer",
       "phone": "9482224",
       "email": "werner@example.com",
+      "status": "ACTIVE",
       "address": "michegan ave",
       "tags": [
         "Stupid"
@@ -51,6 +56,7 @@
       "name": "Fiona Kunz",
       "phone": "9482427",
       "email": "lydia@example.com",
+      "status": "ACTIVE",
       "address": "little tokyo",
       "tags": [
         "Stupid"
@@ -60,6 +66,7 @@
       "name": "George Best",
       "phone": "9482442",
       "email": "anna@example.com",
+      "status": "ACTIVE",
       "address": "4th street",
       "tags": [
         "Stupid"
@@ -72,7 +79,9 @@
       "description": "Alice birthday",
       "dateTime": "15/12/2024 1400",
       "packageType": "BIRTHDAY",
-      "tags": ["party"],
+      "tags": [
+        "party"
+      ],
       "isDone": false
     },
     {
@@ -80,7 +89,9 @@
       "description": "Benson corporate",
       "dateTime": "20/11/2024 1800",
       "packageType": "CORPORATE",
-      "tags": ["product"],
+      "tags": [
+        "product"
+      ],
       "isDone": false
     },
     {
@@ -88,7 +99,10 @@
       "description": "Carl wedding",
       "dateTime": "10/01/2025 1900",
       "packageType": "WEDDING",
-      "tags": ["hotel", "fountain"],
+      "tags": [
+        "hotel",
+        "fountain"
+      ],
       "isDone": false
     },
     {
@@ -96,7 +110,9 @@
       "description": "Daniel anniversary",
       "dateTime": "25/12/2024 2000",
       "packageType": "ANNIVERSARY",
-      "tags": ["candlelight"],
+      "tags": [
+        "candlelight"
+      ],
       "isDone": false
     },
     {
@@ -104,7 +120,9 @@
       "description": "Elle graduation",
       "dateTime": "14/02/2025 1500",
       "packageType": "GRADUATION",
-      "tags": ["school"],
+      "tags": [
+        "school"
+      ],
       "isDone": false
     },
     {
@@ -112,7 +130,9 @@
       "description": "Fiona baby shower",
       "dateTime": "08/03/2025 1300",
       "packageType": "BABY",
-      "tags": ["Andrew"],
+      "tags": [
+        "Andrew"
+      ],
       "isDone": false
     },
     {
@@ -120,7 +140,9 @@
       "description": "George retirement",
       "dateTime": "05/04/2025 1830",
       "packageType": "FAMILY",
-      "tags": ["largegroup"],
+      "tags": [
+        "largegroup"
+      ],
       "isDone": false
     }
   ]

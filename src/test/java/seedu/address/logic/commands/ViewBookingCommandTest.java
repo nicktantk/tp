@@ -30,7 +30,7 @@ public class ViewBookingCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Person personToView = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person personToView = model.getModifiedPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         ViewBookingCommand viewBookingCommand = new ViewBookingCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(ViewBookingCommand.MESSAGE_BOOKINGS_LISTED_FOR_PERSON_OVERVIEW,
@@ -38,15 +38,15 @@ public class ViewBookingCommandTest {
                 personToView.getName().toString());
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.updateFilteredPersonList(new MatchPersonPredicate(personToView));
-        expectedModel.updateFilteredBookingList(new BookingHasNamePredicate(personToView.getName()));
+        expectedModel.filterPersonList(new MatchPersonPredicate(personToView));
+        expectedModel.filterBookingList(new BookingHasNamePredicate(personToView.getName()));
 
         assertCommandSuccess(viewBookingCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getModifiedPersonList().size() + 1);
         ViewBookingCommand viewBookingCommand = new ViewBookingCommand(outOfBoundIndex);
 
         assertCommandFailure(viewBookingCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -56,7 +56,7 @@ public class ViewBookingCommandTest {
     public void execute_validIndexFilteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        Person personToView = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person personToView = model.getModifiedPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         ViewBookingCommand viewBookingCommand = new ViewBookingCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(ViewBookingCommand.MESSAGE_BOOKINGS_LISTED_FOR_PERSON_OVERVIEW,
@@ -65,8 +65,8 @@ public class ViewBookingCommandTest {
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         showPersonAtIndex(expectedModel, INDEX_FIRST_PERSON);
-        expectedModel.updateFilteredPersonList(new MatchPersonPredicate(personToView));
-        expectedModel.updateFilteredBookingList(new BookingHasNamePredicate(personToView.getName()));
+        expectedModel.filterPersonList(new MatchPersonPredicate(personToView));
+        expectedModel.filterBookingList(new BookingHasNamePredicate(personToView.getName()));
 
         assertCommandSuccess(viewBookingCommand, model, expectedMessage, expectedModel);
     }
@@ -119,7 +119,7 @@ public class ViewBookingCommandTest {
      */
     private int getExpectedBookingCount(Model model, Person person) {
         Model tempModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        tempModel.updateFilteredBookingList(new BookingHasNamePredicate(person.getName()));
-        return tempModel.getFilteredBookingList().size();
+        tempModel.filterBookingList(new BookingHasNamePredicate(person.getName()));
+        return tempModel.getModifiedBookingList().size();
     }
 }

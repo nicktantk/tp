@@ -28,12 +28,12 @@ public class UnmarkBookingCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Booking bookingToUnmark = model.getFilteredBookingList().get(INDEX_FIRST_BOOKING.getZeroBased());
+        Booking bookingToUnmark = model.getModifiedBookingList().get(INDEX_FIRST_BOOKING.getZeroBased());
 
         // Ensure the booking is marked
         if (!bookingToUnmark.isDone()) {
             bookingToUnmark = bookingToUnmark.markBooking();
-            model.setBooking(model.getFilteredBookingList().get(INDEX_FIRST_BOOKING.getZeroBased()), bookingToUnmark);
+            model.setBooking(model.getModifiedBookingList().get(INDEX_FIRST_BOOKING.getZeroBased()), bookingToUnmark);
         }
 
         UnmarkBookingCommand unmarkBookingCommand = new UnmarkBookingCommand(INDEX_FIRST_BOOKING);
@@ -50,7 +50,7 @@ public class UnmarkBookingCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredBookingList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getModifiedBookingList().size() + 1);
         UnmarkBookingCommand unmarkBookingCommand = new UnmarkBookingCommand(outOfBoundIndex);
 
         assertCommandFailure(unmarkBookingCommand, model, UnmarkBookingCommand.MESSAGE_NOTFOUND);
@@ -60,12 +60,12 @@ public class UnmarkBookingCommandTest {
     public void execute_validIndexFilteredList_success() {
         showBookingAtIndex(model, INDEX_FIRST_BOOKING);
 
-        Booking bookingToUnmark = model.getFilteredBookingList().get(INDEX_FIRST_BOOKING.getZeroBased());
+        Booking bookingToUnmark = model.getModifiedBookingList().get(INDEX_FIRST_BOOKING.getZeroBased());
 
         // Ensure the booking is marked
         if (!bookingToUnmark.isDone()) {
             bookingToUnmark = bookingToUnmark.markBooking();
-            model.setBooking(model.getFilteredBookingList().get(INDEX_FIRST_BOOKING.getZeroBased()), bookingToUnmark);
+            model.setBooking(model.getModifiedBookingList().get(INDEX_FIRST_BOOKING.getZeroBased()), bookingToUnmark);
         }
 
         UnmarkBookingCommand unmarkBookingCommand = new UnmarkBookingCommand(INDEX_FIRST_BOOKING);
@@ -77,12 +77,12 @@ public class UnmarkBookingCommandTest {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         showBookingAtIndex(expectedModel, INDEX_FIRST_BOOKING);
 
-        Booking bookingInExpectedModel = expectedModel.getFilteredBookingList()
+        Booking bookingInExpectedModel = expectedModel.getModifiedBookingList()
                 .get(INDEX_FIRST_BOOKING.getZeroBased());
         if (!bookingInExpectedModel.isDone()) {
             bookingInExpectedModel = bookingInExpectedModel.markBooking();
             expectedModel.setBooking(
-                    expectedModel.getFilteredBookingList().get(INDEX_FIRST_BOOKING.getZeroBased()),
+                    expectedModel.getModifiedBookingList().get(INDEX_FIRST_BOOKING.getZeroBased()),
                     bookingInExpectedModel);
         }
         expectedModel.setBooking(bookingInExpectedModel, bookingInExpectedModel.unMarkBooking());
@@ -105,7 +105,7 @@ public class UnmarkBookingCommandTest {
 
     @Test
     public void execute_alreadyUnmarkedBooking_throwsCommandException() {
-        Booking bookingToUnmark = model.getFilteredBookingList().get(INDEX_FIRST_BOOKING.getZeroBased());
+        Booking bookingToUnmark = model.getModifiedBookingList().get(INDEX_FIRST_BOOKING.getZeroBased());
 
         // Ensure the booking is not marked
         if (bookingToUnmark.isDone()) {

@@ -69,7 +69,7 @@ public class MainWindow extends UiPart<Stage> {
 
         setAccelerators();
 
-        helpWindow = new HelpWindow();
+        helpWindow = new HelpWindow(primaryStage);
     }
 
     public Stage getPrimaryStage() {
@@ -115,7 +115,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanel = new PersonListPanel(logic.getModifiedPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -127,7 +127,7 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        BookingListPanel bookingListPanel = new BookingListPanel(logic.getFilteredBookingList());
+        BookingListPanel bookingListPanel = new BookingListPanel(logic.getModifiedBookingList());
         bookingListPanelPlaceholder.getChildren().add(bookingListPanel.getRoot());
     }
 

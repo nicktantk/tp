@@ -14,10 +14,13 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.booking.DateTime;
+import seedu.address.model.booking.PackageType;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Status;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -192,5 +195,167 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    // ===== Additional tests for ParserUtil new methods =====
+
+    @Test
+    public void parseNameToString_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseNameToString(null));
+    }
+
+    @Test
+    public void parseNameToString_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseNameToString(INVALID_NAME));
+    }
+
+    @Test
+    public void parseNameToString_validValueUppercased_returnsString() throws Exception {
+        // parseNameToString uppercases and validates via Name
+        String mixedCase = "Alice Bob";
+        assertEquals("ALICE BOB", ParserUtil.parseNameToString(mixedCase));
+    }
+
+    @Test
+    public void parseNameToString_validValueWithWhitespace_returnsTrimmedUppercased() throws Exception {
+        String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
+        assertEquals(VALID_NAME.toUpperCase(), ParserUtil.parseNameToString(nameWithWhitespace));
+    }
+
+    @Test
+    public void parseStatus_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseStatus(null));
+    }
+
+    @Test
+    public void parseStatus_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseStatus("unknown"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseStatus("activee"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseStatus("")); // empty after trim
+    }
+
+    @Test
+    public void parseStatus_validValue_isCaseInsensitiveAndTrims() throws Exception {
+        // Assuming Status enum contains: PROSPECT, POTENTIAL, ACTIVE, INACTIVE, RETURNING
+        assertEquals(Status.ACTIVE, ParserUtil.parseStatus("active"));
+        assertEquals(Status.ACTIVE, ParserUtil.parseStatus("  ACTIVE  "));
+        assertEquals(Status.RETURNING, ParserUtil.parseStatus("ReTuRnInG"));
+    }
+
+    @Test
+    public void parseStatusToString_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseStatusToString(null));
+    }
+
+    @Test
+    public void parseStatusToString_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseStatusToString("prospects")); // not valid
+    }
+
+    @Test
+    public void parseStatusToString_validValue_returnsCanonicalUppercase() throws Exception {
+        assertEquals("ACTIVE", ParserUtil.parseStatusToString("active"));
+        assertEquals("PROSPECT", ParserUtil.parseStatusToString("  prospect "));
+    }
+
+    @Test
+    public void parseFindBy_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseFindBy(null));
+    }
+
+    @Test
+    public void parseFindBy_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseFindBy(""));
+        assertThrows(ParseException.class, () -> ParserUtil.parseFindBy(" email "));
+        assertThrows(ParseException.class, () -> ParserUtil.parseFindBy("names")); // not exactly "name"
+    }
+
+    @Test
+    public void parseFindBy_validValues_returnCanonicalUppercase() throws Exception {
+        assertEquals("NAME", ParserUtil.parseFindBy("name"));
+        assertEquals("NAME", ParserUtil.parseFindBy("NaMe"));
+        assertEquals("STATUS", ParserUtil.parseFindBy("status"));
+    }
+
+    // ===== Additional tests for Description =====
+
+    @Test
+    public void parseDescription_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDescription(null));
+    }
+
+    @Test
+    public void parseDescription_invalidValue_throwsParseException() {
+        // Adjust invalid sample to something your Description rejects; often empty/whitespace-only
+        assertThrows(ParseException.class, () -> ParserUtil.parseDescription("")); // empty
+        assertThrows(ParseException.class, () -> ParserUtil.parseDescription("   ")); // whitespace only
+    }
+
+    @Test
+    public void parseDescription_validValueWithoutWhitespace_returnsDescription() throws Exception {
+        String value = "Wedding photography, full day";
+        assertEquals(new seedu.address.model.booking.Description(value),
+                ParserUtil.parseDescription(value));
+    }
+
+    @Test
+    public void parseDescription_validValueWithWhitespace_returnsTrimmedDescription() throws Exception {
+        String raw = WHITESPACE + "Promo shoot at studio" + WHITESPACE;
+        assertEquals(new seedu.address.model.booking.Description("Promo shoot at studio"),
+                ParserUtil.parseDescription(raw));
+    }
+
+    // ===== Additional tests for PackageType =====
+
+    @Test
+    public void parsePackageType_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parsePackageType(null));
+    }
+
+    @Test
+    public void parsePackageType_invalidValue_throwsParseException() {
+        // Not in enum; adjust to something definitely invalid for your enum
+        assertThrows(ParseException.class, () -> ParserUtil.parsePackageType("gold-plus"));
+        assertThrows(ParseException.class, () -> ParserUtil.parsePackageType("")); // empty
+    }
+
+    @Test
+    public void parsePackageType_validValue_isCaseInsensitiveAndTrims() throws Exception {
+        // Replace BASIC/DELUXE with actual enum constants you have
+        assertEquals(PackageType.PORTRAIT,
+                ParserUtil.parsePackageType("portrait"));
+        assertEquals(PackageType.BABY,
+                ParserUtil.parsePackageType("  baby "));
+        // Add another example if you have multiple values:
+        // assertEquals(PackageType.DELUXE, ParserUtil.parsePackageType("Deluxe"));
+    }
+
+    // ===== Additional tests for DateTime =====
+
+    @Test
+    public void parseDateTime_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDateTime(null));
+    }
+
+    @Test
+    public void parseDateTime_invalidValue_throwsParseException() {
+        // Provide a few invalid formats your DateTime.isValidDateTime rejects
+        assertThrows(ParseException.class, () -> ParserUtil.parseDateTime("2025/01/01 10:00"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseDateTime("not-a-date"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseDateTime("")); // empty
+    }
+
+    @Test
+    public void parseDateTime_validValueWithoutWhitespace_returnsDateTime() throws Exception {
+        String good = "01/01/2025 1000";
+        assertEquals(new DateTime(good),
+                ParserUtil.parseDateTime(good));
+    }
+
+    @Test
+    public void parseDateTime_validValueWithWhitespace_returnsTrimmedDateTime() throws Exception {
+        String raw = WHITESPACE + "01/01/2025 1000" + WHITESPACE;
+        assertEquals(new DateTime("01/01/2025 1000"),
+                ParserUtil.parseDateTime(raw));
     }
 }

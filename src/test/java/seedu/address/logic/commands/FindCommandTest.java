@@ -29,19 +29,19 @@ public class FindCommandTest {
 
     @Test
     public void equals() {
-        NameContainsKeywordsPredicate firstPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("first"));
-        NameContainsKeywordsPredicate secondPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("second"));
+        String findByName = "name";
+        String findByStatus = "status";
+        List<String> nameKeywords = Arrays.asList("Alice", "Bob", "Charlie");
+        List<String> statusKeywords = Arrays.asList("Active", "Prospect");
 
-        FindCommand findFirstCommand = new FindCommand(firstPredicate);
-        FindCommand findSecondCommand = new FindCommand(secondPredicate);
+        FindCommand findFirstCommand = new FindCommand(findByName, nameKeywords);
+        FindCommand findSecondCommand = new FindCommand(findByStatus, statusKeywords);
 
         // same object -> returns true
         assertEquals(findFirstCommand, findFirstCommand);
 
         // same values -> returns true
-        FindCommand findFirstCommandCopy = new FindCommand(firstPredicate);
+        FindCommand findFirstCommandCopy = new FindCommand(findByName, nameKeywords);
         assertEquals(findFirstCommand, findFirstCommandCopy);
 
         // different types -> returns false
@@ -50,42 +50,55 @@ public class FindCommandTest {
         // null -> returns false
         assertNotEquals(null, findFirstCommand);
 
-        // different person -> returns false
+        // different parameters -> returns false
         assertNotEquals(findFirstCommand, findSecondCommand);
     }
 
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+
+        // key is required; keywords list empty
+        String key = "name"; // or whichever field your parser expects
+        List<String> keywords = Collections.emptyList();
+
+        FindCommand command = new FindCommand(key, keywords);
+
+        // Let FindCommand build the appropriate predicate internally; expectedModel should mirror that
+        // For integration test, update via the same rules that FindCommand uses for an empty list
+        expectedModel.filterPersonList(person -> false); // no matches when no keywords
+
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(Collections.emptyList(), model.getModifiedPersonList());
     }
 
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
-        FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+
+        String key = "NAME";
+        List<String> keywords = Arrays.asList("Kurz", "Elle", "Kunz");
+
+        FindCommand command = new FindCommand(key, keywords);
+
+        // Expected model mirrors the predicate logic that FindCommand applies for key="name"
+        expectedModel.filterPersonList(new NameContainsKeywordsPredicate(keywords));
+
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getModifiedPersonList());
     }
 
     @Test
     public void toStringMethod() {
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(List.of("keyword"));
-        FindCommand findCommand = new FindCommand(predicate);
-        String expected = FindCommand.class.getCanonicalName() + "{predicate=" + predicate + "}";
+        String key = "name";
+        List<String> keywords = List.of("keyword");
+        FindCommand findCommand = new FindCommand(key, keywords);
+
+        // Adjust expected string to match FindCommand.toString() implementation
+        String expected = FindCommand.class.getCanonicalName()
+                + "{findBy=" + key + ", keywords=" + keywords + "}";
+
         assertEquals(expected, findCommand.toString());
     }
 
-    /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
-     */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
-    }
 }

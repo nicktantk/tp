@@ -28,12 +28,12 @@ public class MarkBookingCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Booking bookingToMark = model.getFilteredBookingList().get(INDEX_FIRST_BOOKING.getZeroBased());
+        Booking bookingToMark = model.getModifiedBookingList().get(INDEX_FIRST_BOOKING.getZeroBased());
 
         // Ensure the booking is not already marked
         if (bookingToMark.isDone()) {
             bookingToMark = bookingToMark.unMarkBooking();
-            model.setBooking(model.getFilteredBookingList().get(INDEX_FIRST_BOOKING.getZeroBased()), bookingToMark);
+            model.setBooking(model.getModifiedBookingList().get(INDEX_FIRST_BOOKING.getZeroBased()), bookingToMark);
         }
 
         MarkBookingCommand markBookingCommand = new MarkBookingCommand(INDEX_FIRST_BOOKING);
@@ -50,7 +50,7 @@ public class MarkBookingCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredBookingList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getModifiedBookingList().size() + 1);
         MarkBookingCommand markBookingCommand = new MarkBookingCommand(outOfBoundIndex);
 
         assertCommandFailure(markBookingCommand, model, MarkBookingCommand.MESSAGE_NOTFOUND);
@@ -60,12 +60,12 @@ public class MarkBookingCommandTest {
     public void execute_validIndexFilteredList_success() {
         showBookingAtIndex(model, INDEX_FIRST_BOOKING);
 
-        Booking bookingToMark = model.getFilteredBookingList().get(INDEX_FIRST_BOOKING.getZeroBased());
+        Booking bookingToMark = model.getModifiedBookingList().get(INDEX_FIRST_BOOKING.getZeroBased());
 
         // Ensure the booking is not already marked
         if (bookingToMark.isDone()) {
             bookingToMark = bookingToMark.unMarkBooking();
-            model.setBooking(model.getFilteredBookingList().get(INDEX_FIRST_BOOKING.getZeroBased()), bookingToMark);
+            model.setBooking(model.getModifiedBookingList().get(INDEX_FIRST_BOOKING.getZeroBased()), bookingToMark);
         }
 
         MarkBookingCommand markBookingCommand = new MarkBookingCommand(INDEX_FIRST_BOOKING);
@@ -77,12 +77,12 @@ public class MarkBookingCommandTest {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         showBookingAtIndex(expectedModel, INDEX_FIRST_BOOKING);
 
-        Booking bookingInExpectedModel = expectedModel.getFilteredBookingList()
+        Booking bookingInExpectedModel = expectedModel.getModifiedBookingList()
                 .get(INDEX_FIRST_BOOKING.getZeroBased());
         if (bookingInExpectedModel.isDone()) {
             bookingInExpectedModel = bookingInExpectedModel.unMarkBooking();
             expectedModel.setBooking(
-                    expectedModel.getFilteredBookingList().get(INDEX_FIRST_BOOKING.getZeroBased()),
+                    expectedModel.getModifiedBookingList().get(INDEX_FIRST_BOOKING.getZeroBased()),
                     bookingInExpectedModel);
         }
         expectedModel.setBooking(bookingInExpectedModel, bookingInExpectedModel.markBooking());
@@ -105,7 +105,7 @@ public class MarkBookingCommandTest {
 
     @Test
     public void execute_alreadyMarkedBooking_throwsCommandException() {
-        Booking bookingToMark = model.getFilteredBookingList().get(INDEX_FIRST_BOOKING.getZeroBased());
+        Booking bookingToMark = model.getModifiedBookingList().get(INDEX_FIRST_BOOKING.getZeroBased());
 
         // Ensure the booking is already marked
         if (!bookingToMark.isDone()) {
