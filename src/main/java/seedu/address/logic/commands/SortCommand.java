@@ -14,6 +14,10 @@ import seedu.address.model.person.Person;
 public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
     public static final String MESSAGE_SUCCESS = "Clients sorted by lexicographical order.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts clients by lexicographical order.\n"
+        + "Parameters: NIL \n"
+        + "Example: " + COMMAND_WORD;
+
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
