@@ -53,7 +53,7 @@ public class MarkBookingCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getModifiedBookingList().size() + 1);
         MarkBookingCommand markBookingCommand = new MarkBookingCommand(outOfBoundIndex);
 
-        assertCommandFailure(markBookingCommand, model, MarkBookingCommand.MESSAGE_NOTFOUND);
+        assertCommandFailure(markBookingCommand, model, Messages.MESSAGE_INVALID_BOOKING_DISPLAYED_INDEX);
     }
 
     @Test
@@ -100,7 +100,7 @@ public class MarkBookingCommandTest {
 
         MarkBookingCommand markBookingCommand = new MarkBookingCommand(outOfBoundIndex);
 
-        assertCommandFailure(markBookingCommand, model, MarkBookingCommand.MESSAGE_NOTFOUND);
+        assertCommandFailure(markBookingCommand, model, Messages.MESSAGE_INVALID_BOOKING_DISPLAYED_INDEX);
     }
 
     @Test
