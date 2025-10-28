@@ -115,6 +115,7 @@ public class HelpWindow extends UiPart<Stage> {
         getRoot().centerOnScreen();
         populateCommandList();
         getRoot().showAndWait(); // Wait until Help window closes
+        commandContainer.getChildren().clear();
         dimBackground(false);
     }
 
