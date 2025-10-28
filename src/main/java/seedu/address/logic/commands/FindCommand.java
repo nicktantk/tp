@@ -24,6 +24,7 @@ public class FindCommand extends Command {
             + "status + [status1 status2...]\n"
             + "Example: " + COMMAND_WORD + " name alice bob charlie\n"
             + "Another example: " + COMMAND_WORD + " status active returning";
+    public static final String MESSAGE_NO_FILTERS = "At least one word to find must be provided.";
 
     private final String findBy;
     private final List<String> keywords;
