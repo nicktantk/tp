@@ -5,7 +5,6 @@ import java.util.Comparator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.booking.Booking;
 import seedu.address.ui.UiPart;
@@ -18,8 +17,6 @@ public class BookingCard extends UiPart<Region> {
 
     public final Booking booking;
 
-    @FXML
-    private HBox cardPane;
     @FXML
     private Label id;
     @FXML

@@ -284,3 +284,8 @@
     -fx-background-color: #4c566a;
     -fx-background-radius: 4;
 }
+/* ListView/VirtualFlow corner (where the two scrollbars meet) */
+.list-view .virtual-flow > .corner,
+.scroll-pane > .corner {
+    -fx-background-color: #2e3440;
+}
