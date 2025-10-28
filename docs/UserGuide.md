@@ -1,3 +1,9 @@
+---
+  layout: default.md
+  title: "InSight User Guide"
+  pageNav: 3
+---
+
 # InSight User Guide
 
 > **Version:** 1.0  
