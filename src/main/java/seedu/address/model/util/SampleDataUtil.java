@@ -6,6 +6,10 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.booking.Booking;
+import seedu.address.model.booking.DateTime;
+import seedu.address.model.booking.Description;
+import seedu.address.model.booking.PackageType;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -53,10 +57,58 @@ public class SampleDataUtil {
         };
     }
 
+    public static Booking[] getSampleBookings() {
+        return new Booking[]{
+            new Booking(
+                new Description("Wedding Shoot"),
+                new Name("John Doe"),
+                new DateTime("14/10/2025 1200"),
+                PackageType.PORTRAIT,
+                getTagSet("outdoor", "summer"),
+                false
+            ),
+            new Booking(
+                new Description("Corporate Product Photoshoot"),
+                new Name("Alice Tan"),
+                new DateTime("05/11/2025 0930"),
+                PackageType.PRODUCT,
+                getTagSet("indoor", "studio"),
+                true
+            ),
+            new Booking(
+                new Description("Family Portrait Session"),
+                new Name("Michael Lim"),
+                new DateTime("10/11/2025 1430"),
+                PackageType.PORTRAIT,
+                getTagSet("family", "kids"),
+                false
+            ),
+            new Booking(
+                new Description("Event Coverage - Charity Gala"),
+                new Name("Samantha Lee"),
+                new DateTime("15/11/2025 1800"),
+                PackageType.EVENT,
+                getTagSet("night", "formal"),
+                true
+            ),
+            new Booking(
+                new Description("Pre-wedding Beach Shoot"),
+                new Name("Daniel Koh"),
+                new DateTime("20/11/2025 1600"),
+                PackageType.WEDDING,
+                getTagSet("outdoor", "beach", "sunset"),
+                false
+            )
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
+        }
+        for (Booking sampleBooking : getSampleBookings()) {
+            sampleAb.addBooking(sampleBooking);
         }
         return sampleAb;
     }
