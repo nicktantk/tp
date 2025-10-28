@@ -25,10 +25,10 @@
 
             <HBox spacing="4" alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
                 <Label fx:id="id" styleClass="cell_big_label"/>
-                <Label fx:id="name" styleClass="cell_big_label"/>
+                <Label fx:id="name" styleClass="cel l_big_label"/>
             </HBox>
 
-            <FlowPane fx:id="tags" prefWrapLength="200" HBox.hgrow="ALWAYS"/>
+            <FlowPane fx:id="tags" prefWrapLength="200" hgap="4" HBox.hgrow="ALWAYS"/>
             <Label fx:id="phone" styleClass="cell_small_label" wrapText="true"/>
             <Label fx:id="address" styleClass="cell_small_label" wrapText="true"/>
             <Label fx:id="email" styleClass="cell_small_label" wrapText="true"/>

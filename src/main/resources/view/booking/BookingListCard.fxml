@@ -32,7 +32,7 @@
             <Label fx:id="date" styleClass="cell_small_label" text="\$date"/>
             <Label fx:id="client" text="\$first" styleClass="cell_small_label"/>
             <Label fx:id="packageType" text="\$packageType" styleClass="cell_small_label"/>
-            <FlowPane fx:id="notes"/>
+            <FlowPane fx:id="notes" prefWrapLength="200" hgap="4" HBox.hgrow="ALWAYS"/>
         </VBox>
             <!-- Status pinned bottom-right -->
             <Label fx:id="status" id="status"
