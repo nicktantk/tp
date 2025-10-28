@@ -96,8 +96,6 @@ public class ParserUtil {
         String trimmedAddress = address.trim();
         if (trimmedAddress.isEmpty()) {
             return new Address("No address");
-        } else if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
         return new Address(trimmedAddress);
     }
