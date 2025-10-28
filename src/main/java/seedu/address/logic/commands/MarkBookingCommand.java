@@ -24,8 +24,7 @@ public class MarkBookingCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_SUCCESS = "Booking %1$s has been marked";
-    public static final String MESSAGE_NOTFOUND = "Invalid booking ID: %1$s";
-    public static final String MESSAGE_DUPLICATE = "you have already marked this booking";
+    public static final String MESSAGE_DUPLICATE = "You have already marked this booking.";
 
     private final Index bookingindex;
 
@@ -39,7 +38,7 @@ public class MarkBookingCommand extends Command {
         List<Booking> lastShownList = model.getModifiedBookingList();
 
         if (bookingindex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(MESSAGE_NOTFOUND);
+            throw new CommandException(Messages.MESSAGE_INVALID_BOOKING_DISPLAYED_INDEX);
         }
 
         Booking booking = lastShownList.get(bookingindex.getZeroBased());

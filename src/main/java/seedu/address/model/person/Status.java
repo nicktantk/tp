@@ -12,7 +12,7 @@ public enum Status {
     RETURNING;
 
     public static final String MESSAGE_CONSTRAINTS = "Status must be one of the following: "
-        + "PROSPECT,"
+        + "PROSPECT, "
         + "POTENTIAL, "
         + "ACTIVE, "
         + "INACTIVE, "
