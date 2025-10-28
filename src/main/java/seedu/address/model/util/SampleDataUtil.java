@@ -61,7 +61,7 @@ public class SampleDataUtil {
         return new Booking[]{
             new Booking(
                 new Description("Wedding Shoot"),
-                new Name("John Doe"),
+                new Name("Alex Yeoh"),
                 new DateTime("14/10/2025 1200"),
                 PackageType.PORTRAIT,
                 getTagSet("outdoor", "summer"),
@@ -69,7 +69,7 @@ public class SampleDataUtil {
             ),
             new Booking(
                 new Description("Corporate Product Photoshoot"),
-                new Name("Alice Tan"),
+                new Name("Bernice Yu"),
                 new DateTime("05/11/2025 0930"),
                 PackageType.PRODUCT,
                 getTagSet("indoor", "studio"),
@@ -77,7 +77,7 @@ public class SampleDataUtil {
             ),
             new Booking(
                 new Description("Family Portrait Session"),
-                new Name("Michael Lim"),
+                new Name("Roy Balakrishnan"),
                 new DateTime("10/11/2025 1430"),
                 PackageType.PORTRAIT,
                 getTagSet("family", "kids"),
@@ -85,7 +85,7 @@ public class SampleDataUtil {
             ),
             new Booking(
                 new Description("Event Coverage - Charity Gala"),
-                new Name("Samantha Lee"),
+                new Name("Bernice Yu"),
                 new DateTime("15/11/2025 1800"),
                 PackageType.EVENT,
                 getTagSet("night", "formal"),
@@ -93,7 +93,7 @@ public class SampleDataUtil {
             ),
             new Booking(
                 new Description("Pre-wedding Beach Shoot"),
-                new Name("Daniel Koh"),
+                new Name("Roy Balakrishnan"),
                 new DateTime("20/11/2025 1600"),
                 PackageType.WEDDING,
                 getTagSet("outdoor", "beach", "sunset"),
