@@ -28,7 +28,7 @@ import seedu.address.model.tag.Tag;
 public class EditBookingCommand extends Command {
     public static final String COMMAND_WORD = "editbooking";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the booking identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the booking identified. "
             + "by the index number used in the displayed booking list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "

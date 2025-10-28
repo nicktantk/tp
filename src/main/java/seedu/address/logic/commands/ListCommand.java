@@ -15,7 +15,7 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all persons";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all Client within InSight \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all Client within InSight. \n"
             + "Parameters: NIL \n"
             + "Example: " + COMMAND_WORD;
     @Override

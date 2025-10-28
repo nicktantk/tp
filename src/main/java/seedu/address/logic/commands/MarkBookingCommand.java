@@ -18,7 +18,7 @@ public class MarkBookingCommand extends Command {
 
     public static final String COMMAND_WORD = "markbooking";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Marks a booking as 'Paid'\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Marks a booking as 'Paid'.\n"
             + "Parameters: "
             + "INDEX (must be a positive integer) \n"
             + "Example: " + COMMAND_WORD + " 1";
