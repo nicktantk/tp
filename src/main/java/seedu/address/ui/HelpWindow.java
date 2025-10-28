@@ -18,7 +18,7 @@ import seedu.address.logic.commands.CommandList;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
+    public static final String USERGUIDE_URL = "https://ay2526s1-cs2103t-t08-1.github.io/tp/UserGuide.html";
     public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
 
     public static final String COMMAND_USAGE = CommandList.ALL_COMMANDS.stream().toString();
