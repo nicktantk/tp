@@ -20,8 +20,8 @@ public class FindCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: name + [name1 name2...] or "
-            + "status + [status1 status2...]\n"
+            + "Parameters: name + [NAME1 NAME2...] or "
+            + "status + [STATUS1 STATUS2...]\n"
             + "Example: " + COMMAND_WORD + " name alice bob charlie\n"
             + "Another example: " + COMMAND_WORD + " status active returning";
     public static final String MESSAGE_NO_FILTERS = "At least one word to find must be provided.";
