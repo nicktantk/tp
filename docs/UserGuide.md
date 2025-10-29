@@ -44,8 +44,8 @@
 |-----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `add`           | Adds a person to InSight. <br/> Parameters: `n/NAME p/PHONE e/EMAIL s/STATUS [a/ADDRESS] [t/TAG]` <br/> Example: `add n/John Doe p/98765432 e/johnd@example.com s/PROSPECT a/311, Clementi Ave`      |
 | `addbooking`    | Adds a booking to InSight. <br/> Parameters: `INDEX d/DESCRIPTION dt/dd/mm/yyyy HHmm p/PACKAGE t/TAG` <br/> Example: `addbooking 1 d/Wedding Shoot dt/14/10/2025 1200 p/PORTRAIT t/outdoor t/summer` |
-| `list`          | Lists all clients <br/> Example: `list`                                                                                                                                                              |
-| `listbooking`   | Lists all bookings <br/> Lists all bookings within InSight. <br/> Example: `listbooking`                                                                                                             |
+| `list`          | Lists all clients. <br/> Example: `list`                                                                                                                                                             |
+| `listbooking`   | Lists all bookings. <br/> Lists all bookings within InSight. <br/> Example: `listbooking`                                                                                                            |
 | `markbooking`   | Marks a booking as 'Paid'. <br/> Parameters: `INDEX` <br/> Example: `markbooking 1`                                                                                                                  |
 | `unmarkbooking` | Unmarks a booking as 'Not Paid'. <br/> Parameters: `INDEX`   <br/> Example: `unmarkbooking 1`                                                                                                        |
 | `edit`          | Edits client details. <br/> Parameters: `INDEX [n/NAME] [p/PHONE] [e/EMAIL] [s/STATUS] [a/ADDRESS] [t/TAG]` <br/> Example: `edit 1 p/91234567 e/johndoe@example.com`                                 |
@@ -161,6 +161,7 @@ Edits details of a client in InSight.
 - At least one optional field must be provided.
 - Editing tags will overwrite previous tags.
 - To remove all tags, type `t/` without specifying any tag.
+- Editing address with a/<blank> will change the address to a "No address". 
 
 **Examples:**  
 `edit 1 p/91234567 e/johndoe@example.com`  
