@@ -93,10 +93,9 @@ public class ParserUtil {
      * @throws ParseException if the given {@code address} is invalid.
      */
     public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
         String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+        if (trimmedAddress.isEmpty()) {
+            return new Address("No address");
         }
         return new Address(trimmedAddress);
     }
