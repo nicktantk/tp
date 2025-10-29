@@ -27,8 +27,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         // Split into key and remainder
         final String[] firstAndRest = trimmedArgs.split("\\s+", 2);
         if (firstAndRest.length < 2 || firstAndRest[1].trim().isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            throw new ParseException(FindCommand.MESSAGE_NO_FILTERS);
         }
 
         final String findBy = ParserUtil.parseFindBy(firstAndRest[0]).toUpperCase(); // may throw ParseException
