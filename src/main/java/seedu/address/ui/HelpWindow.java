@@ -69,6 +69,7 @@ public class HelpWindow extends UiPart<Stage> {
             title.getStyleClass().add("command-title");
             Label usage = new Label(cmd.usage());
             usage.getStyleClass().add("command-usage");
+            usage.setWrapText(true);
             VBox commandBox = new VBox(3, title, usage);
 
             commandBox.getStyleClass().add("command-box");
