@@ -146,7 +146,7 @@ The INDEX refers to the booking number displayed in the booking list. This helps
 
 **Example:**  
 `markbooking 1`
-![markbooking.png](images/markbooking.png)
+![markbooking.png](images/markBooking.png)
 
 ### Unmarking a booking as unpaid: unmarkbooking
 
@@ -157,7 +157,7 @@ Marks a booking as Not Paid.
 
 **Example:**  
 `unmarkbooking 2`
-![unmarkbooking.png](images/unmarkbooking.png)
+![unmarkbooking.png](images/markBooking.png)
 
 ### Editing a client: edit
 
