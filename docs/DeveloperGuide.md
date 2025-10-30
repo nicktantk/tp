@@ -587,54 +587,25 @@ testers are expected to do more *exploratory* testing.
 
 ---
 
-# Appendix: Instructions for Manual Testing
-
-Given below are instructions to test the app manually.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
-</div>
-
----
-
-## Launch and Shutdown
-
-### Initial launch
-
-1. Ensure you have Java `17` or above installed in your Computer.
-
-2. Download the latest `insight.jar` file from [here](https://github.com/AY2526S1-CS2103T-T08-1/tp/releases).
-
-3. Copy the file to the folder you want to use as the _home folder_ for InSight.
-
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar insight.jar` command to run the application.<br>
-   Expected: Shows the GUI with a set of sample contacts and bookings. The window size may not be optimum.
-
-### Saving window preferences
-
-1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-2. Re-launch the app by running `java -jar insight.jar` again.<br>
-   Expected: The most recent window size and location is retained.
-
----
-
 ## Client Management
 
 ### Adding a client
 
-1. Adding a client with valid inputs 
+1. Adding a client with valid inputs
+
    1. Test case: `add n/Alice Tan p/98765432 e/alice@example.com s/PROSPECT`<br>
       Expected: New client "Alice Tan" is added to the list. Details shown in the status message.
 
-2. Adding a client with invalid inputs
-   1. Test case: `add n/Charlie p/12345678 e/charlie@test.com s/INVALID`<br>
+1. Adding a client with invalid inputs
+   
+    1. Test case: `add n/Charlie p/12345678 e/charlie@test.com s/INVALID`<br>
       Expected: No client is added. Error message indicates status constraints. Valid statuses are shown.
 
-3. Adding a client - missing required parameters
+1. Adding a client - missing required parameters
+   
    1. Test case: `add n/Test`<br>
       Expected: No client is added. Error message shows the correct format with all required parameters.
-   2. Other incorrect commands to try: `add p/12345678`, `add` (missing all parameters)<br>
+   1. Other incorrect commands to try: `add p/12345678`, `add` (missing all parameters)<br>
       Expected: Similar error messages showing required format.
 
 ### Listing all clients
