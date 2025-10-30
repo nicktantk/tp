@@ -565,6 +565,8 @@ Given below are instructions to test the app manually.
 **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
 
+</box>
+
 ## Launch and Shutdown
 
 ### Initial launch
@@ -786,8 +788,6 @@ Prerequisites: Have some clients and bookings in the system.
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Appendix: Effort**
-
-## Appendix: Effort
 
 ### Difficulty Level
 The overall difficulty level of the project was **moderately high**. While we built upon the existing AddressBook Level 3 (AB3) codebase, our project introduced new entity types (e.g. *clients* and *bookings*), each with distinct attributes, commands, and interactions. Compared to AB3, which manages a single entity type, our system required additional layers of logic to handle interdependencies between clients and their bookings, as well as to maintain data consistency during operations such as edits or deletions.
