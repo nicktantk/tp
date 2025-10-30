@@ -65,22 +65,58 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-### UI component
+### UI Component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 <puml src="diagrams/UiClassDiagram.puml" alt="Structure of the UI Component"/>
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The **UI component** is responsible for the graphical user interface of the application.  
+It is built using the **JavaFX** framework. The layout of each UI part is defined in a corresponding `.fxml` file located in the `src/main/resources/view` folder.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+#### Overview
 
-The `UI` component,
+The UI consists of a `MainWindow` that is composed of several parts, such as:
 
-* executes user commands using the `Logic` component.
-* listens for changes to `Model` data so that the UI can be updated with the modified data.
-* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+| Component | Description | FXML File |
+|------------|--------------|-----------|
+| `CommandBox` | Receives user input for command execution. | `CommandBox.fxml` |
+| `ResultDisplay` | Shows feedback messages for user commands. | `ResultDisplay.fxml` |
+| `PersonListPanel` | Displays a scrollable list of all client entries as `PersonCard`s. | `PersonListPanel.fxml` |
+| `BookingListPanel` | Displays a scrollable list of all booking entries as `BookingCard`s. | `BookingListPanel.fxml` |
+| `StatusBarFooter` | Shows the save location and entity counts. | `StatusBarFooter.fxml` |
+| `MainWindow` | Acts as the root container tying all components together. | `MainWindow.fxml` |
+
+All these components (including `MainWindow`) inherit from the abstract `UiPart` class, which encapsulates common functionality for JavaFX UI elements.
+
+
+#### Layout Structure
+
+The **MainWindow layout** (`MainWindow.fxml`) uses a vertical box (`VBox`) as its root container. Within it:
+
+- A **menu bar** provides quick access to *Help* and *Exit* actions.
+- The **command box** and **result display** occupy fixed vertical spaces at the top.
+- The central section is an `HBox` named `container`, containing:
+    - A **Client panel** (`personListPanelPlaceholder`) for displaying `PersonCard`s.
+    - A **Booking panel** (`bookingListPanelPlaceholder`) for displaying `BookingCard`s.
+- A **status bar** sits at the bottom showing save location and number of entities.
+
+Each list panel (`PersonListPanel` and `BookingListPanel`) observes an `ObservableList` from the `Model`. Whenever the data changes (e.g., when a command modifies clients or bookings), the corresponding list view automatically updates via JavaFX’s observable bindings.
+
+#### Responsibilities
+
+The UI component:
+- **Executes user commands** by calling `Logic#execute(String commandText)`.
+- **Listens for changes** to the `Model` through observable bindings to ensure UI consistency.
+- **Displays up-to-date information** about both clients (`Person`) and bookings (`Booking`).
+- **Maintains references** to the `Logic` component for command execution and `Model` data retrieval.
+
+#### Design Considerations
+
+- **Parallel panels:** The `PersonListPanel` and `BookingListPanel` allow users to view client and booking information side by side.
+- **Extensibility:** Additional panels (e.g., statistics or calendar view) can be added by following the same `UiPart` structure.
+- **Consistency:** The `BookingCard` mirrors the structure of `PersonCard` for a cohesive visual experience.
+
 
 ### Logic component
 
@@ -136,17 +172,32 @@ The `Model` component,
 
 </box>
 
+### Storage Component
 
-### Storage component
-
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API:** [`Storage.java`](../src/main/java/seedu/address/storage/Storage.java)
 
 <puml src="diagrams/StorageClassDiagram.puml" width="550" />
 
-The `Storage` component,
-* can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+The **Storage component** saves and loads data from disk in **JSON format**, including both address book and user preferences.
+
+#### Responsibilities
+- Reads/writes `Person`, `Booking`, and `Tag` objects using Jackson.
+- Implements both `AddressBookStorage` and `UserPrefStorage` interfaces.
+- Performs validation to ensure data integrity before loading into the model.
+
+#### Error Handling & Validation
+
+During deserialization (`JsonSerializableAddressBook#toModelType()`), the following checks ensure data consistency:
+
+| Rule | Description | Exception |
+|------|--------------|-----------|
+| **Duplicate Person** | A duplicate `Person` entry exists. | `IllegalValueException(MESSAGE_DUPLICATE_PERSON)` |
+| **Duplicate Booking** | A duplicate `Booking` entry exists. | `IllegalValueException(MESSAGE_DUPLICATE_BOOKING)` |
+| **Missing Client** | A booking’s `Name` does not exist in the person list. | `IllegalValueException(MESSAGE_MISSING_CLIENT)` |
+
+These prevent corrupted data or orphaned bookings from being loaded.
+
+> 💡 **Note:** The storage layer guarantees that every booking corresponds to an existing client and that duplicates are rejected before data reaches the model.
 
 ### Common classes
 
