@@ -354,7 +354,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 * Prefers typing to mouse interactions
 * Needs to manage a large number of clients, influencers, and other stakeholders
 
-**Value proposition**:
+**Value proposition**:<br>
 **For** Small photography/videography businesses who sell services (not products) directly to clients/businesses  
 **Who are** dissatisfied with client details scattered across email, WhatsApp, and spreadsheets, making it hard to track who booked when, what package they purchased, specific requests, theme etc.  
 **Our product is a** specially designed client relationship management system  
@@ -556,37 +556,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Human-Editable File**: A file format that users can open and modify without specialized software.
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
-
-Given below are instructions to test the app manually.
-
-<box type="info" seamless>
-
-**Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
-
-## Launch and Shutdown
-
-### Initial launch
-
-1. Ensure you have Java `17` or above installed in your Computer.
-
-2. Download the latest `insight.jar` file from [here](https://github.com/AY2526S1-CS2103T-T08-1/tp/releases).
-
-3. Copy the file to the folder you want to use as the _home folder_ for InSight.
-
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar insight.jar` command to run the application.<br>
-   Expected: Shows the GUI with a set of sample contacts and bookings. The window size may not be optimum.
-
-### Saving window preferences
-
-1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-2. Re-launch the app by running `java -jar insight.jar` again.<br>
-   Expected: The most recent window size and location is retained.
-
----
-
 # Appendix: Instructions for Manual Testing
 
 Given below are instructions to test the app manually.
@@ -682,7 +651,7 @@ Prerequisites: Have at least 3 clients with different names in the list (e.g., "
 1. Test case: `sort`<br>
    Expected: All clients are sorted alphabetically by name (Alice, Bob, Charlie). Status message confirms sorting.
 
-## Deleting a client
+### Deleting a client
 
 Prerequisites: Have at least one client displayed. List all clients using the `list` command.
 
