@@ -443,52 +443,52 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1. **Platform Independence**
-    - The software must run on Windows, Linux, and macOS, and must not use any OS-dependent libraries or features.
+- The software must run on Windows, Linux, and macOS, and must not use any OS-dependent libraries or features.<br>
 
 2. **Java Version Compatibility**
-    - The application must work on a computer that has only Java 17 installed (i.e., it must not require any other Java version).
+- The application must work on a computer that has only Java 17 installed (i.e., it must not require any other Java version).<br>
 
 3. **Portability**
-    - The software must be usable without requiring an installer; users should be able to run the JAR file directly.
+    - The software must be usable without requiring an installer; users should be able to run the JAR file directly.<br>
 
 4. **Single-User Design**
-    - The product must be designed for a single user and must not support multi-user access or concurrent data file usage.
+    - The product must be designed for a single user and must not support multi-user access or concurrent data file usage.<br>
 
 5. **Typing-Optimized Interface**
-    - The user interface must be optimized for users who type fast and prefer typing over other input methods.
+    - The user interface must be optimized for users who type fast and prefer typing over other input methods.<br>
 
 6. **Human-Editable File Format**
-    - All data must be stored locally in a human-editable text file format.
+    - All data must be stored locally in a human-editable text file format.<br>
 
 7. **No DBMS Usage**
-    - The application must not use a database management system (DBMS) such as MySQL to store data.
+    - The application must not use a database management system (DBMS) such as MySQL to store data.<br>
 
 8. **Object-Oriented Design**
-    - The software must primarily follow the object-oriented programming design.
+    - The software must primarily follow the object-oriented programming design.<br>
 
 9. **No Remote Server Dependency**
-    - The software must not depend on any remote server for its core functionality.
+    - The software must not depend on any remote server for its core functionality.<br>
 
 10. **Third-Party Libraries**
-    - Any third-party libraries used must be free, open-source, have permissive licenses, and must not require installation by the user.
+    - Any third-party libraries used must be free, open-source, have permissive licenses, and must not require installation by the user.<br>
 
 11. **Screen Resolution Support**
-    - The GUI must work well at 1920x1080 resolution and higher (at 100% and 125% scaling), and be usable at 1280x720 and higher (at 150% scaling).
+    - The GUI must work well at 1920x1080 resolution and higher (at 100% and 125% scaling), and be usable at 1280x720 and higher (at 150% scaling).<br>
 
 12. **Single-File Distribution**
-    - The application and all dependencies must be packaged into a single JAR file (or a single ZIP file if necessary).
+    - The application and all dependencies must be packaged into a single JAR file (or a single ZIP file if necessary).<br>
 
 13. **File Size Limitations**
-    - The JAR/ZIP file size must not exceed 100MB; PDF documentation files must not exceed 15MB each.
+    - The JAR/ZIP file size must not exceed 100MB; PDF documentation files must not exceed 15MB each.<br>
 
 14. **Performance**
-    - The application must load the client and booking list within 2 seconds for up to 1,000 clients, and must remain responsive during common operations.
+    - The application must load the client and booking list within 2 seconds for up to 1,000 clients, and must remain responsive during common operations.<br>
 
 15. **Reliability**
-    - The application should not crash during normal operations and must recover gracefully from unexpected errors.
+    - The application should not crash during normal operations and must recover gracefully from unexpected errors.<br>
 
 16. **Usability**
-    - The system should be easy to use for creative professionals with minimal training (<30 minutes).
+    - The system should be easy to use for creative professionals with minimal training (<30 minutes).<br>
 
 
 ### Glossary
@@ -543,24 +543,24 @@ testers are expected to do more *exploratory* testing.
 1. Adding a client with valid inputs
 
    1. Test case: `add n/Alice Tan p/98765432 e/alice@example.com s/PROSPECT`<br>
-      Expected: New client "Alice Tan" is added to the list. Details shown in the status message.
+      Expected: New client "Alice Tan" is added to the list. Details shown in the status message.<br>
 
 1. Adding a client with invalid inputs
    
     1. Test case: `add n/Charlie p/12345678 e/charlie@test.com s/INVALID`<br>
-      Expected: No client is added. Error message indicates status constraints. Valid statuses are shown.
+      Expected: No client is added. Error message indicates status constraints. Valid statuses are shown.<br>
 
 1. Adding a client - missing required parameters
    
    1. Test case: `add n/Test`<br>
       Expected: No client is added. Error message shows the correct format with all required parameters.
    1. Other incorrect commands to try: `add p/12345678`, `add` (missing all parameters)<br>
-      Expected: Similar error messages showing required format.
+      Expected: Similar error messages showing required format.<br>
 
 ### Listing all clients
 
 1. Test case: `list`<br>
-   Expected: All clients in InSight are displayed. Client count shown in status message.
+   Expected: All clients in InSight are displayed. Client count shown in status message.<br>
 
 ### Editing a client
 
@@ -570,11 +570,11 @@ Prerequisites: At least one client displayed. List all clients using the `list` 
    1. Test case: `edit 1 p/87654321`<br>
       Expected: First client's phone is updated. Details shown in the status message.
    2. Test case: `edit 1 p/87654321 e/newemail@example.com s/ACTIVE`<br>
-      Expected: First client's phone, email, and status are updated. Success message displayed.
+      Expected: First client's phone, email, and status are updated. Success message displayed.<br>
 
 2. Editing a client with invalid inputs.
    1. Test case: `edit 100000 n/James` (assuming list has less than 100000 clients)<br>
-      Expected: No client is edited. Error message indicates index is invalid.
+      Expected: No client is edited. Error message indicates index is invalid.<br>
 
 
 ### Finding clients
@@ -583,24 +583,24 @@ Prerequisites: Have clients with various names in the list.
 
 1. Finding clients by name
    1. Test case: `find name alice bob`<`br>
-      Expected: Lists all clients whose names contain "alice" or "bob" (case-insensitive). Number of matches shown.
+      Expected: Lists all clients whose names contain "alice" or "bob" (case-insensitive). Number of matches shown.<br>
 
 2. Finding clients by status
    1. Test case: `find status active returning`<br>
-         Expected: Lists all clients with status ACTIVE or RETURNING. Number of matches shown.
+      Expected: Lists all clients with status ACTIVE or RETURNING. Number of matches shown.<br>
 
 3. Finding clients with invalid inputs.
    1. Test case: `find name`<br>
       Expected: No search performed. Error message shows correct format requiring at least one keyword.
    2. Test case: `find`<br>
-      Expected: Error message shows correct format with examples.
+      Expected: Error message shows correct format with examples.<br>
 
 ### Sorting clients alphabetically
 
 Prerequisites: Have at least 3 clients with different names in the list (e.g., "Charlie", "Alice", "Bob").
 
 1. Test case: `sort`<br>
-   Expected: All clients are sorted alphabetically by name (Alice, Bob, Charlie). Status message confirms sorting.
+   Expected: All clients are sorted alphabetically by name (Alice, Bob, Charlie). Status message confirms sorting.<br>
 
 ## Deleting a client
 
@@ -608,13 +608,13 @@ Prerequisites: Have at least one client displayed. List all clients using the `l
 
 1. Deleting a client from the full list.
     1. Test case: `delete 1`<br>
-       Expected: First client is deleted from the list. Details of the deleted client are shown in the status message. All associated bookings are also deleted.
+       Expected: First client is deleted from the list. Details of the deleted client are shown in the status message. All associated bookings are also deleted.<br>
 
 2. Deleting a client with invalid index.
     1. Test case: `delete 0`<br>
        Expected: No client is deleted. Error message indicates index must be positive.
     2. Test case: `delete 100000` (assuming 100000 is larger than list size)<br>
-       Expected: Error message indicates index is out of range.
+       Expected: Error message indicates index is out of range.<br>
 
 ---
 
@@ -626,7 +626,7 @@ Prerequisites: Have at least one client displayed. List all clients using the `l
 
 1. Adding a booking with valid inputs.
     1. Test case: `addbooking 1 d/Wedding Shoot dt/14/10/2025 1200 p/PORTRAIT t/outdoor t/summer`<br>
-       Expected: Booking added to the first client. Details shown in status message including booking index.
+       Expected: Booking added to the first client. Details shown in status message including booking index.<br>
 
 2. Adding a booking with invalid inputs.
     1. Test case: `addbooking 1 d/Test dt/32/01/2025 1200 p/PORTRAIT`<br>
@@ -634,12 +634,12 @@ Prerequisites: Have at least one client displayed. List all clients using the `l
     2. Test case: `addbooking 100000 d/Test dt/14/10/2025 1200 p/PORTRAIT` (assuming 100000 is larger than list size)<br>
        Expected: No booking is added. Error message indicates invalid client index.
     3. Test case: `addbooking 1`<br>
-       Expected: No booking is added. Error message shows correct format with all required parameters.
+       Expected: No booking is added. Error message shows correct format with all required parameters.<br>
 
 ### Listing all bookings
 
 1. Test case: `listbooking`<br>
-   Expected: All bookings in InSight are displayed.
+   Expected: All bookings in InSight are displayed.<br>
 
 ### Viewing bookings for a client
 
@@ -647,13 +647,13 @@ Prerequisites: Have at least one client displayed. List all clients using the `l
 
 1. Viewing bookings for a client.
     1. Test case: `viewbooking 1`<br>
-       Expected: Other clients hidden and all bookings for the first client are displayed. Number of bookings shown in status message.
+       Expected: Other clients hidden and all bookings for the first client are displayed. Number of bookings shown in status message.<br>
 
 2. Viewing bookings with invalid client index.
     1. Test case: `viewbooking 0`<br>
        Expected: Error message indicates invalid command format.
     2. Test case: `viewbooking 100000` (assuming 100000 is larger than list size)<br>
-       Expected: Error message indicates index is out of range.
+       Expected: Error message indicates index is out of range.<br>
 
 ### Editing a booking
 
@@ -663,13 +663,13 @@ Prerequisites: Have at least one booking displayed. List all bookings using the 
     1. Test case: `editbooking 1 d/Updated Description`<br>
        Expected: First booking's description is updated. Details shown in status message.
     2. Test case: `editbooking 1 d/Updated Description p/WEDDING dt/15/11/2025 1400`<br>
-       Expected: First booking's description, package, and datetime are updated. Success message displayed.
+       Expected: First booking's description, package, and datetime are updated. Success message displayed.<br>
 
 2. Editing a booking with invalid fields.
     1. Test case: `editbooking 1 dt/31/02/2025 1200`<br>
        Expected: No booking is edited. Error message indicates invalid date (February 31 does not exist).
     2. Test case: `editbooking 0 d/Test`<br>
-       Expected: No booking is edited. Error message indicates command format.
+       Expected: No booking is edited. Error message indicates command format.<br>
 
 ### Marking/Unmarking a booking
 
@@ -677,24 +677,24 @@ Prerequisites: Have at least one booking displayed. List all bookings using the 
 
 1. Marking a booking as paid.
     1. Test case: `markbooking 1`<br>
-       Expected: First booking marked as "Paid". Status shows [X] in the booking list. Success message displayed.
+       Expected: First booking marked as "Paid". Status shows [X] in the booking list. Success message displayed.<br>
 
 2. Unmarking a booking as not paid.
     1. Test case: `unmarkbooking 1`<br>
-       Expected: First booking unmarked as "Not Paid". Status shows [ ] in the booking list. Success message displayed.
+       Expected: First booking unmarked as "Not Paid". Status shows [ ] in the booking list. Success message displayed.<br>
 
 3. Marking/Unmarking a booking with invalid index.
     1. Test case: `markbooking 0`<br>
        Expected: Error message indicates invalid command format.
     2. Test case: `unmarkbooking 100000` (assuming 100000 is larger than list size)<br>
-       Expected: Error message indicates index is invalid.
+       Expected: Error message indicates index is invalid.<br>
 
 ### Sorting bookings by date and time
 
 Prerequisites: Have at least 3 bookings with different dates and times.
 
 1. Test case: `sortbooking`<br>
-   Expected: All bookings sorted by date and time in chronological order from today (earliest first). Past bookings are not shown. Status message confirms sorting.
+   Expected: All bookings sorted by date and time in chronological order from today (earliest first). Past bookings are not shown. Status message confirms sorting.<br>
 
 ### Deleting a booking
 
@@ -702,13 +702,13 @@ Prerequisites: Have at least one booking displayed. List all bookings using the 
 
 1. Deleting a booking from the full list.
     1. Test case: `deletebooking 1`<br>
-       Expected: First booking is deleted. Details of the deleted booking shown in status message.
+       Expected: First booking is deleted. Details of the deleted booking shown in status message.<br>
 
 2. Deleting a booking with invalid index.
     1. Test case: `deletebooking 0`<br>
        Expected: No booking is deleted. Error message indicates invalid command format.
     2. Test case: `deletebooking 100000` (assuming 100000 is larger than list size)<br>
-       Expected: Error message indicates index is out of range.
+       Expected: Error message indicates index is out of range.<br>
 ---
 
 ## General Commands
