@@ -172,17 +172,32 @@ The `Model` component,
 
 </box>
 
+### Storage Component
 
-### Storage component
-
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API:** [`Storage.java`](../src/main/java/seedu/address/storage/Storage.java)
 
 <puml src="diagrams/StorageClassDiagram.puml" width="550" />
 
-The `Storage` component,
-* can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+The **Storage component** saves and loads data from disk in **JSON format**, including both address book and user preferences.
+
+#### Responsibilities
+- Reads/writes `Person`, `Booking`, and `Tag` objects using Jackson.
+- Implements both `AddressBookStorage` and `UserPrefStorage` interfaces.
+- Performs validation to ensure data integrity before loading into the model.
+
+#### Error Handling & Validation
+
+During deserialization (`JsonSerializableAddressBook#toModelType()`), the following checks ensure data consistency:
+
+| Rule | Description | Exception |
+|------|--------------|-----------|
+| **Duplicate Person** | A duplicate `Person` entry exists. | `IllegalValueException(MESSAGE_DUPLICATE_PERSON)` |
+| **Duplicate Booking** | A duplicate `Booking` entry exists. | `IllegalValueException(MESSAGE_DUPLICATE_BOOKING)` |
+| **Missing Client** | A booking’s `Name` does not exist in the person list. | `IllegalValueException(MESSAGE_MISSING_CLIENT)` |
+
+These prevent corrupted data or orphaned bookings from being loaded.
+
+> 💡 **Note:** The storage layer guarantees that every booking corresponds to an existing client and that duplicates are rejected before data reaches the model.
 
 ### Common classes
 
