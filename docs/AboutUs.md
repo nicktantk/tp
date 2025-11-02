@@ -16,7 +16,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](https://github.com/Jyang1206)]
 
-* Role: Team Lead
+* Role: Team Lead 
 * Responsibility: UI
 
 ### Nicholas
@@ -28,6 +28,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/johndoe.md)]
 
 * Role: Project Advisor
+* Responsibility: Features
 
 ### Liu Ziyue
 
@@ -38,6 +39,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/huiyi-al.md)]
 
 * Role: Project Advisor
+* Responsibility: Code quality
 
 ### Brandon
 
@@ -46,6 +48,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/brandontwj1)]
 [[portfolio](team/johndoe)]
 
-* Role: ???
-* Responsibilities: ???
+* Role: Project Advisor
+* Responsibilities: Features
 
