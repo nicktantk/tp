@@ -42,7 +42,7 @@
 
 | Command         | Description                                                                                                                                                                                          |
 |-----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `add`           | Adds a person to InSight. <br/> Parameters: `n/NAME p/PHONE e/EMAIL s/STATUS [a/ADDRESS] [t/TAG]` <br/> Example: `add n/John Doe p/98765432 e/johnd@example.com s/PROSPECT a/311, Clementi Ave`      |
+| `add`           | Adds a Client to InSight. <br/> Parameters: `n/NAME p/PHONE e/EMAIL s/STATUS [a/ADDRESS] [t/TAG]` <br/> Example: `add n/John Doe p/98765432 e/johnd@example.com s/PROSPECT a/311, Clementi Ave`           |
 | `addbooking`    | Adds a booking to InSight. <br/> Parameters: `INDEX d/DESCRIPTION dt/dd/mm/yyyy HHmm p/PACKAGE t/TAG` <br/> Example: `addbooking 1 d/Wedding Shoot dt/14/10/2025 1200 p/PORTRAIT t/outdoor t/summer` |
 | `list`          | Lists all clients. <br/> Example: `list`                                                                                                                                                             |
 | `listbooking`   | Lists all bookings. <br/> Lists all bookings within InSight. <br/> Example: `listbooking`                                                                                                            |
@@ -70,9 +70,9 @@
 - For the list of appropriate package types, refer [here](#2-package-types).  
 - For more information about the tag, refer [here](#3-tag-keywords).
 
-### Adding a person: add
+### Adding a Client: add
 
-Adds a person (client) to InSight.
+Adds a Client (client) to InSight.
 
 **Format:**  
 `add n/NAME p/PHONE e/EMAIL s/STATUS [a/ADDRESS] [t/TAG]…`
@@ -236,7 +236,7 @@ Displays all bookings associated with a selected client.
 `viewbooking INDEX`
 
 **Notes:**  
-The INDEX refers to the client’s index. Use this command to view all bookings tied to a specific person.
+The INDEX refers to the client’s index. Use this command to view all bookings tied to a specific Client.
 
 **Example:**  
 `viewbooking 1`
@@ -324,14 +324,13 @@ Closes the InSight application.
 
 
 ### 3. Tag Keywords
+Short, user-defined labels you attach to Clients and Bookings to surface specific details at a glance. 
+The app does not enforce meaning — they are up to the user to define as they see fit.
+#### Good practices
 
-| Tag       | Meaning                      | Example       |
-|-----------|------------------------------|---------------|
-| outdoor   | Shoot conducted outdoors     | `t/outdoor`   |
-| studio    | Conducted in indoor settings | `t/studio`    |
-| priority  | VIP or urgent booking        | `t/priority`  |
-| editing   | Workflow in post-production  | `t/editing`   |
-| delivered | Work delivered to client     | `t/delivered` |
+Keep tags short and consistent (prefer lowercase; use hyphens for multi-word tags).
+
+Use tags for quick flags;
 
 ### 4. Date & Time Format
 
