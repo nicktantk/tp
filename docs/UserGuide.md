@@ -221,7 +221,6 @@ or
 **Notes:**
 - Search is case-insensitive.
 - The order of keywords does not matter.
-- Supports partial matching for status searches.
 - Returns any client matching one or more keywords (OR search).
 
 **Examples:**  
