@@ -248,6 +248,8 @@ Deletes a booking record from InSight.
 
 Finds clients whose names or statuses match the given keywords.
 
+> **Note**: Type in the exact name or status to find the clients
+
 **Format:**  
 `find name KEYWORD [MORE_KEYWORDS]`  
 or  
