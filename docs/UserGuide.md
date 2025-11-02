@@ -302,6 +302,8 @@ Sorts all bookings by date and time.
 
 Clears all clients and bookings from InSight.
 
+> ⚠️ **Warning:** This permanently deletes **all clients and bookings** from InSight. It **cannot be undone**. Back up your data (copy the `.json` data file) before running `clear`.
+
 **Format:**  
 `clear`
 
