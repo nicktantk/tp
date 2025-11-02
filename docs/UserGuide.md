@@ -98,16 +98,16 @@ InSight consolidates your **people, bookings, packages, notes, and tags** into o
 ---
 
 ## 🧭 Features
-- Refer to the glossary for terms you are unsure of.  
-- For the list of appropriate status fields, refer [here](#1-client-status).  
-- For more information about the INDEX, refer [here](#5-indexing).  
-- If you are unclear on the formatting of the date time field, refer [here](#4-date--time-format).  
-- For the list of appropriate package types, refer [here](#2-package-types).  
-- For more information about the tag, refer [here](#3-tag-keywords).
+- See the [Glossary](#-glossary) if a term is unfamiliar.
+- Valid client **status** values are listed [here](#1-client-status).
+- Read about **INDEX** behavior [here](#5-indexing).
+- Date & time formatting is defined [here](#4-date--time-format).
+- Suggested **package types** are listed [here](#2-package-types).
+- Learn how to **use tags powerfully** [here](#3-tags-clients--bookings).
 
 ### Adding a Client: add
 
-Adds a Client (client) to InSight.
+Adds a Client to InSight.
 
 **Format:**  
 `add n/NAME p/PHONE e/EMAIL s/STATUS [a/ADDRESS] [t/TAG]…`
