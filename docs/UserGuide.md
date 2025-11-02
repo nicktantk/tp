@@ -11,15 +11,50 @@
 > **Based on:** SE-EDU AddressBook Level 3
 
 ---
+
+## 📚 Introduction
+
+InSight is a lightweight Client & Booking manager designed for small **photography/videography** teams that sell
+creative services directly to clients and businesses.
+
+If you’ve ever juggled details across **email, WhatsApp,
+spreadsheets, and sticky notes**, you know how easy it is to miss a change request, forget a payment update, or lose
+track of which package a client actually chose.
+
+InSight consolidates your **people, bookings, packages, notes, and tags** into one clean workspace.
+
+
+> **Who this is for:** Solo creators, small studios, and boutique teams in the **photography/videography market**
+> looking for speed, clarity, and control—without paying with time or sanity.
+
+
 ![Ui.png](images/Ui.png)
 ## 📖 Table of Contents
 1. [Quick Start](#-quick-start)
 2. [Command Reference](#-command-reference)
 3. [Features](#-features)
+    - [Adding a Client: `add`](#adding-a-client-add)
+    - [Adding a Booking: `addbooking`](#adding-a-booking-addbooking)
+    - [Listing all Clients: `list`](#listing-all-clients-list)
+    - [Listing all Bookings: `listbooking`](#listing-all-bookings-listbooking)
+    - [Marking a Booking as Paid: `markbooking`](#marking-a-booking-as-paid-markbooking)
+    - [Marking a Booking as Not Paid: `unmarkbooking`](#marking-a-booking-as-not-paid-unmarkbooking)
+    - [Editing a Client: `edit`](#editing-a-client-edit)
+    - [Editing a Booking: `editbooking`](#editing-a-booking-editbooking)
+    - [Deleting a Client: `delete`](#deleting-a-client-delete)
+    - [Deleting a Booking: `deletebooking`](#deleting-a-booking-deletebooking)
+    - [Finding Clients: `find`](#finding-clients-find)
+    - [Viewing a Client’s Bookings: `viewbooking`](#viewing-a-clients-bookings-viewbooking)
+    - [Sorting Clients: `sort`](#sorting-clients-sort)
+    - [Sorting Bookings: `sortbooking`](#sorting-bookings-sortbooking)
+    - [Clearing All Data: `clear`](#clearing-all-data-clear)
+    - [Help: `help`](#help-help)
+    - [Exit: `exit`](#exit-exit)
 4. [Glossary](#-glossary)
 5. [Saving the Data](#-saving-the-data)
 6. [FAQ](#-faq)
 7. [Known Issues](#-known-issues)
+
 
 ---
 
