@@ -11,11 +11,45 @@
 > **Based on:** SE-EDU AddressBook Level 3
 
 ---
+
+## 📚 Introduction
+
+InSight is a lightweight Client & Booking manager designed for small **photography/videography** teams that sell
+creative services directly to clients and businesses.
+
+If you’ve ever juggled details across **email, WhatsApp,
+spreadsheets, and sticky notes**, you know how easy it is to miss a change request, forget a payment update, or lose
+track of which package a client actually chose.
+
+InSight consolidates your **people, bookings, packages, notes, and tags** into one clean workspace.
+
+
+> **Who this is for:** Solo creators, small studios, and boutique teams in the **photography/videography market**
+> looking for speed, clarity, and control—without paying with time or sanity.
+
+
 ![Ui.png](images/Ui.png)
 ## 📖 Table of Contents
 1. [Quick Start](#-quick-start)
 2. [Command Reference](#-command-reference)
 3. [Features](#-features)
+    - [Adding a Client: `add`](#adding-a-client-add)
+    - [Adding a Booking: `addbooking`](#adding-a-booking-addbooking)
+    - [Listing all Clients: `list`](#listing-all-clients-list)
+    - [Listing all Bookings: `listbooking`](#listing-all-bookings-listbooking)
+    - [Marking a Booking as Paid: `markbooking`](#marking-a-booking-as-paid-markbooking)
+    - [Marking a Booking as Not Paid: `unmarkbooking`](#marking-a-booking-as-not-paid-unmarkbooking)
+    - [Editing a Client: `edit`](#editing-a-client-edit)
+    - [Editing a Booking: `editbooking`](#editing-a-booking-editbooking)
+    - [Deleting a Client: `delete`](#deleting-a-client-delete)
+    - [Deleting a Booking: `deletebooking`](#deleting-a-booking-deletebooking)
+    - [Finding Clients: `find`](#finding-clients-find)
+    - [Viewing a Client’s Bookings: `viewbooking`](#viewing-a-clients-bookings-viewbooking)
+    - [Sorting Clients: `sort`](#sorting-clients-sort)
+    - [Sorting Bookings: `sortbooking`](#sorting-bookings-sortbooking)
+    - [Clearing All Data: `clear`](#clearing-all-data-clear)
+    - [Help: `help`](#help-help)
+    - [Exit: `exit`](#exit-exit)
 4. [Glossary](#-glossary)
 5. [Saving the Data](#-saving-the-data)
 6. [FAQ](#-faq)
@@ -44,7 +78,7 @@
 
 | Command         | Description                                                                                                                                                                                     |
 |-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `add`           | Adds a person to InSight. <br/> Parameters: `n/NAME p/PHONE e/EMAIL s/STATUS [a/ADDRESS] [t/TAG]` <br/> Example: `add n/John Doe p/98765432 e/johnd@example.com s/PROSPECT a/311, Clementi Ave` |
+| `add`           | Adds a client to InSight. <br/> Parameters: `n/NAME p/PHONE e/EMAIL s/STATUS [a/ADDRESS] [t/TAG]` <br/> Example: `add n/John Doe p/98765432 e/johnd@example.com s/PROSPECT a/311, Clementi Ave` |
 | `delete`        | Deletes a client. <br/> Parameters: `INDEX`  <br/> Example: `delete 1`                                                                                                                          |
 | `edit`          | Edits client details. <br/> Parameters: `INDEX [n/NAME] [p/PHONE] [e/EMAIL] [s/STATUS] [a/ADDRESS] [t/TAG]` <br/> Example: `edit 1 p/91234567 e/johndoe@example.com`                            |
 | `list`          | Lists all clients. <br/> Example: `list`                                                                                                                                                        |
@@ -73,16 +107,16 @@
 ---
 
 ## 🧭 Features
-- Refer to the glossary for terms you are unsure of.  
-- For the list of appropriate status fields, refer [here](#1-client-status).  
-- For more information about the INDEX, refer [here](#5-indexing).  
-- If you are unclear on the formatting of the date time field, refer [here](#4-date--time-format).  
-- For the list of appropriate package types, refer [here](#2-package-types).  
-- For more information about the tag, refer [here](#3-tag-keywords).
+- See the [Glossary](#-glossary) if a term is unfamiliar.
+- Valid client **status** values are listed [here](#1-client-status).
+- Read about **INDEX** behavior [here](#5-indexing).
+- Date & time formatting is defined [here](#4-date--time-format).
+- Suggested **package types** are listed [here](#2-package-types).
+- Learn how to **use tags powerfully** [here](#3-tags-clients--bookings).
 
-### Adding a person: add
+### Adding a Client: add
 
-Adds a person (client) to InSight.
+Adds a Client to InSight.
 
 **Format:**  
 `add n/NAME p/PHONE e/EMAIL s/STATUS [a/ADDRESS] [t/TAG]…`
@@ -222,6 +256,8 @@ Deletes a booking record from InSight.
 
 Finds clients whose names or statuses match the given keywords.
 
+> **Note**: Type in the exact name or status to find the clients
+
 **Format:**  
 `find name KEYWORD [MORE_KEYWORDS]`  
 or  
@@ -230,7 +266,6 @@ or
 **Notes:**
 - Search is case-insensitive.
 - The order of keywords does not matter.
-- Supports partial matching for status searches.
 - Returns any client matching one or more keywords (OR search).
 
 **Examples:**  
@@ -246,7 +281,7 @@ Displays all bookings associated with a selected client.
 `viewbooking INDEX`
 
 **Notes:**  
-The INDEX refers to the client’s index. Use this command to view all bookings tied to a specific person.
+The INDEX refers to the client’s index. Use this command to view all bookings tied to a specific Client.
 
 **Example:**  
 `viewbooking 1`
@@ -276,6 +311,10 @@ Sorts all bookings by date and time.
 ### Clearing all data: clear
 
 Clears all clients and bookings from InSight.
+
+The command clears InSight immediately, there is no confirmation button.
+
+> ⚠️ **Warning:** This permanently deletes **all clients and bookings** from InSight. It **cannot be undone**. Back up your data (copy the `.json` data file) before running `clear`.
 
 **Format:**  
 `clear`
@@ -334,14 +373,13 @@ Closes the InSight application.
 
 
 ### 3. Tag Keywords
+Short, user-defined labels you attach to Clients and Bookings to surface specific details at a glance. 
+The app does not enforce meaning — they are up to the user to define as they see fit.
+#### Good practices
 
-| Tag       | Meaning                      | Example       |
-|-----------|------------------------------|---------------|
-| outdoor   | Shoot conducted outdoors     | `t/outdoor`   |
-| studio    | Conducted in indoor settings | `t/studio`    |
-| priority  | VIP or urgent booking        | `t/priority`  |
-| editing   | Workflow in post-production  | `t/editing`   |
-| delivered | Work delivered to client     | `t/delivered` |
+Keep tags short and consistent (prefer lowercase; use hyphens for multi-word tags).
+
+Use tags for quick flags;
 
 ### 4. Date & Time Format
 
