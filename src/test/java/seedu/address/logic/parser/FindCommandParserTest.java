@@ -34,10 +34,10 @@ public class FindCommandParserTest {
     @Test
     public void parse_missingKeywordsAfterKey_throwsParseException() {
         // key only, no remainder
-        assertParseFailure(parser, "name", FindCommand.MESSAGE_NO_FILTERS);
+        assertParseFailure(parser, "name", FindCommand.MESSAGE_USAGE);
 
         // key with whitespace remainder but no actual keywords
-        assertParseFailure(parser, "status    ", FindCommand.MESSAGE_NO_FILTERS);
+        assertParseFailure(parser, "status    ", FindCommand.MESSAGE_USAGE);
     }
 
     @Test

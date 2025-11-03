@@ -5,8 +5,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
-
+import java.time.format.ResolverStyle;
 
 /**
  * Represents a description or notes for a booking.
@@ -49,10 +50,14 @@ public class DateTime {
             return false;
         }
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+        DateTimeFormatter formatter = new DateTimeFormatterBuilder()
+                .parseCaseInsensitive()
+                .appendPattern("dd/MM/uuuu HHmm")
+                .toFormatter()
+                .withResolverStyle(ResolverStyle.STRICT);
 
         try {
-            LocalDateTime dateTime = LocalDateTime.parse(test, formatter);
+            LocalDateTime.parse(test, formatter);
             return true;
         } catch (DateTimeParseException e) {
             return false;
