@@ -1,7 +1,7 @@
 ---
   layout: default.md
-    title: "User Guide"
-    pageNav: 3
+  title: "User Guide"
+  pageNav: 3
 ---
 
 # InSight User Guide
@@ -183,7 +183,7 @@ The status field (e.g., PROSPECT, ACTIVE, RETURNING) helps classify clients by e
 
 **Expected output:**
 
-- Success CLI message: `New client added: NAME; PHONE; EMAIL; STATUS; [ADDRESS]; [TAGS]`
+- Success message: `New client added: NAME; PHONE; EMAIL; STATUS; [ADDRESS]; [TAGS]`
 - UI updates to show the new client in the list.
 
 ![add.png](images/add.png)
@@ -264,7 +264,7 @@ payments.
 
 **Expected output:**
 
-- Message: `Booking #BookingDetails has been marked`
+- Success Message: `Booking #BookingDetails has been marked`
 
 ![markbooking.png](images/markBooking.png)
 **<sub><i>Image: InSight successfully marks a Booking as paid</i></sub>**
@@ -283,7 +283,7 @@ Marks a booking as Unpaid.
 
 **Expected output:**
 
-- Message: `Booking #BookingDetails has been unmarked`
+- Success Message: `Booking #BookingDetails has been unmarked`
 
 ![unmarkbooking.png](images/unmarkBooking.png)
 **<sub><i>Image: InSight successfully unmarks a Booking </i></sub>**
@@ -307,7 +307,7 @@ Edits details of a client in InSight.
 
 **Expected output:**
 
-- Message: `Edited Client: #NewClientDetails`
+- Success Message: `Edited Client: #NewClientDetails`
 - UI reflects updated fields.
 
 ![editPerson.png](images/editPerson.png)
@@ -336,7 +336,7 @@ Edits details of an existing booking.
 
 **Expected output:**
 
-- Message: `Edited Booking: #NewBookingDetails`
+- Success Message: `Edited Booking: #NewBookingDetails`
 - UI reflects updated fields.
 
 ![editBooking.png](images/editBooking.png)
@@ -364,7 +364,8 @@ Deletes a client from the InSight database.
 `list` followed by `delete 2` deletes the second client in the list.  
 `find Betsy` followed by `delete 1` deletes the first client in the search results.
 
-**Expected output:** `Deleted client: #ClientDetails`
+**Expected output:** 
+- Success Message: `Deleted client: #ClientDetails`
 
 > 💡 **Tips:** Consider archiving via tag/status (e.g., `s/INACTIVE`) instead of deleting.
 
@@ -378,7 +379,8 @@ Deletes a booking record from InSight.
 **Example:**  
 `deletebooking 1`
 
-**Expected output:** `Deleted Booking: #BookingDetails`
+**Expected output:** 
+- Success Message `Deleted Booking: #BookingDetails`
 
 > ⚠️ **Warnings:** This action cannot be undone.
 
@@ -424,7 +426,7 @@ The INDEX refers to the client’s index. Use this command to view all bookings 
 
 **Expected output:**
 
-- `#NumberOfBookings bookings listed for client #ClientName`
+- Success Message: `#NumberOfBookings bookings listed for client #ClientName`
 - List of bookings for the selected client.
 
 ![viewBooking.png](images/viewBooking.png)
@@ -444,7 +446,7 @@ Sorts clients alphabetically by name.
 
 **Expected output:**
 
-- `Clients sorted by lexicographical order.`
+- Success Message: `Clients sorted by lexicographical order.`
 - UI is updated and Client list is re-ordered A→Z.
 
 ![sort.png](images/sort.png)
@@ -462,7 +464,7 @@ Sorts all bookings by date and time.
 
 **Expected output:**
 
-- `Upcoming bookings sorted by date time.`
+- Success Message: `Upcoming bookings sorted by date time.`
 - UI updates booking list and sorts it by upcoming date-time
 
 > ⚠️ **Warning:** sortbooking sorts all upcoming bookings only, bookings that have passed will not appear in the booking
