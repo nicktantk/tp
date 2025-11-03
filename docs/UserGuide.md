@@ -6,15 +6,12 @@
 
 # InSight User Guide
 
-> **Version:** 1.0  
+> **Version:** 1.6  
 > **Built for:** Creative professionals (photographers, videographers, and media freelancers)  
 > **Based on:** SE-EDU AddressBook Level 3
 
 ---
-
-## 📚 Introduction
-
-# Introduction
+# 📚 Introduction
 
 Welcome to **InSight**, a smart and intuitive tool designed to help you manage your **clients** and **bookings**, and **service packages** all in one place. Whether you’re tracking client details, scheduling appointments, or organizing your services, **InSight simplifies day-to-day management** and keeps everything organized.
 
@@ -47,7 +44,7 @@ This user guide will walk you through the **key features** of the application, p
     - [Listing all Clients: `list`](#listing-all-clients-list)
     - [Listing all Bookings: `listbooking`](#listing-all-bookings-listbooking)
     - [Marking a Booking as Paid: `markbooking`](#marking-a-booking-as-paid-markbooking)
-    - [Marking a Booking as Not Paid: `unmarkbooking`](#marking-a-booking-as-not-paid-unmarkbooking)
+    - [Marking a Booking as Not Paid: `unmarkbooking`](#marking-a-booking-as-unpaid-unmarkbooking)
     - [Editing a Client: `edit`](#editing-a-client-edit)
     - [Editing a Booking: `editbooking`](#editing-a-booking-editbooking)
     - [Deleting a Client: `delete`](#deleting-a-client-delete)
@@ -227,7 +224,7 @@ payments.
 
 ### Marking a booking as unpaid: unmarkbooking
 
-Marks a booking as Not Paid.
+Marks a booking as Unpaid.
 
 **Format:**  
 `unmarkbooking INDEX`
