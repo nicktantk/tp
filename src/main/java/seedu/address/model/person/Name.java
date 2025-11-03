@@ -56,7 +56,17 @@ public class Name {
             return false;
         }
 
-        return this.fullName.equalsIgnoreCase(otherName.fullName);
+        String[] names = fullName.split("\\s+");
+        String[] namesToCompare = otherName.fullName.split("\\\s+");
+        if (names.length != namesToCompare.length) {
+            return false;
+        }
+        for (int i = 0; i < names.length; i++) {
+            if (!names[i].equalsIgnoreCase(namesToCompare[i])) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
