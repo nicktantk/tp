@@ -10,6 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.ALICEINLOWER;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
@@ -27,6 +28,9 @@ public class PersonTest {
         // same object -> returns true
         assertTrue(ALICE.isSamePerson(ALICE));
 
+        // same letter with case-insensitive -> returns true
+        assertTrue(ALICE.isSamePerson(ALICEINLOWER));
+
         // null -> returns false
         assertFalse(ALICE.isSamePerson(null));
 
@@ -39,9 +43,9 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.isSamePerson(editedAlice));
 
-        // name differs in case, all other attributes same -> returns false
+        // name differs in case, all other attributes same -> returns true
         Person editedBob = new PersonBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSamePerson(editedBob));
+        assertTrue(BOB.isSamePerson(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
@@ -56,6 +60,9 @@ public class PersonTest {
 
         // same object -> returns true
         assertTrue(ALICE.equals(ALICE));
+
+        // different in case -> returns true
+        assertTrue(ALICE.equals(ALICEINLOWER));
 
         // null -> returns false
         assertFalse(ALICE.equals(null));

@@ -56,17 +56,22 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
+        Person Alice = new PersonBuilder().withName("Alice").build();
         Person bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
+        Person alice = new PersonBuilder().withName("alice").build();
+        AddCommand addAliceCommand = new AddCommand(Alice);
         AddCommand addBobCommand = new AddCommand(bob);
+        AddCommand addaliceCommand = new AddCommand(alice);
 
         // same object -> returns true
         assertEquals(addAliceCommand, addAliceCommand);
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
+        AddCommand addAliceCommandCopy = new AddCommand(Alice);
         assertEquals(addAliceCommand, addAliceCommandCopy);
+
+        // same letter with case-insensitive -> return true
+        assertEquals(addAliceCommand, addaliceCommand);
 
         // different types -> returns false
         assertNotEquals(1, addAliceCommand);
