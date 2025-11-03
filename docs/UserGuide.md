@@ -14,8 +14,7 @@
 
 # 📚 Introduction
 
-Welcome to **InSight**, a smart and intuitive tool designed to help you manage your **clients** and **bookings**, and *
-*service packages** all in one place. Whether you’re tracking client details, scheduling appointments, or organizing
+Welcome to **InSight**, a smart and intuitive tool designed to help you manage your **clients** and **bookings**, and **service packages** all in one place. Whether you’re tracking client details, scheduling appointments, or organizing
 your services, **InSight simplifies day-to-day management** and keeps everything organized.
 
 **If you are:**
@@ -41,7 +40,7 @@ common tasks, and give helpful **tips** to make your workflow more efficient. By
 
 1. [Quick Start](#quick-start)
 2. [Command Reference](#command-reference)
-3. [Features](#-features)
+3. [Features](#features)
     - [Adding a Client: `add`](#adding-a-client-add)
     - [Adding a Booking: `addbooking`](#adding-a-booking-addbooking)
     - [Listing all Clients: `list`](#listing-all-clients-list)
@@ -148,10 +147,10 @@ If you are unsure what each component of the Graphical User Interface (GUI) is f
 
 ## 🧭 Features
 
-- See the [Glossary](#-glossary) if a term is unfamiliar.
+- See the [Glossary](#glossary) if a term is unfamiliar.
 - Valid client **status** values are listed [here](#1-client-status).
 - Read about **INDEX** behavior [here](#5-indexing).
-- Date & time formatting is defined [here](#4-date--time-format).
+- Date & time formatting is defined [here](#4-date-time-format).
 - Suggested **package types** are listed [here](#2-package-types).
 - Learn how to use **tags** for your own tracking [here](#3-tag).
 
@@ -217,7 +216,7 @@ Adds a booking to a specific client in InSight.
 
 > ⚠️ **Warnings:** Missing required fields will reject the command.
 > - `INDEX` must reference a visible client; ensure you ran `list` first to clear any filters that could have hidden your desired reference client.  
-> - Date-time must follow `dd/mm/yyyy HHmm`. Refer to [here](#4-date--time-format) for more information.
+> - Date-time must follow `dd/mm/yyyy HHmm`. Refer to [here](#4-date-time-format) for more information.
 
 ### Listing all clients: list
 
