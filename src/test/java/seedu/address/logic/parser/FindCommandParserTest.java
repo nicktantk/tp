@@ -9,6 +9,7 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.FindCommand;
 
 public class FindCommandParserTest {
@@ -34,10 +35,12 @@ public class FindCommandParserTest {
     @Test
     public void parse_missingKeywordsAfterKey_throwsParseException() {
         // key only, no remainder
-        assertParseFailure(parser, "name", FindCommand.MESSAGE_NO_FILTERS);
+        assertParseFailure(parser, "name",
+                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
 
         // key with whitespace remainder but no actual keywords
-        assertParseFailure(parser, "status    ", FindCommand.MESSAGE_NO_FILTERS);
+        assertParseFailure(parser, "status    ",
+                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
     @Test

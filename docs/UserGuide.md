@@ -14,14 +14,23 @@
 
 ## 📚 Introduction
 
-InSight is a lightweight Client & Booking manager designed for small **photography/videography** teams that sell
-creative services directly to clients and businesses.
+# Introduction
 
-If you’ve ever juggled details across **email, WhatsApp,
-spreadsheets, and sticky notes**, you know how easy it is to miss a change request, forget a payment update, or lose
-track of which package a client actually chose.
+Welcome to **InSight**, a smart and intuitive tool designed to help you manage your **clients** and **bookings**, and **service packages** all in one place. Whether you’re tracking client details, scheduling appointments, or organizing your services, **InSight simplifies day-to-day management** and keeps everything organized.
 
-InSight consolidates your **people, bookings, packages, notes, and tags** into one clean workspace.
+**If you are:**
+- A solo photographer or videographer handling end-to-end client work
+- Part of a small studio or freelance team juggling schedules and packages
+- Familiar with Command-Line Interface (CLI) based applications
+- Looking for a simple, creative-friendly client management system
+
+**InSight is made for you**.
+
+This user guide will walk you through the **key features** of the application, provide **step-by-step instructions** for common tasks, and give helpful **tips** to make your workflow more efficient. By the end, you’ll know how to:
+
+- **Add and manage clients**
+- **Create and update bookings**
+- **Make the most of InSight’s powerful tools**
 
 
 > **Who this is for:** Solo creators, small studios, and boutique teams in the **photography/videography market**
@@ -38,7 +47,7 @@ InSight consolidates your **people, bookings, packages, notes, and tags** into o
     - [Listing all Clients: `list`](#listing-all-clients-list)
     - [Listing all Bookings: `listbooking`](#listing-all-bookings-listbooking)
     - [Marking a Booking as Paid: `markbooking`](#marking-a-booking-as-paid-markbooking)
-    - [Marking a Booking as Not Paid: `unmarkbooking`](#marking-a-booking-as-unpaid-unmarkbooking)
+    - [Marking a Booking as Not Paid: `unmarkbooking`](#marking-a-booking-as-not-paid-unmarkbooking)
     - [Editing a Client: `edit`](#editing-a-client-edit)
     - [Editing a Booking: `editbooking`](#editing-a-booking-editbooking)
     - [Deleting a Client: `delete`](#deleting-a-client-delete)
@@ -56,25 +65,35 @@ InSight consolidates your **people, bookings, packages, notes, and tags** into o
 
 ---
 
-## ⚡ Quick-Start
-
-1. Ensure **Java 17** or above is installed on your computer.
+## ⚡ Quick Start
+Follow this guide to start your journey with InSight.
+1. Ensure **Java 17** or above is installed on your computer. Download it [here](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html).<br>
+Unsure of your java version? Open your terminal and run:
+   ```bash
+   java -version
+   ```
 2. Download the latest `.jar` file from [InSight Releases](https://github.com/AY2526S1-CS2103T-T08-1/tp/releases).
-3. Copy the file to your preferred folder.
-4. Open a terminal and run:
+3. Copy the file to your preferred folder. This will be the **home folder** for InSight.
+4. Open your terminal, navigate to the InSight's home folder and run:
    ```bash
    java -jar insight.jar
    ```
+   InSight will start up, and the application window will appear.
 5. Once InSight loads, you should see the following:
    ![Ui.png](images/Ui.png)
 **<sub><i>Image: InSight's Graphical User Interface (GUI) with sample data</i></sub>**
 
+    Sample data will be included on the first start-up. Take a look around and try some of these commands to get yourself familiarised:
+    1. Add a client: `add n/John Doe p/98765432 e/johnd@example.com s/PROSPECT a/311, Clementi Ave`
+    2. Add a booking for the first client: `addbooking 1 d/Wedding Shoot dt/14/10/2026 1200 p/PORTRAIT t/outdoor t/summer`
+    3. Find active clients: `find status active`
+> 💡 **Tip:** The **status box** will show you the status of InSight after running the commands. For example, after adding the client in the first command, you should see this:
+> ![status-box.png](images/status-box.png) <sub><i>Image: Status box</i></sub><br>
+> This wil be helpful for tracking the changes your command has made to InSight.
 
 6. Use the command such as `help` to see the list of available commands
-7. Use the command clear to `clear` the sample data
-8. Start adding your own Clients and Bookings with `add` or `addbooking`
+7. Once you are ready to start, run `clear` in the command box to clear the sample data and **begin your InSight journey**.
 
-> 💡 **Tip:** Refer to the [Features](#-features) section for detailed examples of each command.
 
 If you are unsure what each component of the Graphical User Interface (GUI) is for, refer to the image below!
 
