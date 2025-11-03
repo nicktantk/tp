@@ -56,7 +56,7 @@ public class Name {
             return false;
         }
 
-        return fullName.equals(otherName.fullName);
+        return this.fullName.equalsIgnoreCase(otherName.fullName);
     }
 
     @Override
