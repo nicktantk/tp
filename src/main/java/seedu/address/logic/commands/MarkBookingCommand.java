@@ -23,7 +23,7 @@ public class MarkBookingCommand extends Command {
             + "INDEX (must be a positive integer) \n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_SUCCESS = "Booking %1$s has been marked";
+    public static final String MESSAGE_SUCCESS = "Booking %1$s has been marked.";
     public static final String MESSAGE_DUPLICATE = "You have already marked this booking.";
 
     private final Index bookingindex;
