@@ -150,7 +150,7 @@ If you are unsure what each component of the Graphical User Interface (GUI) is f
 - See the [Glossary](#glossary) if a term is unfamiliar.
 - Valid client **status** values are listed [here](#1-client-status).
 - Read about **INDEX** behavior [here](#5-indexing).
-- Date & time formatting is defined [here](#date-time-format).
+- Date & time formatting is defined [here](#4-date-and-time-format).
 - Suggested **package types** are listed [here](#2-package-types).
 - Learn how to use **tags** for your own tracking [here](#3-tag).
 
@@ -216,7 +216,7 @@ Adds a booking to a specific client in InSight.
 
 > ⚠️ **Warnings:** Missing required fields will reject the command.
 > - `INDEX` must reference a visible client; ensure you ran `list` first to clear any filters that could have hidden your desired reference client.  
-> - Date-time must follow `dd/mm/yyyy HHmm`. Refer to [here](#date-time-format) for more information.
+> - Date-time must follow `dd/mm/yyyy HHmm`. Refer to [here](#4-date-and-time-format) for more information.
 
 ### Listing all clients: list
 
@@ -566,7 +566,7 @@ Keep tags short and consistent (prefer lowercase; use hyphens for multi-word tag
 
 Use tags for quick flags.
 
-### 4. Date & Time Format
+### 4. Date and Time Format
 
 All bookings use the datetime format:  
 `dt/dd/mm/yyyy HHmm`
