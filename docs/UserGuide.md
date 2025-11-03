@@ -467,16 +467,16 @@ InSight automatically saves all changes to disk after each command. No manual sa
 **Q: Where is my data stored?**  
 **A:** InSight saves to a JSON file in the `data/` folder (same directory as the app). If the file doesn’t exist, it’s
 created on first run.  
-💡 *Tip:* Keep the whole `data/` folder together when moving machines.
+> 💡 **Tip:** Keep the whole `data/` folder together when moving machines.
 
 **Q: How do I transfer data to another computer?**  
 **A:** Close InSight → copy the entire `data/` folder from the source machine → paste it beside the app on the target
 machine → start InSight.  
-💡 *Tip:* If you only need the core records, copy the `.json` data file inside `data/`.
+> 💡 **Tip:** If you only need the core records, copy the `.json` data file inside `data/`.
 
 **Q: How do I back up and restore my data?**  
 **A:** Back up by copying `data/` to a safe location. Restore by replacing the current `data/` with your backup copy.  
-⚠️ *Note:* Always close InSight before replacing files.
+> ⚠️ **Warning:** Always close InSight before replacing files.
 
 **Q: Why does InSight not show any clients or bookings?**  
 **A:** InSight will refuse to load data that is corrupted. Data will not be corrupted unless the user modifies the data
@@ -485,14 +485,14 @@ Go into the data file and check if there are any errors or undo any edits done i
 
 **Q: How are bookings linked to clients?**  
 **A:** Each booking references a client in your People list. Delete/rename clients carefully—bookings depend on them.  
-💡 *Tip:* Prefer editing a client over deleting to preserve booking history.
+> 💡 **Tip:** Prefer editing a client over deleting to preserve booking history.
 
 **Q: How do I find things quickly?**  
 **A:** Use `find` with fields (e.g., name, status). Combine terms to narrow results.
 
 **Q: What Java version do I need?**  
 **A:** Java 17 or later.  
-💡 *Tip:* Run `java -version` to check. If you see `1.8/8`, upgrade to 17+.
+> 💡 **Tip:** Run `java -version` to check. If you see `1.8/8`, upgrade to 17+.
 
 **Q: Can I keep separate profiles (e.g., work vs personal)?**  
 **A:** Yes. Create separate app folders, each with its own `data/`. Launch the one you need.
