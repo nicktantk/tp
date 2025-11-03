@@ -137,13 +137,13 @@ Adds a Client to InSight.
 
 The status field (e.g., PROSPECT, ACTIVE, RETURNING) helps classify clients by engagement level.
 
+> 💡 **Tips:**
+> 1. A client can have 0 or 1 address.
+> 2. A client can have any number of tags (including 0).
+
 **Examples:**  
 `add n/John Doe p/98765432 e/johnd@example.com s/PROSPECT a/311, Clementi Ave t/wedding`  
 `add n/Betsy Crowe t/friend e/betsycrowe@example.com s/ACTIVE a/Newgate Prison p/1234567 t/portrait`
-
-> 💡 **Tips:** 
-> 1. A client can have 0 or 1 address. 
-> 2. A client can have any number of tags (including 0).
 
 ![add.png](images/add.png)
 **<sub><i>Image: InSight successfully added a new Client</i></sub>**
@@ -201,7 +201,10 @@ payments.
 
 **Example:**  
 `markbooking 1`
+
 ![markbooking.png](images/markBooking.png)
+**<sub><i>Image: InSight successfully marks a Booking as paid</i></sub>**
+
 
 ### Marking a booking as unpaid: unmarkbooking
 
@@ -212,7 +215,9 @@ Marks a booking as Not Paid.
 
 **Example:**  
 `unmarkbooking 2`
-![unmarkbooking.png](images/markBooking.png)
+
+![unmarkbooking.png](images/unmarkBooking.png)
+**<sub><i>Image: InSight successfully unmarks a Booking </i></sub>**
 
 ### Editing a client: edit
 
@@ -231,7 +236,9 @@ Edits details of a client in InSight.
 **Examples:**  
 `edit 1 p/91234567 e/johndoe@example.com`  
 `edit 2 n/Betsy Crower s/RETURNING t/`
+
 ![editPerson.png](images/editPerson.png)
+**<sub><i>Image: InSight successfully edits a Client's details</i></sub>**
 
 ### Editing a booking: editbooking
 
@@ -249,6 +256,9 @@ Edits details of an existing booking.
 **Examples:**  
 `editbooking 1 d/Wedding Shoot p/WEDDING`  
 `editbooking 2 dt/21/09/2025 1600 t/sunset`
+
+![editBooking.png](images/editBooking.png)
+**<sub><i>Image: InSight successfully edits a Client's details</i></sub>**
 
 ### Deleting a client: delete
 
@@ -278,9 +288,7 @@ Deletes a booking record from InSight.
 
 ### Finding clients: find
 
-Finds clients whose names or statuses match the given keywords.
-
-> **Note**: Type in the exact name or status to find the clients
+Finds clients whose names or statuses match the given keywords - Type in the exact name or status to find the clients
 
 **Format:**  
 `find name KEYWORD [MORE_KEYWORDS]`  
@@ -296,7 +304,9 @@ or
 **Examples:**  
 `find name alice bob charlie`  
 `find status active returning`
+
 ![findStatus.png](images/findStatus.png)
+**<sub><i>Image: InSight successfully finds a Client based on their status</i></sub>**
 
 ### View all a Client's Bookings: viewbooking
 
@@ -310,7 +320,9 @@ The INDEX refers to the client’s index. Use this command to view all bookings 
 
 **Example:**  
 `viewbooking 1`
+
 ![viewBooking.png](images/viewBooking.png)
+**<sub><i>Image: InSight successfully list a specified Client's bookings</i></sub>**
 
 ### Sorting clients: sort
 
@@ -321,7 +333,10 @@ Sorts clients alphabetically by name.
 
 **Example:**  
 `sort`
+
 ![sort.png](images/sort.png)
+**<sub><i>Image: InSight successfully sorts Clients in alphabetically</i></sub>**
+
 
 ### Sorting bookings: sortbooking
 
@@ -357,7 +372,10 @@ Shows usage instructions and available commands.
 
 **Example:**  
 `help`
+
 ![help.png](images/help.png)
+**<sub><i>Image: InSight's help command</i></sub>**
+
 
 ### Exiting the program: exit
 
@@ -407,8 +425,7 @@ Set the Package Type when creating or editing a booking. The following are some 
 
 > 💡 **Tip:**
 > Use one primary type per booking. Add specifics or package types not defined as [Tags](#3-tag) instead. You can change
-> the type later if the scope
-> shifts
+> the type later if the scope shifts
 
 ### 3. Tag
 
