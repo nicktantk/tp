@@ -18,7 +18,7 @@ public class UnmarkBookingCommand extends Command {
 
     public static final String COMMAND_WORD = "unmarkbooking";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unmarks a booking as 'Not Paid'.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Marks a booking as ' Unpaid'.\n"
             + "Parameters: "
             + "INDEX (must be a positive integer) \n"
             + "Example: " + COMMAND_WORD + " 1";
