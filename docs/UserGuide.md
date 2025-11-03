@@ -28,8 +28,6 @@ InSight consolidates your **people, bookings, packages, notes, and tags** into o
 > looking for speed, clarity, and control—without paying with time or sanity.
 
 
-![Ui.png](images/Ui.png)
-
 ## 📖 Table of Contents
 
 1. [Quick Start](#-quick-start)
@@ -55,22 +53,33 @@ InSight consolidates your **people, bookings, packages, notes, and tags** into o
 4. [Glossary](#-glossary)
 5. [Saving the Data](#-saving-the-data)
 6. [Frequently asked questions](#-frequently-asked-questions-faq)
-7. [Known Issues](#-known-issues)
 
 ---
 
 ## ⚡ Quick-Start
 
 1. Ensure **Java 17** or above is installed on your computer.
-2. Download the latest `.jar` file from [InSight Releases](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `.jar` file from [InSight Releases](https://github.com/AY2526S1-CS2103T-T08-1/tp/releases).
 3. Copy the file to your preferred folder.
 4. Open a terminal and run:
    ```bash
    java -jar insight.jar
    ```
-5. Use commands such as `help`, `list`, or `add` to begin.
+5. Once InSight loads, you should see the following:
+   ![Ui.png](images/Ui.png)
+**<sub><i>Image: InSight's Graphical User Interface (GUI) with sample data</i></sub>**
+
+
+6. Use the command such as `help` to see the list of available commands
+7. Use the command clear to `clear` the sample data
+8. Start adding your own Clients and Bookings with `add` or `addbooking`
 
 > 💡 **Tip:** Refer to the [Features](#-features) section for detailed examples of each command.
+
+If you are unsure what each component of the Graphical User Interface (GUI) is for, refer to the image below!
+
+![LabelledUi.png](images/LabelledUi.png)
+**<sub><i>Image: InSight's Graphical User Interface (GUI) with labels</i></sub>**
 
 ---
 
@@ -98,7 +107,7 @@ InSight consolidates your **people, bookings, packages, notes, and tags** into o
 | `viewbooking`   | Displays all bookings for a specific client.<br/> Parameters: `INDEX` <br/> Example: `viewbooking 1`                                                                                                 |
 | `sortbooking`   | Sorts bookings by date and time.   <br/> Example: `sortbooking`                                                                                                                                      |
 | `markbooking`   | Marks a booking as 'Paid'. <br/> Parameters: `INDEX` <br/> Example: `markbooking 1`                                                                                                                  |
-| `unmarkbooking` | Unmarks a booking as 'Not Paid'. <br/> Parameters: `INDEX`   <br/> Example: `unmarkbooking 1`                                                                                                        |
+| `unmarkbooking` | Marks a booking as 'Not Paid'. <br/> Parameters: `INDEX`   <br/> Example: `unmarkbooking 1`                                                                                                          |
 
 ### General Commands
 
@@ -126,14 +135,18 @@ Adds a Client to InSight.
 **Format:**  
 `add n/NAME p/PHONE e/EMAIL s/STATUS [a/ADDRESS] [t/TAG]…`
 
-💡 **Tip:** A client can have any number of tags (including 0).
-
 The status field (e.g., PROSPECT, ACTIVE, RETURNING) helps classify clients by engagement level.
 
 **Examples:**  
 `add n/John Doe p/98765432 e/johnd@example.com s/PROSPECT a/311, Clementi Ave t/wedding`  
 `add n/Betsy Crowe t/friend e/betsycrowe@example.com s/ACTIVE a/Newgate Prison p/1234567 t/portrait`
+
+> 💡 **Tips:** 
+> 1. A client can have 0 or 1 address. 
+> 2. A client can have any number of tags (including 0).
+
 ![add.png](images/add.png)
+**<sub><i>Image: InSight successfully added a new Client</i></sub>**
 
 ### Adding a booking: addbooking
 
@@ -153,6 +166,7 @@ Adds a booking to a specific client in InSight.
 `addbooking 2 d/Product Photoshoot dt/10/09/2025 1600 p/CORPORATE t/studio`
 
 ![addBooking.png](images/addBooking.png)
+**<sub><i>Image: InSight successfully added a new Booking</i></sub>**
 
 ### Listing all clients: list
 
@@ -360,6 +374,8 @@ Closes the InSight application.
 ## 📚 Glossary
 
 ### 1. Client Status
+
+User is allowed to use each status as they see fit. The following are some pre-defined client statuses:
 
 | Status    | Meaning                                                                        | Typical Use Case                                       |
 |-----------|--------------------------------------------------------------------------------|--------------------------------------------------------|
