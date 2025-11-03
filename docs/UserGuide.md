@@ -36,8 +36,8 @@ This user guide will walk you through the **key features** of the application, p
 
 ## 📖 Table of Contents
 
-1. [Quick Start](#-quick-start)
-2. [Command Reference](#-command-reference)
+1. [Quick Start](#quick-start)
+2. [Command Reference](#command-reference)
 3. [Features](#-features)
     - [Adding a Client: `add`](#adding-a-client-add)
     - [Adding a Booking: `addbooking`](#adding-a-booking-addbooking)
@@ -56,9 +56,9 @@ This user guide will walk you through the **key features** of the application, p
     - [Clearing All Data: `clear`](#clearing-all-data-clear)
     - [Help: `help`](#viewing-help-help)
     - [Exit: `exit`](#exiting-the-program-exit)
-4. [Glossary](#-glossary)
-5. [Saving the Data](#-saving-the-data)
-6. [Frequently asked questions](#-frequently-asked-questions-faq)
+4. [Glossary](#glossary)
+5. [Saving the Data](#saving-the-data)
+6. [Frequently asked questions](#frequently-asked-questions-faq)
 
 ---
 
