@@ -1,20 +1,17 @@
 ---
   layout: default.md
-  title: "InSight User Guide"
+  title: "User Guide"
   pageNav: 3
 ---
 
 # InSight User Guide
 
-> **Version:** 1.0  
+> **Version:** 1.6  
 > **Built for:** Creative professionals (photographers, videographers, and media freelancers)  
 > **Based on:** SE-EDU AddressBook Level 3
 
 ---
-
-## 📚 Introduction
-
-# Introduction
+# 📚 Introduction
 
 Welcome to **InSight**, a smart and intuitive tool designed to help you manage your **clients** and **bookings**, and **service packages** all in one place. Whether you’re tracking client details, scheduling appointments, or organizing your services, **InSight simplifies day-to-day management** and keeps everything organized.
 
@@ -37,8 +34,8 @@ This user guide will walk you through the **key features** of the application, p
 > looking for speed, clarity, and control—without paying with time or sanity.
 
 
-![Ui.png](images/Ui.png)
 ## 📖 Table of Contents
+
 1. [Quick Start](#-quick-start)
 2. [Command Reference](#-command-reference)
 3. [Features](#-features)
@@ -47,22 +44,21 @@ This user guide will walk you through the **key features** of the application, p
     - [Listing all Clients: `list`](#listing-all-clients-list)
     - [Listing all Bookings: `listbooking`](#listing-all-bookings-listbooking)
     - [Marking a Booking as Paid: `markbooking`](#marking-a-booking-as-paid-markbooking)
-    - [Marking a Booking as Not Paid: `unmarkbooking`](#marking-a-booking-as-not-paid-unmarkbooking)
+    - [Marking a Booking as Unpaid: `unmarkbooking`](#marking-a-booking-as-unpaid-unmarkbooking)
     - [Editing a Client: `edit`](#editing-a-client-edit)
     - [Editing a Booking: `editbooking`](#editing-a-booking-editbooking)
     - [Deleting a Client: `delete`](#deleting-a-client-delete)
     - [Deleting a Booking: `deletebooking`](#deleting-a-booking-deletebooking)
     - [Finding Clients: `find`](#finding-clients-find)
-    - [Viewing a Client’s Bookings: `viewbooking`](#viewing-a-clients-bookings-viewbooking)
+    - [View all a Client’s Bookings: `viewbooking`](#view-all-a-clients-bookings-viewbooking)
     - [Sorting Clients: `sort`](#sorting-clients-sort)
     - [Sorting Bookings: `sortbooking`](#sorting-bookings-sortbooking)
     - [Clearing All Data: `clear`](#clearing-all-data-clear)
-    - [Help: `help`](#help-help)
-    - [Exit: `exit`](#exit-exit)
+    - [Help: `help`](#viewing-help-help)
+    - [Exit: `exit`](#exiting-the-program-exit)
 4. [Glossary](#-glossary)
 5. [Saving the Data](#-saving-the-data)
-6. [FAQ](#-faq)
-7. [Known Issues](#-known-issues)
+6. [Frequently asked questions](#-frequently-asked-questions-faq)
 
 ---
 
@@ -80,18 +76,28 @@ Unsure of your java version? Open your terminal and run:
    java -jar insight.jar
    ```
    InSight will start up, and the application window will appear.
+5. Once InSight loads, you should see the following:
 
-![landing-page.png](images/landing-page.png)
-   <sub><i>Image: Application Window with sample data</i></sub>
-5. Sample data will be included on the first start-up. Take a look around and try some of these commands to get yourself familiarised:
-   1. Add a client: `add n/John Doe p/98765432 e/johnd@example.com s/PROSPECT a/311, Clementi Ave`
-   2. Add a booking for the first client: `addbooking 1 d/Wedding Shoot dt/14/10/2026 1200 p/PORTRAIT t/outdoor t/summer`
-   3. Find active clients: `find status active`
-> 💡 **Tip:** The **status box** will show you the status of InSight after running the commands. For example, after adding the client in the first command, you should see this:
-> ![status-box.png](images/status-box.png) <sub><i>Image: Status box</i></sub><br>
+![Ui.png](images/Ui.png)
+
+**<sub><i>Image: InSight's Graphical User Interface (GUI) with sample data</i></sub>**
+
+    Sample data will be included on the first start-up. Take a look around and try some of these commands to get yourself familiarised:
+    1. Add a client: `add n/John Doe p/98765432 e/johnd@example.com s/PROSPECT a/311, Clementi Ave`
+    2. Add a booking for the first client: `addbooking 1 d/Wedding Shoot dt/14/10/2026 1200 p/PORTRAIT t/outdoor t/summer`
+    3. Find active clients: `find status active`
+> 💡 **Tip:** The **result display** will show you the status of InSight after running the commands. For example, after adding the client in the first command, you should see this:
+> ![status-box.png](images/status-box.png) <sub><i>Image: Result Display box</i></sub><br>
 > This wil be helpful for tracking the changes your command has made to InSight.
 
-6. Once you are ready to start, run `clear` in the command box to clear the sample data and **begin your InSight journey**.
+6. Use the command such as `help` to see the list of available commands
+7. Once you are ready to start, run `clear` in the command box to clear the sample data and **begin your InSight journey**.
+
+
+If you are unsure what each component of the Graphical User Interface (GUI) is for, refer to the image below!
+
+![LabelledUi.png](images/LabelledUi.png)
+**<sub><i>Image: InSight's Graphical User Interface (GUI) with labels</i></sub>**
 
 ---
 
@@ -99,16 +105,17 @@ Unsure of your java version? Open your terminal and run:
 
 ### Client Management Commands
 
-| Command         | Description                                                                                                                                                                                     |
-|-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `add`           | Adds a client to InSight. <br/> Parameters: `n/NAME p/PHONE e/EMAIL s/STATUS [a/ADDRESS] [t/TAG]` <br/> Example: `add n/John Doe p/98765432 e/johnd@example.com s/PROSPECT a/311, Clementi Ave` |
-| `delete`        | Deletes a client. <br/> Parameters: `INDEX`  <br/> Example: `delete 1`                                                                                                                          |
-| `edit`          | Edits client details. <br/> Parameters: `INDEX [n/NAME] [p/PHONE] [e/EMAIL] [s/STATUS] [a/ADDRESS] [t/TAG]` <br/> Example: `edit 1 p/91234567 e/johndoe@example.com`                            |
-| `list`          | Lists all clients. <br/> Example: `list`                                                                                                                                                        |
-| `find`          | Finds clients by name or status. <br/> Parameters: `name + [name1 name2…]` or `status + [status1 status2…].  <br/> Examples . `find name alice bob . `find status active returning`             |
-| `sort`          | Sorts clients lexicographically.   <br/> Example: `sort`                                                                                                                                        |
+| Command  | Description                                                                                                                                                                                     |
+|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `add`    | Adds a client to InSight. <br/> Parameters: `n/NAME p/PHONE e/EMAIL s/STATUS [a/ADDRESS] [t/TAG]` <br/> Example: `add n/John Doe p/98765432 e/johnd@example.com s/PROSPECT a/311, Clementi Ave` |
+| `delete` | Deletes a client. <br/> Parameters: `INDEX`  <br/> Example: `delete 1`                                                                                                                          |
+| `edit`   | Edits client details. <br/> Parameters: `INDEX [n/NAME] [p/PHONE] [e/EMAIL] [s/STATUS] [a/ADDRESS] [t/TAG]` <br/> Example: `edit 1 p/91234567 e/johndoe@example.com`                            |
+| `list`   | Lists all clients. <br/> Example: `list`                                                                                                                                                        |
+| `find`   | Finds clients by name or status. <br/> Parameters: `name + [name1 name2…]` or `status + [status1 status2…].  <br/> Examples . `find name alice bob . `find status active returning`             |
+| `sort`   | Sorts clients lexicographically.   <br/> Example: `sort`                                                                                                                                        |
 
 ### Booking Management Commands
+
 | Command         | Description                                                                                                                                                                                          |
 |-----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `addbooking`    | Adds a booking to InSight. <br/> Parameters: `INDEX d/DESCRIPTION dt/dd/mm/yyyy HHmm p/PACKAGE t/TAG` <br/> Example: `addbooking 1 d/Wedding Shoot dt/14/10/2025 1200 p/PORTRAIT t/outdoor t/summer` |
@@ -118,9 +125,10 @@ Unsure of your java version? Open your terminal and run:
 | `viewbooking`   | Displays all bookings for a specific client.<br/> Parameters: `INDEX` <br/> Example: `viewbooking 1`                                                                                                 |
 | `sortbooking`   | Sorts bookings by date and time.   <br/> Example: `sortbooking`                                                                                                                                      |
 | `markbooking`   | Marks a booking as 'Paid'. <br/> Parameters: `INDEX` <br/> Example: `markbooking 1`                                                                                                                  |
-| `unmarkbooking` | Unmarks a booking as 'Not Paid'. <br/> Parameters: `INDEX`   <br/> Example: `unmarkbooking 1`                                                                                                        |
+| `unmarkbooking` | Marks a booking as 'Not Paid'. <br/> Parameters: `INDEX`   <br/> Example: `unmarkbooking 1`                                                                                                          |
 
 ### General Commands
+
 | Command | Description                                          |
 |---------|------------------------------------------------------|
 | `clear` | Clears all data from InSight. <br/> Example: `clear` |
@@ -130,12 +138,13 @@ Unsure of your java version? Open your terminal and run:
 ---
 
 ## 🧭 Features
+
 - See the [Glossary](#-glossary) if a term is unfamiliar.
 - Valid client **status** values are listed [here](#1-client-status).
 - Read about **INDEX** behavior [here](#5-indexing).
 - Date & time formatting is defined [here](#4-date--time-format).
 - Suggested **package types** are listed [here](#2-package-types).
-- Learn how to **use tags powerfully** [here](#3-tags-clients--bookings).
+- Learn how to use **tags** for your own tracking [here](#3-tag).
 
 ### Adding a Client: add
 
@@ -144,14 +153,18 @@ Adds a Client to InSight.
 **Format:**  
 `add n/NAME p/PHONE e/EMAIL s/STATUS [a/ADDRESS] [t/TAG]…`
 
-💡 **Tip:** A client can have any number of tags (including 0).
-
 The status field (e.g., PROSPECT, ACTIVE, RETURNING) helps classify clients by engagement level.
+
+> 💡 **Tips:**
+> 1. A client can have 0 or 1 address.
+> 2. A client can have any number of tags (including 0).
 
 **Examples:**  
 `add n/John Doe p/98765432 e/johnd@example.com s/PROSPECT a/311, Clementi Ave t/wedding`  
 `add n/Betsy Crowe t/friend e/betsycrowe@example.com s/ACTIVE a/Newgate Prison p/1234567 t/portrait`
+
 ![add.png](images/add.png)
+**<sub><i>Image: InSight successfully added a new Client</i></sub>**
 
 ### Adding a booking: addbooking
 
@@ -161,6 +174,7 @@ Adds a booking to a specific client in InSight.
 `addbooking INDEX d/DESCRIPTION dt/dd/mm/yyyy HHmm p/PACKAGE [t/TAG]…`
 
 **Notes:**
+
 - The INDEX refers to the client’s index in the displayed list.
 - Each booking is tied to a client entry.
 - Tags can represent the booking type, theme, or location.
@@ -170,6 +184,7 @@ Adds a booking to a specific client in InSight.
 `addbooking 2 d/Product Photoshoot dt/10/09/2025 1600 p/CORPORATE t/studio`
 
 ![addBooking.png](images/addBooking.png)
+**<sub><i>Image: InSight successfully added a new Booking</i></sub>**
 
 ### Listing all clients: list
 
@@ -199,22 +214,28 @@ Marks a booking as Paid.
 `markbooking INDEX`
 
 **Notes:**  
-The INDEX refers to the booking number displayed in the booking list. This helps users track completed or settled payments.
+The INDEX refers to the booking number displayed in the booking list. This helps users track completed or settled
+payments.
 
 **Example:**  
 `markbooking 1`
+
 ![markbooking.png](images/markBooking.png)
+**<sub><i>Image: InSight successfully marks a Booking as paid</i></sub>**
 
-### Unmarking a booking as unpaid: unmarkbooking
 
-Marks a booking as Not Paid.
+### Marking a booking as unpaid: unmarkbooking
+
+Marks a booking as Unpaid.
 
 **Format:**  
 `unmarkbooking INDEX`
 
 **Example:**  
 `unmarkbooking 2`
-![unmarkbooking.png](images/markBooking.png)
+
+![unmarkbooking.png](images/unmarkBooking.png)
+**<sub><i>Image: InSight successfully unmarks a Booking </i></sub>**
 
 ### Editing a client: edit
 
@@ -224,6 +245,7 @@ Edits details of a client in InSight.
 `edit INDEX n/NAME p/PHONE e/EMAIL s/STATUS [a/ADDRESS] [t/TAG]…`
 
 **Notes:**
+
 - The INDEX refers to the client’s position in the displayed list.
 - At least one optional field must be provided.
 - Editing tags will overwrite previous tags.
@@ -232,7 +254,9 @@ Edits details of a client in InSight.
 **Examples:**  
 `edit 1 p/91234567 e/johndoe@example.com`  
 `edit 2 n/Betsy Crower s/RETURNING t/`
+
 ![editPerson.png](images/editPerson.png)
+**<sub><i>Image: InSight successfully edits a Client's details</i></sub>**
 
 ### Editing a booking: editbooking
 
@@ -242,6 +266,7 @@ Edits details of an existing booking.
 `editbooking INDEX d/DESCRIPTION dt/DATETIME p/PACKAGE [t/TAG]…`
 
 **Notes:**
+
 - The INDEX refers to the booking index in the booking list.
 - You can update multiple fields at once.
 - To clear all tags, type `t/` without specifying any.
@@ -249,6 +274,9 @@ Edits details of an existing booking.
 **Examples:**  
 `editbooking 1 d/Wedding Shoot p/WEDDING`  
 `editbooking 2 dt/21/09/2025 1600 t/sunset`
+
+![editBooking.png](images/editBooking.png)
+**<sub><i>Image: InSight successfully edits a Client's details</i></sub>**
 
 ### Deleting a client: delete
 
@@ -258,6 +286,7 @@ Deletes a client from the InSight database.
 `delete INDEX`
 
 **Notes:**
+
 - Deletes the client at the specified index from the client list.
 - All related bookings remain in the system unless deleted manually.
 
@@ -277,9 +306,7 @@ Deletes a booking record from InSight.
 
 ### Finding clients: find
 
-Finds clients whose names or statuses match the given keywords.
-
-> **Note**: Type in the exact name or status to find the clients
+Finds clients whose names or statuses match the given keywords - Type in the exact name or status to find the clients
 
 **Format:**  
 `find name KEYWORD [MORE_KEYWORDS]`  
@@ -287,6 +314,7 @@ or
 `find status STATUS [MORE_STATUSES]`
 
 **Notes:**
+
 - Search is case-insensitive.
 - The order of keywords does not matter.
 - Returns any client matching one or more keywords (OR search).
@@ -294,9 +322,11 @@ or
 **Examples:**  
 `find name alice bob charlie`  
 `find status active returning`
-![findStatus.png](images/findStatus.png)
 
-### Viewing all bookings for a client: viewbooking
+![findStatus.png](images/findStatus.png)
+**<sub><i>Image: InSight successfully finds a Client based on their status</i></sub>**
+
+### View all a Client's Bookings: viewbooking
 
 Displays all bookings associated with a selected client.
 
@@ -308,7 +338,9 @@ The INDEX refers to the client’s index. Use this command to view all bookings 
 
 **Example:**  
 `viewbooking 1`
+
 ![viewBooking.png](images/viewBooking.png)
+**<sub><i>Image: InSight successfully list a specified Client's bookings</i></sub>**
 
 ### Sorting clients: sort
 
@@ -319,7 +351,10 @@ Sorts clients alphabetically by name.
 
 **Example:**  
 `sort`
+
 ![sort.png](images/sort.png)
+**<sub><i>Image: InSight successfully sorts Clients in alphabetically</i></sub>**
+
 
 ### Sorting bookings: sortbooking
 
@@ -337,7 +372,8 @@ Clears all clients and bookings from InSight.
 
 The command clears InSight immediately, there is no confirmation button.
 
-> ⚠️ **Warning:** This permanently deletes **all clients and bookings** from InSight. It **cannot be undone**. Back up your data (copy the `.json` data file) before running `clear`.
+> ⚠️ **Warning:** This permanently deletes **all clients and bookings** from InSight. It **cannot be undone**. Back up
+> your data (copy the `.json` data file) before running `clear`.
 
 **Format:**  
 `clear`
@@ -354,7 +390,10 @@ Shows usage instructions and available commands.
 
 **Example:**  
 `help`
+
 ![help.png](images/help.png)
+**<sub><i>Image: InSight's help command</i></sub>**
+
 
 ### Exiting the program: exit
 
@@ -372,6 +411,7 @@ Closes the InSight application.
 
 ### 1. Client Status
 
+User is allowed to use each status as they see fit. The following are some pre-defined client statuses:
 
 | Status    | Meaning                                                                        | Typical Use Case                                       |
 |-----------|--------------------------------------------------------------------------------|--------------------------------------------------------|
@@ -383,21 +423,33 @@ Closes the InSight application.
 
 ### 2. Package Types
 
-| Package Type | Description                                                                         | Example Use Case                                |
-|--------------|-------------------------------------------------------------------------------------|-------------------------------------------------|
-| WEDDING      | Full wedding photography or videography coverage, often spanning multiple sessions. | `editbooking 1 p/WEDDING`                       |
-| PORTRAIT     | Individual, couple, or family portraits conducted in studio or outdoor settings.    | `addbooking 1 d/Graduation Shoot p/PORTRAIT`    |
-| COMMERCIAL   | Product, branding, or corporate-related shoots.                                     | `addbooking 2 d/Product Launch p/COMMERCIAL`    |
-| EVENT        | Coverage of public/private events (birthdays, conferences).                         | `addbooking 3 d/Company Dinner p/EVENT`         |
-| LIFESTYLE    | Candid or aesthetic sessions capturing daily activities.                            | `addbooking 1 d/Instagram Campaign p/LIFESTYLE` |
-| MATERNITY    | Shoots for expecting mothers/families.                                              | `addbooking 2 d/Maternity Portrait p/MATERNITY` |
-| TRAVEL       | Destination shoots involving travel logistics.                                      | `addbooking 1 d/Pre-Wedding in Bali p/TRAVEL`   |
-| CUSTOM       | Flexible or hybrid requests not fitting standard categories.                        | `addbooking 2 d/Studio & Drone Shoot p/CUSTOM`  |
+Set the Package Type when creating or editing a booking. The following are some pre-defined Package Types:
+
+| Package Type | Short Description                                                                                          |
+|--------------|------------------------------------------------------------------------------------------------------------|
+| PORTRAIT     | Individual or couple portraits, studio or on-location, with light retouching.                              |
+| FAMILY       | Candid and posed family session; multi-generation, on-location or studio.                                  |
+| EVENT        | Coverage of corporate/social events with highlights, details                                               |
+| WEDDING      | Half- or full-day coverage of preparations, ceremony, portraits, and reception.                            |
+| CORPORATE    | Professional headshots and office lifestyle imagery for brand and profiles.                                |
+| PRODUCT      | Clean e-commerce/product images with multiple angles and simple styling.                                   |
+| MATERNITY    | Artistic maternity session focused on mom-to-be; partner optional.                                         |
+| BABY         | Newborn/infant session at home or studio; safety-first posing and lifestyle.                               |
+| GRADUATION   | Cap-and-gown portraits and family moments on campus or in studio.                                          |
+| BIRTHDAY     | Party coverage including cake-cutting, decor, activities                                                   |
+| ANNIVERSARY  | Couple session; candid and editorial-style portraits.                                                      |
+| OTHER        | A Package type not covered by InSight's predefined list. The actual type can be specified as a Tag instead |
 
 
-### 3. Tag Keywords
-Short, user-defined labels you attach to Clients and Bookings to surface specific details at a glance. 
+> 💡 **Tip:**
+> Use one primary type per booking. Add specifics or package types not defined as [Tags](#3-tag) instead. You can change
+> the type later if the scope shifts
+
+### 3. Tag
+
+Short, user-defined labels you attach to Clients and Bookings to surface specific details at a glance.
 The app does not enforce meaning — they are up to the user to define as they see fit.
+
 #### Good practices
 
 Keep tags short and consistent (prefer lowercase; use hyphens for multi-word tags).
@@ -426,22 +478,44 @@ The INDEX parameter refers to the numeric position of an entry (client or bookin
 
 InSight automatically saves all changes to disk after each command. No manual saving is required.
 
-
 ---
 
-## ❔ FAQ
+## ❔ Frequently Asked Questions (FAQ)
 
-**Q:** How do I transfer data to another computer?  
-**A:** Copy the data file from the source folder into the target folder and restart InSight.
-> 💡 **Tip:** To migrate data, copy the `.json` file from your home directory to another device.
+**Q: Where is my data stored?**  
+**A:** InSight saves to a JSON file in the `data/` folder (same directory as the app). If the file doesn’t exist, it’s
+created on first run.  
+> 💡 **Tip:** Keep the whole `data/` folder together when moving machines.
 
----
+**Q: How do I transfer data to another computer?**  
+**A:** Close InSight → copy the entire `data/` folder from the source machine → paste it beside the app on the target
+machine → start InSight.  
+> 💡 **Tip:** If you only need the core records, copy the `.json` data file inside `data/`.
 
-## ⚠️ Known Issues
+**Q: How do I back up and restore my data?**  
+**A:** Back up by copying `data/` to a safe location. Restore by replacing the current `data/` with your backup copy.  
+> ⚠️ **Warning:** Always close InSight before replacing files.
 
-- Moving the GUI to another monitor may cause positioning errors on reopen.
-- If the Help Window is minimized, running `help` again will not reopen it automatically.
+**Q: Why does InSight not show any clients or bookings?**  
+**A:** InSight will refuse to load data that is corrupted. Data will not be corrupted unless the user modifies the data
+file.
+Go into the data file and check if there are any errors or undo any edits done in the data file.
 
----
+**Q: How are bookings linked to clients?**  
+**A:** Each booking references a client in your People list. Delete/rename clients carefully—bookings depend on them.  
+> 💡 **Tip:** Prefer editing a client over deleting to preserve booking history.
+
+**Q: How do I find things quickly?**  
+**A:** Use `find` with fields (e.g., name, status). Combine terms to narrow results.
+
+**Q: What Java version do I need?**  
+**A:** Java 17 or later.  
+> 💡 **Tip:** Run `java -version` to check. If you see `1.8/8`, upgrade to 17+.
+
+**Q: Can I keep separate profiles (e.g., work vs personal)?**  
+**A:** Yes. Create separate app folders, each with its own `data/`. Launch the one you need.
+
+**Q: Why can’t I delete a client with existing bookings?**  
+**A:** To protect data integrity. Delete or reassign those bookings first, then remove the client.
 
 > © 2025 InSight Team. Built upon SE-EDU AddressBook Level 3.
