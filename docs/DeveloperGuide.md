@@ -610,6 +610,8 @@ testers are expected to do more *exploratory* testing.
 
 ### Adding a client
 
+**Prerequisites:** No existing client with the same name.
+
 **Adding a client with valid inputs**
 
 1. Test case: `add n/Alice Tan p/98765432 e/alice@example.com s/PROSPECT`<br>
@@ -634,20 +636,25 @@ testers are expected to do more *exploratory* testing.
 
 ### Editing a client
 
-**Prerequisites:** At least one client displayed. List all clients using the `list` command. 
+**Prerequisites:** Have at least one client displayed. Works on filtered view. To exit filtered view, list all clients using the `list` command. 
 
 **Editing a client with valid inputs**
 
-1. Test case: `edit 1 p/87654321`<br>
+1. Test case: `edit 1 p/87654321`  
    Expected: First client's phone is updated. Details shown in the status message.
 2. Test case: `edit 1 p/87654321 e/newemail@example.com s/ACTIVE`<br>
    Expected: First client's phone, email, and status are updated. Success message displayed.<br>
+3. Test case: `edit 1 n/editedName`<br>
+   Expected: First client's name is updated. Success message displayed. Associated bookings (if any) reflect updated name.<br>
 
 **Editing a client with invalid inputs**
 
-1. Test case: `edit 100000 n/James` (assuming list has less than 100000 clients)<br>
-   Expected: No client is edited. Error message indicates index is invalid.<br>
-
+1. Test case: `edit 100000 n/James` (assuming list has less than 100000 clients)  
+   Expected: No client is edited. Error message indicates index is invalid.  
+2. Test case: `edit 1`  
+   Expected: No client is edited. Error message indicates that at least one field to edit must be provided.
+3. Other incorrect commands to try: `edit 0`, `edit w/invalidPrefix`, `edit` (missing all parameters)  
+   Expected: Similar error messages showing required format.
 
 ### Finding clients
 
@@ -657,6 +664,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Test case: `find name alice bob`<br>
    Expected: Lists all clients whose names contain "alice" or "bob" (case-insensitive). Number of matches shown.<br>
+   Note: Does not support partial matching (e.g. client named "bobby" will not be matched)  
 
 **Finding clients by status**
 
@@ -666,9 +674,9 @@ testers are expected to do more *exploratory* testing.
 **Finding clients with invalid inputs**
 
 1. Test case: `find name`<br>
-   Expected: No search performed. Error message shows correct format requiring at least one keyword.
-2. Test case: `find`<br>
-   Expected: Error message shows correct format with examples.<br>
+   Expected: No search performed. Error message shows correct format with examples.  
+2. Other incorrect commands to try: `find`, `find invalidFilter`<br>
+   Expected: No search performed. Error message shows correct format with examples.<br>
 
 ### Sorting clients alphabetically
 
@@ -693,31 +701,34 @@ testers are expected to do more *exploratory* testing.
 
 **Deleting a client with invalid index**
 
-1. Test case: `delete 0`<br>
-   Expected: No client is deleted. Error message indicates index must be positive.
-2. Test case: `delete 100000` (assuming 100000 is larger than list size)<br>
+1. Test case: `delete 100000` (assuming 100000 is larger than list size)<br>
    Expected: Error message indicates index is out of range.<br>
-
----
+2. Other incorrect commands to try: `delete 0`, `delete notAnIndex`, `delete` (missing all parameters)  
+   Expected: Similar error messages showing required format.
 
 ## Booking Management
 
 ### Adding a booking
 
-**Prerequisites:** Have at least one client displayed. List all clients using the `list` command.
+**Prerequisites:** Have at least one client displayed. List all clients using the `list` command. No other bookings with the same datetime.
 
 **Adding a booking with valid inputs**
 
-1. Test case: `addbooking 1 d/Wedding Shoot dt/14/10/2025 1200 p/PORTRAIT t/outdoor t/summer`<br>
+1. Test case: `addbooking 1 d/Wedding Shoot dt/29/02/2024 1200 p/PORTRAIT t/outdoor t/summer`<br>
    Expected: Booking added to the first client. Details shown in status message including booking index.<br>
 
 **Adding a booking with invalid inputs**
 
 1. Test case: `addbooking 1 d/Test dt/32/01/2025 1200 p/PORTRAIT`<br>
    Expected: No booking is added. Error message indicates invalid date (day 32 does not exist).
-2. Test case: `addbooking 100000 d/Test dt/14/10/2025 1200 p/PORTRAIT` (assuming 100000 is larger than list size)<br>
+2. Test case: `addbooking 1 d/Test dt/29/02/2025 1200 p/PORTRAIT`<br>
+   Expected: No booking is added. Error message indicates invalid date (29 Feb 2025 does not exist).
+3. Test case: `addbooking 100000 d/Test dt/14/10/2025 1200 p/PORTRAIT` (assuming 100000 is larger than client list size)<br>
    Expected: No booking is added. Error message indicates invalid client index.
-3. Test case: `addbooking 1`<br>
+4. Other incorrect commands to try:  
+   `addbooking 0 d/Wedding Shoot dt/28/02/2024 1200 p/PORTRAIT `,  
+   `addbooking notAnIndex d/Wedding Shoot dt/27/02/2024 1200 p/PORTRAIT`,  
+   `addbooking 1 d/Wedding Shoot dt/26/02/2024 1200` (missing all parameters)<br>
    Expected: No booking is added. Error message shows correct format with all required parameters.<br>
 
 ### Listing all bookings
@@ -740,10 +751,13 @@ testers are expected to do more *exploratory* testing.
    Expected: Error message indicates invalid command format.
 2. Test case: `viewbooking 100000` (assuming 100000 is larger than list size)<br>
    Expected: Error message indicates index is out of range.<br>
+3. Other incorrect commands to try: `viewbooking notAnIndex`, `viewbooking` (missing all parameters)  
+   Expected: Similar error messages showing required format.
+
 
 ### Editing a booking
 
-**Prerequisites:** Have at least one booking displayed. List all bookings using the `listbooking` command.
+**Prerequisites:** Have at least one booking displayed. Works on filtered view. To exit filtered view, list all bookings using the `listbooking` command.
 
 **Editing a booking with valid fields**
 
@@ -758,10 +772,12 @@ testers are expected to do more *exploratory* testing.
    Expected: No booking is edited. Error message indicates invalid date (February 31 does not exist).
 2. Test case: `editbooking 0 d/Test`<br>
    Expected: No booking is edited. Error message indicates command format.<br>
+3. Other incorrect commands to try: `editbooking notAnIndex`, `editbooking` (missing all parameters)  
+   Expected: Similar error messages showing required format.
 
 ### Marking/Unmarking a booking
 
-**Prerequisites:** Have at least one booking displayed. List all bookings using the `listbooking` command.
+**Prerequisites:** Have at least one booking displayed. Works on filtered view. To exit filtered view, list all bookings using the `listbooking` command.
 
 **Marking a booking as paid**
 
