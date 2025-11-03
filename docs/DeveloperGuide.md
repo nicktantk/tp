@@ -736,7 +736,7 @@ testers are expected to do more *exploratory* testing.
 ### Listing all bookings
 
 1. Test case: `listbooking`<br>
-   Expected: All bookings in InSight are displayed.<br>
+   Expected: All bookings in InSight are displayed, including past bookings.<br>
 
 ### Viewing bookings for a client
 
@@ -802,7 +802,7 @@ testers are expected to do more *exploratory* testing.
 **Prerequisites:** Have at least 3 bookings with different dates and times.
 
 1. Test case: `sortbooking`<br>
-   Expected: All bookings sorted by date and time in chronological order from today (earliest first). Past bookings are not shown. Status message confirms sorting.<br>
+   Expected: All upcoming bookings sorted by date and time in chronological order from today (earliest first). Past bookings are not shown. Status message confirms sorting.<br>
 
 ### Deleting a booking
 
