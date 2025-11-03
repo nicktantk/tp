@@ -881,3 +881,72 @@ This reuse allowed the team to focus more on designing new features and refining
 
 ### Summary
 Overall, the project required a **moderate-to-high level of technical and design effort** due to the addition of multiple interacting entities, new features, and robust data handling. Despite encountering a steep learning curve and several integration challenges, the team delivered a product that not only achieved its goals but also demonstrated effective adaptation of existing architecture to a more complex domain.
+___
+
+## **Appendix: Planned Enhancements**
+
+Team Size: 4
+
+1. **Add confirmation for `clear` command**  
+   The current `clear` command immediately deletes all data without warning, which risks accidental data loss.  
+   We plan to add a confirmation prompt requiring users to explicitly confirm before proceeding.  
+   **Example:**
+   ```
+   > clear  
+   Are you sure you want to clear all data? (yes/no):  
+   ```
+   This prevents unintended clearing of all client and booking records.
+
+2. **Customisable package types**  
+   Currently, package types are fixed and predefined. We plan to allow users to **create, edit, and delete custom package types** to better fit their business needs.  
+   **Example UI input:**
+   ```
+   > addpackage n/Portrait p/300 t/Outdoor  
+   > addpackagetype t/Wedding  
+   ```
+   This improves flexibility for different service offerings.
+
+3. **Sorted view for `viewbooking` command**  
+   The `viewbooking` command currently lists bookings in an unsorted order. We plan to implement **automatic sorting by date and time**, to allow for more streamlined viewing of bookings for a client
+   **Example output:**
+   ```
+   Bookings (sorted by date):
+   1. John Tan — 12 Dec 2025, 2:00 PM
+   2. Amy Lee — 15 Dec 2025, 10:00 AM
+   ```
+
+4. **Enhanced booking search command**  
+   The current booking search only supports keyword search by client name, supported by the `viewbooking` command. We plan to expand booking search, and allow searching by **description**, **datetime**, **package type**, and **client name keyword**.  
+   **Example input:**
+   ```
+   >    findbooking d/Outdoor p/Wedding dt/12/12/2025
+      ```
+      This allows users to locate specific bookings more efficiently.
+
+5. **Greater field validation**  
+   Field validation will be improved to ensure cleaner and more consistent data. Planned changes include:
+    - Rejecting **purely numeric names** (e.g., “1234”)
+    - Setting **length and format limits** for phone numbers
+    - Greater allowance for different **date/time formats**   
+      This enhancement improves data reliability and prevents accidental invalid entries.
+
+6. **Bookings to store full duration**  
+   Currently, each booking stores only a single date and time. We plan to modify the booking model to include both **start** and **end** date/time fields.  
+   **Example:**
+   ```
+   Start: 12 Dec 2025, 2:00 PM  
+   End: 12 Dec 2025, 4:00 PM  
+   ```
+   This allows more accurate scheduling and prevents double-booking conflicts.
+
+7. **Improved duplication checks for clients and bookings**  
+   Duplication detection during the addition of clients and bookings. Currently, client duplicate checks only for exact name field matches and booking date and time for bookings. We plan to improve it by comparing **similarities in other fields**, such as identical addresses and phone numbers, or identical descriptions for bookings.  
+   This enhancement reduces the risk of accidental duplicate entries.
+
+8. **`editbooking` to allow client changes**  
+   The current `editbooking` command restricts users from changing the associated client. We plan to allow **changing the client field** while keeping other booking details intact.  
+   **Example input:**
+   ```
+   > editbooking 3 c/2
+   ```
+   This provides greater flexibility when client information needs to be reassigned.
