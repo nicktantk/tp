@@ -454,7 +454,7 @@ The app does not enforce meaning — they are up to the user to define as they s
 
 Keep tags short and consistent (prefer lowercase; use hyphens for multi-word tags).
 
-Use tags for quick flags;
+Use tags for quick flags.
 
 ### 4. Date & Time Format
 
