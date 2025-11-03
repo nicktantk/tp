@@ -77,15 +77,17 @@ Unsure of your java version? Open your terminal and run:
    ```
    InSight will start up, and the application window will appear.
 5. Once InSight loads, you should see the following:
-   ![Ui.png](images/Ui.png)
+
+![Ui.png](images/Ui.png)
+
 **<sub><i>Image: InSight's Graphical User Interface (GUI) with sample data</i></sub>**
 
     Sample data will be included on the first start-up. Take a look around and try some of these commands to get yourself familiarised:
     1. Add a client: `add n/John Doe p/98765432 e/johnd@example.com s/PROSPECT a/311, Clementi Ave`
     2. Add a booking for the first client: `addbooking 1 d/Wedding Shoot dt/14/10/2026 1200 p/PORTRAIT t/outdoor t/summer`
     3. Find active clients: `find status active`
-> 💡 **Tip:** The **status box** will show you the status of InSight after running the commands. For example, after adding the client in the first command, you should see this:
-> ![status-box.png](images/status-box.png) <sub><i>Image: Status box</i></sub><br>
+> 💡 **Tip:** The **result display** will show you the status of InSight after running the commands. For example, after adding the client in the first command, you should see this:
+> ![status-box.png](images/status-box.png) <sub><i>Image: Result Display box</i></sub><br>
 > This wil be helpful for tracking the changes your command has made to InSight.
 
 6. Use the command such as `help` to see the list of available commands
