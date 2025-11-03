@@ -706,6 +706,8 @@ testers are expected to do more *exploratory* testing.
 2. Other incorrect commands to try: `delete 0`, `delete notAnIndex`, `delete` (missing all parameters)  
    Expected: Similar error messages showing required format.
 
+---
+
 ## Booking Management
 
 ### Adding a booking
@@ -753,7 +755,6 @@ testers are expected to do more *exploratory* testing.
    Expected: Error message indicates index is out of range.<br>
 3. Other incorrect commands to try: `viewbooking notAnIndex`, `viewbooking` (missing all parameters)  
    Expected: Similar error messages showing required format.
-
 
 ### Editing a booking
 
