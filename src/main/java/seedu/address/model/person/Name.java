@@ -61,7 +61,7 @@ public class Name {
 
     @Override
     public int hashCode() {
-        return fullName.toLowerCase().hashCode();
+        return fullName.hashCode();
     }
 
 }
