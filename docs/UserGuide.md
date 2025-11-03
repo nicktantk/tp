@@ -91,9 +91,9 @@ Follow this guide to start your journey with InSight.
 Sample data will be included on the first start-up. Take a look around and try some of these commands to get yourself
 familiarised:
 
-1. Add a client: `add n/John Doe p/98765432 e/johnd@example.com s/PROSPECT a/311, Clementi Ave`
-2. Add a booking for the first client: `addbooking 1 d/Wedding Shoot dt/14/10/2026 1200 p/PORTRAIT t/outdoor t/summer`
-3. Find active clients: `find status active`
+i) Add a client: `add n/John Doe p/98765432 e/johnd@example.com s/PROSPECT a/311, Clementi Ave`  
+ii) Add a booking for the first client: `addbooking 1 d/Wedding Shoot dt/14/10/2026 1200 p/PORTRAIT t/outdoor t/summer`  
+iii) Find active clients: `find status active`  
 
 > 💡 **Tip:** The **result display** will show you the status of InSight after running the commands. For example, after
 > adding the client in the first command, you should see this:
@@ -101,8 +101,7 @@ familiarised:
 > This wil be helpful for tracking the changes your command has made to InSight.
 
 6. Use the command such as `help` to see the list of available commands
-7. Once you are ready to start, run `clear` in the command box to clear the sample data and **begin your InSight journey
-   **.
+7. Once you are ready to start, run `clear` in the command box to clear the sample data and **begin your InSight journey**.
 
 If you are unsure what each component of the Graphical User Interface (GUI) is for, refer to the image below!
 
@@ -121,21 +120,21 @@ If you are unsure what each component of the Graphical User Interface (GUI) is f
 | `delete` | Deletes a client. <br/> Parameters: `INDEX`  <br/> Example: `delete 1`                                                                                                                          |
 | `edit`   | Edits client details. <br/> Parameters: `INDEX [n/NAME] [p/PHONE] [e/EMAIL] [s/STATUS] [a/ADDRESS] [t/TAG]` <br/> Example: `edit 1 p/91234567 e/johndoe@example.com`                            |
 | `list`   | Lists all clients. <br/> Example: `list`                                                                                                                                                        |
-| `find`   | Finds clients by name or status. <br/> Parameters: `name + [name1 name2…]` or `status + [status1 status2…].  <br/> Examples . `find name alice bob . `find status active returning`             |
+| `find`   | Finds clients by name or status. <br/> Parameters: `name + [name1 name2…]` or `status + [status1 status2…]` <br/> Examples: `find name alice bob`, `find status active returning`               |
 | `sort`   | Sorts clients lexicographically.   <br/> Example: `sort`                                                                                                                                        |
 
 ### Booking Management Commands
 
-| Command         | Description                                                                                                                                                                                          |
-|-----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Command         | Description                                                                                                                                                                 |
+|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `addbooking`    | Adds a booking to InSight. <br/> Parameters: `INDEX d/DESCRIPTION dt/dd/mm/yyyy HHmm p/PACKAGE t/TAG` <br/> Example: `addbooking 1 d/Wedding Shoot dt/14/10/2025 1200 p/PORTRAIT t/outdoor t/summer` |
-| `editbooking`   | Edits booking details. <br/> Parameters: `INDEX [d/DESCRIPTION] [dt/DATETIME] [p/PACKAGE] [t/TAG]`  <br/> Example: `editbooking 1 d/Wedding Shoot p/WEDDING`                                         |
-| `deletebooking` | Deletes a booking. <br/> Parameters: `INDEX` <br/> Example: `deletebooking 1`                                                                                                                        |
-| `listbooking`   | Lists all bookings <br/> Lists all bookings within InSight. <br/> Example: `listbooking`                                                                                                             |
-| `viewbooking`   | Displays all bookings for a specific client.<br/> Parameters: `INDEX` <br/> Example: `viewbooking 1`                                                                                                 |
-| `sortbooking`   | Sorts bookings by date and time.   <br/> Example: `sortbooking`                                                                                                                                      |
-| `markbooking`   | Marks a booking as 'Paid'. <br/> Parameters: `INDEX` <br/> Example: `markbooking 1`                                                                                                                  |
-| `unmarkbooking` | Marks a booking as 'Not Paid'. <br/> Parameters: `INDEX`   <br/> Example: `unmarkbooking 1`                                                                                                          |
+| `editbooking`   | Edits booking details. <br/> Parameters: `INDEX [d/DESCRIPTION] [dt/DATETIME] [p/PACKAGE] [t/TAG]`  <br/> Example: `editbooking 1 d/Wedding Shoot p/WEDDING`                |
+| `deletebooking` | Deletes a booking. <br/> Parameters: `INDEX` <br/> Example: `deletebooking 1`                                                                                               |
+| `listbooking`   | Lists all bookings within InSight. <br/> Example: `listbooking`                                                                                                             |
+| `viewbooking`   | Displays all bookings for a specific client.<br/> Parameters: `INDEX` <br/> Example: `viewbooking 1`                                                                        |
+| `sortbooking`   | Sorts bookings by date and time.   <br/> Example: `sortbooking`                                                                                                             |
+| `markbooking`   | Marks a booking as 'Paid'. <br/> Parameters: `INDEX` <br/> Example: `markbooking 1`                                                                                         |
+| `unmarkbooking` | Marks a booking as 'Not Paid'. <br/> Parameters: `INDEX`   <br/> Example: `unmarkbooking 1`                                                                                 |
 
 ### General Commands
 
@@ -211,14 +210,13 @@ Adds a booking to a specific client in InSight.
 
 **Expected output:**
 
-- Success message: `New booking added: DESCRIPTION; CLIENT; DATE TIME; PACKAGE TYPE; [TAGS]`
+- Success message: `New booking added: DESCRIPTION; CLIENT; DATETIME; PACKAGE TYPE; [TAGS]`
 
 ![addBooking.png](images/addBooking.png)
 **<sub><i>Image: InSight successfully added a new Booking</i></sub>**
 
 > ⚠️ **Warnings:** Missing required fields will reject the command.
-> - `INDEX` must reference a visible client; ensure you ran `list` or a `find` first and ensure the client list has a
-    visible client.
+> - `INDEX` must reference a visible client; ensure you ran `list` first to clear any filters that could have hidden your desired reference client.  
 > - Date-time must follow `dd/mm/yyyy HHmm`. Refer to [here](#4-date--time-format) for more information.
 
 ### Listing all clients: list
@@ -232,7 +230,7 @@ Shows a list of all clients stored in InSight.
 `list`
 
 **Expected output:** Displays full client list in UI.
-> 💡 **Tips:** Run this before `edit`/`delete` to confirm the right index.
+> 💡 **Tips:** Run this before `edit`/`delete` to display all editable/deletable clients.
 
 ### Listing all bookings: listbooking
 
@@ -246,7 +244,7 @@ Displays all bookings stored in InSight.
 
 **Expected output:** Displays all bookings with indexes and dates.
 
-> 💡 **Tips:** Use before `editbooking`/`deletebooking` to pick the right index.
+> 💡 **Tips:** Use before `editbooking`/`deletebooking` to display all editable/deletable bookings.
 
 ### Marking a booking as paid: markbooking
 
@@ -293,7 +291,7 @@ Marks a booking as Unpaid.
 Edits details of a client in InSight.
 
 **Format:**  
-`edit INDEX n/NAME p/PHONE e/EMAIL s/STATUS [a/ADDRESS] [t/TAG]…`
+`edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [s/STATUS] [a/ADDRESS] [t/TAG]…`
 
 **Notes:**
 
@@ -322,7 +320,7 @@ Edits details of a client in InSight.
 Edits details of an existing booking.
 
 **Format:**  
-`editbooking INDEX d/DESCRIPTION dt/DATETIME p/PACKAGE [t/TAG]…`
+`editbooking INDEX [d/DESCRIPTION] [dt/DATETIME] [p/PACKAGE] [t/TAG]…`
 
 **Notes:**
 
@@ -343,7 +341,6 @@ Edits details of an existing booking.
 **<sub><i>Image: InSight successfully edits a Client's details</i></sub>**
 
 > ⚠️ **Warnings:**
-> - Use `listbooking` to confirm the correct index.
 > - Invalid date-time format will be rejected.
 
 ### Deleting a client: delete
@@ -396,6 +393,7 @@ or
 - Search is case-insensitive.
 - The order of keywords does not matter.
 - Returns any client matching one or more keywords (OR search).
+- No partial matching (e.g. `find name bob` does not catch client named `bobby`)
 
 **Examples:**  
 `find name alice bob charlie`  
@@ -462,8 +460,11 @@ Sorts all bookings by date and time.
 
 **Expected output:**
 
-- `Upcoming bookings sorted by date time.`
-- UI updates booking list and sorts it by upcoming date-time
+- `Upcoming bookings sorted by datetime.`
+- UI updates and sorts upcoming bookings by datetime
+
+![sort.png](images/sortBooking.png)
+**<sub><i>Image: InSight successfully sorts upcoming Bookings in chronological order</i></sub>**
 
 > ⚠️ **Warning:** sortbooking sorts all upcoming bookings only, bookings that have passed will not appear in the booking
 > list.
@@ -533,20 +534,20 @@ User is allowed to use each status as they see fit. The following are some pre-d
 
 Set the Package Type when creating or editing a booking. The following are some pre-defined Package Types:
 
-| Package Type | Short Description                                                                                          |
-|--------------|------------------------------------------------------------------------------------------------------------|
-| PORTRAIT     | Individual or couple portraits, studio or on-location, with light retouching.                              |
-| FAMILY       | Candid and posed family session; multi-generation, on-location or studio.                                  |
-| EVENT        | Coverage of corporate/social events with highlights, details                                               |
-| WEDDING      | Half- or full-day coverage of preparations, ceremony, portraits, and reception.                            |
-| CORPORATE    | Professional headshots and office lifestyle imagery for brand and profiles.                                |
-| PRODUCT      | Clean e-commerce/product images with multiple angles and simple styling.                                   |
-| MATERNITY    | Artistic maternity session focused on mom-to-be; partner optional.                                         |
-| BABY         | Newborn/infant session at home or studio; safety-first posing and lifestyle.                               |
-| GRADUATION   | Cap-and-gown portraits and family moments on campus or in studio.                                          |
-| BIRTHDAY     | Party coverage including cake-cutting, decor, activities                                                   |
-| ANNIVERSARY  | Couple session; candid and editorial-style portraits.                                                      |
-| OTHER        | A Package type not covered by InSight's predefined list. The actual type can be specified as a Tag instead |
+| Package Type | Short Description                                                                                           |
+|--------------|-------------------------------------------------------------------------------------------------------------|
+| PORTRAIT     | Individual or couple portraits, studio or on-location, with light retouching.                               |
+| FAMILY       | Candid and posed family session; multi-generation, on-location or studio.                                   |
+| EVENT        | Coverage of corporate/social events with highlights, details.                                               |
+| WEDDING      | Half- or full-day coverage of preparations, ceremony, portraits, and reception.                             |
+| CORPORATE    | Professional headshots and office lifestyle imagery for brand and profiles.                                 |
+| PRODUCT      | Clean e-commerce/product images with multiple angles and simple styling.                                    |
+| MATERNITY    | Artistic maternity session focused on mom-to-be; partner optional.                                          |
+| BABY         | Newborn/infant session at home or studio; safety-first posing and lifestyle.                                |
+| GRADUATION   | Cap-and-gown portraits and family moments on campus or in studio.                                           |
+| BIRTHDAY     | Party coverage including cake-cutting, decor, activities.                                                   |
+| ANNIVERSARY  | Couple session; candid and editorial-style portraits.                                                       |
+| OTHER        | A Package type not covered by InSight's predefined list. The actual type can be specified as a Tag instead. |
 
 > 💡 **Tip:**
 > Use one primary type per booking. Add specifics or package types not defined as [Tags](#3-tag) instead. You can change
@@ -568,8 +569,9 @@ Use tags for quick flags.
 All bookings use the datetime format:  
 `dt/dd/mm/yyyy HHmm`
 
-**Example:**  
-`dt/14/10/2025 1200` → October 14, 2025, at 12:00 PM.
+**Examples:**  
+`dt/14/10/2025 1200` → October 14, 2025, at 12:00 PM.  
+`dt/01/02/2025 0100` → February 1, 2025, at 01:00 AM.
 
 ### 5. Indexing
 
