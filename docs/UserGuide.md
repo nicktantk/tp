@@ -1,7 +1,7 @@
 ---
   layout: default.md
-  title: "InSight User Guide"
-  pageNav: 3
+    title: "InSight User Guide"
+    pageNav: 3
 ---
 
 # InSight User Guide
@@ -29,7 +29,9 @@ InSight consolidates your **people, bookings, packages, notes, and tags** into o
 
 
 ![Ui.png](images/Ui.png)
+
 ## 📖 Table of Contents
+
 1. [Quick Start](#-quick-start)
 2. [Command Reference](#-command-reference)
 3. [Features](#-features)
@@ -76,16 +78,17 @@ InSight consolidates your **people, bookings, packages, notes, and tags** into o
 
 ### Client Management Commands
 
-| Command         | Description                                                                                                                                                                                     |
-|-----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `add`           | Adds a client to InSight. <br/> Parameters: `n/NAME p/PHONE e/EMAIL s/STATUS [a/ADDRESS] [t/TAG]` <br/> Example: `add n/John Doe p/98765432 e/johnd@example.com s/PROSPECT a/311, Clementi Ave` |
-| `delete`        | Deletes a client. <br/> Parameters: `INDEX`  <br/> Example: `delete 1`                                                                                                                          |
-| `edit`          | Edits client details. <br/> Parameters: `INDEX [n/NAME] [p/PHONE] [e/EMAIL] [s/STATUS] [a/ADDRESS] [t/TAG]` <br/> Example: `edit 1 p/91234567 e/johndoe@example.com`                            |
-| `list`          | Lists all clients. <br/> Example: `list`                                                                                                                                                        |
-| `find`          | Finds clients by name or status. <br/> Parameters: `name + [name1 name2…]` or `status + [status1 status2…].  <br/> Examples . `find name alice bob . `find status active returning`             |
-| `sort`          | Sorts clients lexicographically.   <br/> Example: `sort`                                                                                                                                        |
+| Command  | Description                                                                                                                                                                                     |
+|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `add`    | Adds a client to InSight. <br/> Parameters: `n/NAME p/PHONE e/EMAIL s/STATUS [a/ADDRESS] [t/TAG]` <br/> Example: `add n/John Doe p/98765432 e/johnd@example.com s/PROSPECT a/311, Clementi Ave` |
+| `delete` | Deletes a client. <br/> Parameters: `INDEX`  <br/> Example: `delete 1`                                                                                                                          |
+| `edit`   | Edits client details. <br/> Parameters: `INDEX [n/NAME] [p/PHONE] [e/EMAIL] [s/STATUS] [a/ADDRESS] [t/TAG]` <br/> Example: `edit 1 p/91234567 e/johndoe@example.com`                            |
+| `list`   | Lists all clients. <br/> Example: `list`                                                                                                                                                        |
+| `find`   | Finds clients by name or status. <br/> Parameters: `name + [name1 name2…]` or `status + [status1 status2…].  <br/> Examples . `find name alice bob . `find status active returning`             |
+| `sort`   | Sorts clients lexicographically.   <br/> Example: `sort`                                                                                                                                        |
 
 ### Booking Management Commands
+
 | Command         | Description                                                                                                                                                                                          |
 |-----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `addbooking`    | Adds a booking to InSight. <br/> Parameters: `INDEX d/DESCRIPTION dt/dd/mm/yyyy HHmm p/PACKAGE t/TAG` <br/> Example: `addbooking 1 d/Wedding Shoot dt/14/10/2025 1200 p/PORTRAIT t/outdoor t/summer` |
@@ -98,6 +101,7 @@ InSight consolidates your **people, bookings, packages, notes, and tags** into o
 | `unmarkbooking` | Unmarks a booking as 'Not Paid'. <br/> Parameters: `INDEX`   <br/> Example: `unmarkbooking 1`                                                                                                        |
 
 ### General Commands
+
 | Command | Description                                          |
 |---------|------------------------------------------------------|
 | `clear` | Clears all data from InSight. <br/> Example: `clear` |
@@ -107,6 +111,7 @@ InSight consolidates your **people, bookings, packages, notes, and tags** into o
 ---
 
 ## 🧭 Features
+
 - See the [Glossary](#-glossary) if a term is unfamiliar.
 - Valid client **status** values are listed [here](#1-client-status).
 - Read about **INDEX** behavior [here](#5-indexing).
@@ -138,6 +143,7 @@ Adds a booking to a specific client in InSight.
 `addbooking INDEX d/DESCRIPTION dt/dd/mm/yyyy HHmm p/PACKAGE [t/TAG]…`
 
 **Notes:**
+
 - The INDEX refers to the client’s index in the displayed list.
 - Each booking is tied to a client entry.
 - Tags can represent the booking type, theme, or location.
@@ -176,7 +182,8 @@ Marks a booking as Paid.
 `markbooking INDEX`
 
 **Notes:**  
-The INDEX refers to the booking number displayed in the booking list. This helps users track completed or settled payments.
+The INDEX refers to the booking number displayed in the booking list. This helps users track completed or settled
+payments.
 
 **Example:**  
 `markbooking 1`
@@ -201,6 +208,7 @@ Edits details of a client in InSight.
 `edit INDEX n/NAME p/PHONE e/EMAIL s/STATUS [a/ADDRESS] [t/TAG]…`
 
 **Notes:**
+
 - The INDEX refers to the client’s position in the displayed list.
 - At least one optional field must be provided.
 - Editing tags will overwrite previous tags.
@@ -219,6 +227,7 @@ Edits details of an existing booking.
 `editbooking INDEX d/DESCRIPTION dt/DATETIME p/PACKAGE [t/TAG]…`
 
 **Notes:**
+
 - The INDEX refers to the booking index in the booking list.
 - You can update multiple fields at once.
 - To clear all tags, type `t/` without specifying any.
@@ -235,6 +244,7 @@ Deletes a client from the InSight database.
 `delete INDEX`
 
 **Notes:**
+
 - Deletes the client at the specified index from the client list.
 - All related bookings remain in the system unless deleted manually.
 
@@ -264,6 +274,7 @@ or
 `find status STATUS [MORE_STATUSES]`
 
 **Notes:**
+
 - Search is case-insensitive.
 - The order of keywords does not matter.
 - Returns any client matching one or more keywords (OR search).
@@ -314,7 +325,8 @@ Clears all clients and bookings from InSight.
 
 The command clears InSight immediately, there is no confirmation button.
 
-> ⚠️ **Warning:** This permanently deletes **all clients and bookings** from InSight. It **cannot be undone**. Back up your data (copy the `.json` data file) before running `clear`.
+> ⚠️ **Warning:** This permanently deletes **all clients and bookings** from InSight. It **cannot be undone**. Back up
+> your data (copy the `.json` data file) before running `clear`.
 
 **Format:**  
 `clear`
@@ -349,7 +361,6 @@ Closes the InSight application.
 
 ### 1. Client Status
 
-
 | Status    | Meaning                                                                        | Typical Use Case                                       |
 |-----------|--------------------------------------------------------------------------------|--------------------------------------------------------|
 | PROSPECT  | A potential client who has expressed interest but not confirmed a booking yet. | New lead from social media, email, or inquiry form.    |
@@ -360,26 +371,34 @@ Closes the InSight application.
 
 ### 2. Package Types
 
-| Package Type | Short Description                                                                  |
-|--------------|------------------------------------------------------------------------------------|
-| PORTRAIT     | Individual or couple portraits, studio or on-location, with light retouching.      |
-| FAMILY       | Candid and posed family session; multi-generation friendly, on-location or studio. |
-| EVENT        | Coverage of corporate/social events with highlights, details, and guest candids.   |
-| WEDDING      | Half- or full-day coverage of preparations, ceremony, portraits, and reception.    |
-| CORPORATE    | Professional headshots and office lifestyle imagery for brand and profiles.        |
-| PRODUCT      | Clean e-commerce/product images with multiple angles and simple styling.           |
-| MATERNITY    | Artistic maternity session focused on mom-to-be; partner optional.                 |
-| BABY         | Newborn/infant session at home or studio; safety-first posing and lifestyle.       |
-| GRADUATION   | Cap-and-gown portraits and family moments on campus or in studio.                  |
-| BIRTHDAY     | Party coverage including cake-cutting, decor, activities, and guest candids.       |
-| ANNIVERSARY  | Couple session celebrating milestones; candid and editorial-style portraits.       |
-| OTHER        | Custom brief—share your idea and we’ll tailor coverage to fit.                     |
-                    |
+Set the Package Type when creating or editing a booking. The following are some pre-defined Package Types:
 
+| Package Type | Short Description                                                                                          |
+|--------------|------------------------------------------------------------------------------------------------------------|
+| PORTRAIT     | Individual or couple portraits, studio or on-location, with light retouching.                              |
+| FAMILY       | Candid and posed family session; multi-generation, on-location or studio.                                  |
+| EVENT        | Coverage of corporate/social events with highlights, details                                               |
+| WEDDING      | Half- or full-day coverage of preparations, ceremony, portraits, and reception.                            |
+| CORPORATE    | Professional headshots and office lifestyle imagery for brand and profiles.                                |
+| PRODUCT      | Clean e-commerce/product images with multiple angles and simple styling.                                   |
+| MATERNITY    | Artistic maternity session focused on mom-to-be; partner optional.                                         |
+| BABY         | Newborn/infant session at home or studio; safety-first posing and lifestyle.                               |
+| GRADUATION   | Cap-and-gown portraits and family moments on campus or in studio.                                          |
+| BIRTHDAY     | Party coverage including cake-cutting, decor, activities                                                   |
+| ANNIVERSARY  | Couple session; candid and editorial-style portraits.                                                      |
+| OTHER        | A Package type not covered by InSight's predefined list. The actual type can be specified as a Tag instead |
+
+
+> 💡 **Tip:**
+> Use one primary type per booking. Add specifics or package types not defined as [Tags](#3-tag) instead. You can change
+> the type later if the scope
+> shifts
 
 ### 3. Tag
-Short, user-defined labels you attach to Clients and Bookings to surface specific details at a glance. 
+
+Short, user-defined labels you attach to Clients and Bookings to surface specific details at a glance.
 The app does not enforce meaning — they are up to the user to define as they see fit.
+
 #### Good practices
 
 Keep tags short and consistent (prefer lowercase; use hyphens for multi-word tags).
@@ -408,50 +427,35 @@ The INDEX parameter refers to the numeric position of an entry (client or bookin
 
 InSight automatically saves all changes to disk after each command. No manual saving is required.
 
-
 ---
 
 ## ❔ Frequently Asked Questions (FAQ)
 
 **Q: Where is my data stored?**  
-**A:** InSight saves to a JSON file in the `data/` folder (same directory as the app). If the file doesn’t exist, it’s created on first run.  
+**A:** InSight saves to a JSON file in the `data/` folder (same directory as the app). If the file doesn’t exist, it’s
+created on first run.  
 💡 *Tip:* Keep the whole `data/` folder together when moving machines.
 
 **Q: How do I transfer data to another computer?**  
-**A:** Close InSight → copy the entire `data/` folder from the source machine → paste it beside the app on the target machine → start InSight.  
+**A:** Close InSight → copy the entire `data/` folder from the source machine → paste it beside the app on the target
+machine → start InSight.  
 💡 *Tip:* If you only need the core records, copy the `.json` data file inside `data/`.
 
 **Q: How do I back up and restore my data?**  
 **A:** Back up by copying `data/` to a safe location. Restore by replacing the current `data/` with your backup copy.  
 ⚠️ *Note:* Always close InSight before replacing files.
 
-**Q: What if the app says my JSON is corrupted?**  
-**A:** InSight will refuse to load malformed JSON. Restore from a backup, or open the file in a text editor and fix the last edited entry.  
-💡 *Tip:* Validate the file with any JSON linter before relaunching.
-
-**Q: Can I sync data with cloud services (Drive/Dropbox)?**  
-**A:** Yes—sync the *entire* `data/` folder. Avoid opening InSight on two computers at the same time to prevent conflicts.
-
-**Q: Does InSight autosave?**  
-**A:** Yes. Changes are written to disk after each successful command. No manual “save” needed.
+**Q: Why does InSight not show any clients or bookings?**  
+**A:** InSight will refuse to load data that is corrupted. Data will not be corrupted unless the user modifies the data
+file.
+Go into the data file and check if there are any errors or undo any edits done in the data file.
 
 **Q: How are bookings linked to clients?**  
 **A:** Each booking references a client in your People list. Delete/rename clients carefully—bookings depend on them.  
 💡 *Tip:* Prefer editing a client over deleting to preserve booking history.
 
-**Q: What do booking statuses mean?**  
-**A:** Common statuses include `PENDING`, `CONFIRMED`, `COMPLETED`, `CANCELLED`, `NO_SHOW`. Teams may add others if configured.  
-💡 *Tip:* Keep your status set small and consistent for easier filtering.
-
 **Q: How do I find things quickly?**  
-**A:** Use `find`/`filter` with fields (e.g., name, tag, status, date). Combine terms to narrow results.
-
-**Q: How do I undo/redo mistakes?**  
-**A:** Use `undo` to revert the last valid change and `redo` to re-apply it (where supported).  
-⚠️ *Note:* Not all view-only actions are undoable.
-
-**Q: Will updating the app erase my data?**  
-**A:** No. Updates don’t touch your `data/` folder. Still, back up before major upgrades.
+**A:** Use `find` with fields (e.g., name, status). Combine terms to narrow results.
 
 **Q: What Java version do I need?**  
 **A:** Java 17 or later.  
@@ -460,29 +464,7 @@ InSight automatically saves all changes to disk after each command. No manual sa
 **Q: Can I keep separate profiles (e.g., work vs personal)?**  
 **A:** Yes. Create separate app folders, each with its own `data/`. Launch the one you need.
 
-**Q: Where are logs for troubleshooting?**  
-**A:** Check the `logs/` folder next to the app. Attach the latest log when reporting issues.
-
-**Q: How do I reset to a clean slate?**  
-**A:** Close InSight → rename or remove the current `data/` folder → relaunch (a fresh data set is generated).  
-⚠️ *Note:* This is destructive—back up first.
-
 **Q: Why can’t I delete a client with existing bookings?**  
 **A:** To protect data integrity. Delete or reassign those bookings first, then remove the client.
-
-**Q: Can I export my data?**  
-**A:** Yes—your live store is already JSON. Copy the main `.json` file for export; you can convert JSON to CSV with external tools if needed.
-
-**Q: How do I report a bug or request a feature?**  
-**A:** Include app version, OS, steps to reproduce, and the latest `logs/` file. Clear, minimal steps help us fix it faster.
-
----
-
-## ⚠️ Known Issues
-
-- Moving the GUI to another monitor may cause positioning errors on reopen.
-- If the Help Window is minimized, running `help` again will not reopen it automatically.
-
----
 
 > © 2025 InSight Team. Built upon SE-EDU AddressBook Level 3.
