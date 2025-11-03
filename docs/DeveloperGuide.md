@@ -182,20 +182,21 @@ How the parsing works:
 
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+Here's a (partial) class diagram of the `Model` component:
 
-<puml src="diagrams/ModelClassDiagram.puml" width="450" />
+<puml src="diagrams/ModelClassDiagram.puml" width="600" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the address book data i.e., all `Person` and `Booking` objects (which are contained in a `UniquePersonList` object and a `UniqueBookingList` object respectively).
+* stores the currently 'selected' `Person` and `Booking` objects (e.g., results of a search query) as separate _filtered_ lists which is exposed to outsiders as an unmodifiable `ObservableList<Person>` and an `ObservableList<Booking>` that can be 'observed' e.g. the UI can be bound to these lists so that the UI automatically updates when the data in the lists change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <box type="info" seamless>
 
-**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+**Note:** A booking object is initialised by copying the Name object of an existing Person, hence Booking has an association to the Person Class through the copied Name object.`Person` objects are uniquely identified by their `Name`, while `Booking` objects are uniquely identified by their `DateTime`. The following class diagram shows the different classes `Person` and `Booking` are composed by.
 
 <puml src="diagrams/BetterModelClassDiagram.puml" width="450" />
 
@@ -366,41 +367,62 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​               | I can …​                                | So that I can…​                                             |
-|----------|-----------------------|-----------------------------------------|-------------------------------------------------------------|
-| `* * *`  | user                  | add client contact information          | have all my contacts in one place                           |
-| `* * *`  | user                  | delete client contact information       | remove unnecessary contacts                                 |
-| `* * *`  | user                  | edit client contact information         | correct errors in original entries                          |
-| `* * *`  | user                  | add bookings for each client            | track past and upcoming bookings with my clients            |
-| `* * *`  | user                  | mark bookings                           | track which bookings have been completed                    |
-| `* * *`  | user                  | view booking details                    | be informed and prepared with upcoming bookings             |
-| `* * *`  | user                  | edit bookings                           | update the booking if a change is discussed with the client |
-| `* * *`  | user                  | delete bookings                         | remove unwanted bookings                                    |
-| `* * *`  | new user              | view available commands                 | be reminded of commands available if I forget them          |
-| `* *`    | time-constrained user | search for a client quickly             | save time searching for client details                      |
-| `* *`    | detail-oriented user  | add tags to bookings                    | record additional details for the booking                   |
-| `* *`    | new user              | clear sample data with a simple command | start afresh with my own clients                            |
-| `* *`    | user                  | add tags to clients                     | filter and group clients                                    |
-| `* *`    | user                  | undo my last action                     | rectify a mistake quickly                                   |
-| `* *`    | user                  | archive inactive clients                | main client list is clean                                   |
-| `* *`    | user                  | set booking priority                    | manage my workload                                          |
-| `* *`    | user                  | reschedule bookings easily              | handle client changes quickly                               |
-| `*`      | busy user             | get reminded about my upcoming bookings | not miss important appointments                             |
-| `*`      | user                  | see booking statistics                  | manage and plan for future workload                         |
-| `*`      | user                  | view a dashboard of upcoming bookings   | plan my schedule for the near future                        |
-| `*`      | user                  | view recent clients                     | find them easily                                            |
+| Priority | As a …​                | I can …​                                | So that I can…​                                             |
+|----------|------------------------|-----------------------------------------|-------------------------------------------------------------|
+| `* * *`  | user                   | add client contact information          | have all my contacts in one place                           |
+| `* * *`  | user                   | delete client contact information       | remove unnecessary contacts                                 |
+| `* * *`  | user                   | edit client contact information         | correct errors in original entries                          |
+| `* * *`  | user                   | add bookings for each client            | track past and upcoming bookings with my clients            |
+| `* * *`  | user                   | mark bookings                           | track which bookings have been completed                    |
+| `* * *`  | user                   | view booking details                    | be informed and prepared with upcoming bookings             |
+| `* * *`  | user                   | edit bookings                           | update the booking if a change is discussed with the client |
+| `* * *`  | user                   | delete bookings                         | remove unwanted bookings                                    |
+| `* * *`  | new user               | view available commands                 | be reminded of commands available if I forget them          |
+| `* *`    | time-constrained user  | search for a client quickly             | save time searching for client details                      |
+| `* *`    | detail-oriented user   | add tags to bookings                    | record additional details for the booking                   |
+| `* *`    | new user               | clear sample data with a simple command | start afresh with my own clients                            |
+| `* *`    | user                   | add tags to clients                     | filter and group clients                                    |
+| `* *`    | busy user              | sort bookings by time                   | view upcoming bookings quickly                              |
+| `* *`    | user                   | undo my last action                     | rectify a mistake quickly                                   |
+| `* *`    | user                   | archive inactive clients                | main client list is clean                                   |
+| `* *`    | user                   | set booking priority                    | manage my workload                                          |
+| `* *`    | user                   | reschedule bookings easily              | handle client changes quickly                               |
+| `* *`    | user with many clients | sort clients by name                    | find clients without knowing their exact name               |
+| `*`      | busy user              | get reminded about my upcoming bookings | not miss important appointments                             |
+| `*`      | user                   | see booking statistics                  | manage and plan for future workload                         |
+| `*`      | user                   | view a dashboard of upcoming bookings   | plan my schedule for the near future                        |
+| `*`      | user                   | view recent clients                     | find them easily                                            |
 
 ### Use cases
 
 (For all use cases below, the **System** is `InSight` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use Case: Adding a Client**
+
+**Purpose:** Allow the user to add a client into the System.
+
+**MSS**
+1. User requests to add a client with a specified name, number, email and status.
+2. System saves client with the specified details.
+    
+   Use case ends
+
+**Extensions**
+* 2a. System detects an error in the entered details.
+    * 2a1. System shows an error message.  
+      Use case resumes from step 2.
+
+* 2b. System detects that the client to add is already in the system.
+    * 2b1. System indicates client already exists.
+      Use case resumes from step 2.
 
 **Use Case: Add a Tag to a Client**
 
 **Purpose:** Allow the user to add a tag to an existing client after finding the client.
 
 **MSS**
-1. User requests to list clients.
-2. System displays a list of clients.
+1. User requests to view all clients.
+2. System displays all clients.
 3. User searches for a specific client by name or status.
 4. System displays matching client(s).
 5. User requests to add a tag to a client of choice from the displayed client(s).
@@ -413,7 +435,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. System shows a message indicating no clients found.  
       Use case ends.
 
-* 5a. User selects an invalid client index.
+* 5a. System detects an error in the entered tag.
     * 5a1. System shows an error message.  
       Use case resumes from step 5.
 
@@ -423,20 +445,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Purpose:** Allow the user to edit details for a client’s existing booking.
 
 **MSS**
-1. User requests to list clients.
-2. System displays a list of clients.
-3. User requests to view a selected client's bookings from the list.
+1. User requests to view all clients.
+2. System displays all clients.
+3. User requests to view a selected client's bookings.
 4. System shows the client’s bookings.
-5. User selects a booking to edit and inputs edited booking details.
+5. User requests to edit a booking of choice with the edited booking details.
 6. System saves the updated booking details.
-
    Use case ends.
 
 **Extensions**
-* 3a. Client list is empty.  
+* 3a. Client has no bookings.  
   Use case ends.
 
-* 5a. User selects an invalid booking index.
+* 5a. System detects an error in the edited details.
     * 5a1. System shows an error message.  
       Use case resumes from step 3.
 
@@ -450,8 +471,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Purpose:** Allow the user to permanently delete a client’s profile.
 
 **MSS**
-1. User requests to list clients.
-2. System displays a list of clients.
+1. User requests to view all clients.
+2. System displays all clients.
 3. User selects a client to delete.
 4. System deletes the client’s profile.
 
@@ -461,12 +482,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. Client list is empty.  
   Use case ends.
 
-* 3a. User selects an invalid client index.
-    * 3a1. System shows an error message.  
-      Use case resumes from step 3.
-
-* 3b. User has undeleted bookings.
-    * 3b1. System indicates client has undeleted bookings.
+* 3a. Client has undeleted bookings.
+    * 3a1. System indicates client has undeleted bookings.
       Use case resumes from step 3.
 
 
@@ -475,20 +492,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Purpose:** Allow the user to view all stored information and related bookings for a specific client.
 
 **MSS**
-1. User requests to list clients.
-2. System displays the list of clients.
+1. User requests to view all clients.
+2. System displays all clients.
 3. User selects a client to view.
 4. System displays the selected client’s details and all associated bookings. 
 
     Use case ends.
 
 **Extensions:**
-* 2a. Client list is empty.
+* 2a. No clients in System.
       Use case ends.
 
-* 3a. User selects an invalid client index.
+* 3a. System detects an error in the selected client.
     * 3a1. System shows an error message.
-      Use case resumes from step 23
+      Use case resumes from step 3.
 
 
 ### Non-Functional Requirements
@@ -500,46 +517,46 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - The application must work on a computer that has only Java 17 installed (i.e., it must not require any other Java version).<br>
 
 3. **Portability**
-    - The software must be usable without requiring an installer; users should be able to run the JAR file directly.<br>
+- The software must be usable without requiring an installer; users should be able to run the JAR file directly.<br>
 
 4. **Single-User Design**
-    - The product must be designed for a single user and must not support multi-user access or concurrent data file usage.<br>
+- The product must be designed for a single user and must not support multi-user access or concurrent data file usage.<br>
 
 5. **Typing-Optimized Interface**
-    - The user interface must be optimized for users who type fast and prefer typing over other input methods.<br>
+- The user interface must be optimized for users who type fast and prefer typing over other input methods.<br>
 
 6. **Human-Editable File Format**
-    - All data must be stored locally in a human-editable text file format.<br>
+- All data must be stored locally in a human-editable text file format.<br>
 
 7. **No DBMS Usage**
-    - The application must not use a database management system (DBMS) such as MySQL to store data.<br>
+- The application must not use a database management system (DBMS) such as MySQL to store data.<br>
 
 8. **Object-Oriented Design**
-    - The software must primarily follow the object-oriented programming design.<br>
+- The software must primarily follow the object-oriented programming design.<br>
 
 9. **No Remote Server Dependency**
-    - The software must not depend on any remote server for its core functionality.<br>
+- The software must not depend on any remote server for its core functionality.<br>
 
 10. **Third-Party Libraries**
-    - Any third-party libraries used must be free, open-source, have permissive licenses, and must not require installation by the user.<br>
+- Any third-party libraries used must be free, open-source, have permissive licenses, and must not require installation by the user.<br>
 
 11. **Screen Resolution Support**
-    - The GUI must work well at 1920x1080 resolution and higher (at 100% and 125% scaling), and be usable at 1280x720 and higher (at 150% scaling).<br>
+- The GUI must work well at 1920x1080 resolution and higher (at 100% and 125% scaling), and be usable at 1280x720 and higher (at 150% scaling).<br>
 
 12. **Single-File Distribution**
-    - The application and all dependencies must be packaged into a single JAR file (or a single ZIP file if necessary).<br>
+- The application and all dependencies must be packaged into a single JAR file (or a single ZIP file if necessary).<br>
 
 13. **File Size Limitations**
-    - The JAR/ZIP file size must not exceed 100MB; PDF documentation files must not exceed 15MB each.<br>
+- The JAR/ZIP file size must not exceed 100MB; PDF documentation files must not exceed 15MB each.<br>
 
 14. **Performance**
-    - The application must load the client and booking list within 2 seconds for up to 1,000 clients, and must remain responsive during common operations.<br>
+- The application must load the client and booking list within 2 seconds for up to 1,000 clients, and must remain responsive during common operations.<br>
 
 15. **Reliability**
-    - The application should not crash during normal operations and must recover gracefully from unexpected errors.<br>
+- The application should not crash during normal operations and must recover gracefully from unexpected errors.<br>
 
 16. **Usability**
-    - The system should be easy to use for creative professionals with minimal training (<30 minutes).<br>
+- The system should be easy to use for creative professionals with minimal training (<30 minutes).<br>
 
 
 ### Glossary
@@ -547,10 +564,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Client**: A person or business that books photography or videography services.
 * **Booking**: A scheduled service or session requested by a client.
 * **Index**: A numeric position of a client or booking in a displayed list, used for commands.
-* **Status**: The stage of client engagement, see [Client Statuses](UserGuide.md#1-client-statuses)
+* **Status**: The stage of client engagement, see [Client Status](UserGuide.md#1-client-status).
 * **Package**: A predefined set of services offered to a client, see [Package Types](UserGuide.md#2-package-types).
-* **Tag**: A label that can be attached to a booking or client to help with categorization, see [Tag Keywords](UserGuide.md#3-tag-keywords)
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
+* **Tag**: A label that can be attached to a booking or client to help with categorization, see [Tag Keywords](UserGuide.md#3-tag-keywords).
+* **Mainstream OS**: Windows, Linux, Unix, macOS.
 * **Gradle**: The build automation tool used to manage dependencies, run builds, and execute tests.
 * **JavaFX**: A Java library for building graphical user interfaces (used for InSight’s UI).
 * **Human-Editable File**: A file format that users can open and modify without specialized software.
@@ -593,22 +610,22 @@ testers are expected to do more *exploratory* testing.
 
 ### Adding a client
 
-1. Adding a client with valid inputs
+**Adding a client with valid inputs**
 
-   1. Test case: `add n/Alice Tan p/98765432 e/alice@example.com s/PROSPECT`<br>
-      Expected: New client "Alice Tan" is added to the list. Details shown in the status message.<br>
+1. Test case: `add n/Alice Tan p/98765432 e/alice@example.com s/PROSPECT`<br>
+   Expected: New client "Alice Tan" is added to the list. Details shown in the status message.<br>
 
-1. Adding a client with invalid inputs
+**Adding a client with invalid inputs**
    
-    1. Test case: `add n/Charlie p/12345678 e/charlie@test.com s/INVALID`<br>
-      Expected: No client is added. Error message indicates status constraints. Valid statuses are shown.<br>
+1. Test case: `add n/Charlie p/12345678 e/charlie@test.com s/INVALID`<br>
+   Expected: No client is added. Error message indicates status constraints. Valid statuses are shown.<br>
 
-1. Adding a client - missing required parameters
+**Adding a client with missing required parameters**
    
-   1. Test case: `add n/Test`<br>
-      Expected: No client is added. Error message shows the correct format with all required parameters.
-   1. Other incorrect commands to try: `add p/12345678`, `add` (missing all parameters)<br>
-      Expected: Similar error messages showing required format.<br>
+1. Test case: `add n/Test`<br>
+   Expected: No client is added. Error message shows the correct format with all required parameters.
+2. Other incorrect commands to try: `add p/12345678`, `add` (missing all parameters)<br>
+   Expected: Similar error messages showing required format.<br>
 
 ### Listing all clients
 
@@ -617,57 +634,69 @@ testers are expected to do more *exploratory* testing.
 
 ### Editing a client
 
-Prerequisites: At least one client displayed. List all clients using the `list` command. 
+**Prerequisites:** At least one client displayed. List all clients using the `list` command. 
 
-1. Editing a client with valid inputs.
-   1. Test case: `edit 1 p/87654321`<br>
-      Expected: First client's phone is updated. Details shown in the status message.
-   2. Test case: `edit 1 p/87654321 e/newemail@example.com s/ACTIVE`<br>
-      Expected: First client's phone, email, and status are updated. Success message displayed.<br>
+**Editing a client with valid inputs**
 
-2. Editing a client with invalid inputs.
-   1. Test case: `edit 100000 n/James` (assuming list has less than 100000 clients)<br>
-      Expected: No client is edited. Error message indicates index is invalid.<br>
+1. Test case: `edit 1 p/87654321`<br>
+   Expected: First client's phone is updated. Details shown in the status message.
+2. Test case: `edit 1 p/87654321 e/newemail@example.com s/ACTIVE`<br>
+   Expected: First client's phone, email, and status are updated. Success message displayed.<br>
+
+**Editing a client with invalid inputs**
+
+1. Test case: `edit 100000 n/James` (assuming list has less than 100000 clients)<br>
+   Expected: No client is edited. Error message indicates index is invalid.<br>
 
 
 ### Finding clients
 
-Prerequisites: Have clients with various names in the list.
+**Prerequisites:** Have clients with various names in the list.
 
-1. Finding clients by name
-   1. Test case: `find name alice bob`<`br>
-      Expected: Lists all clients whose names contain "alice" or "bob" (case-insensitive). Number of matches shown.<br>
+**Finding clients by name**
 
-2. Finding clients by status
-   1. Test case: `find status active returning`<br>
-      Expected: Lists all clients with status ACTIVE or RETURNING. Number of matches shown.<br>
+1. Test case: `find name alice bob`<br>
+   Expected: Lists all clients whose names contain "alice" or "bob" (case-insensitive). Number of matches shown.<br>
 
-3. Finding clients with invalid inputs.
-   1. Test case: `find name`<br>
-      Expected: No search performed. Error message shows correct format requiring at least one keyword.
-   2. Test case: `find`<br>
-      Expected: Error message shows correct format with examples.<br>
+**Finding clients by status**
+
+1. Test case: `find status active returning`<br>
+   Expected: Lists all clients with status ACTIVE or RETURNING. Number of matches shown.<br>
+
+**Finding clients with invalid inputs**
+
+1. Test case: `find name`<br>
+   Expected: No search performed. Error message shows correct format requiring at least one keyword.
+2. Test case: `find`<br>
+   Expected: Error message shows correct format with examples.<br>
 
 ### Sorting clients alphabetically
 
-Prerequisites: Have at least 3 clients with different names in the list (e.g., "Charlie", "Alice", "Bob").
+**Prerequisites:** Have at least 3 clients with different names in the list (e.g., "Charlie", "Alice", "Bob").
 
 1. Test case: `sort`<br>
    Expected: All clients are sorted alphabetically by name (Alice, Bob, Charlie). Status message confirms sorting.<br>
 
 ## Deleting a client
 
-Prerequisites: Have at least one client displayed. List all clients using the `list` command.
+**Prerequisites:** Have at least one client displayed. List all clients using the `list` command.
 
-1. Deleting a client from the full list.
-    1. Test case: `delete 1`<br>
-       Expected: First client is deleted from the list. Details of the deleted client are shown in the status message. All associated bookings are also deleted.<br>
+**Deleting a client with no bookings from the full list**
 
-2. Deleting a client with invalid index.
-    1. Test case: `delete 0`<br>
-       Expected: No client is deleted. Error message indicates index must be positive.
-    2. Test case: `delete 100000` (assuming 100000 is larger than list size)<br>
-       Expected: Error message indicates index is out of range.<br>
+1. Test case: `delete 1`<br> 
+   Expected: First client is deleted from the list. Details of the deleted client are shown in the status message.<br>
+
+**Deleting a client with undeleted bookings from the full list**
+
+1. Test case: `delete 1`<br>
+   Expected: Error message indicates client has undeleted bookings, no client is deleted.<br>
+
+**Deleting a client with invalid index**
+
+1. Test case: `delete 0`<br>
+   Expected: No client is deleted. Error message indicates index must be positive.
+2. Test case: `delete 100000` (assuming 100000 is larger than list size)<br>
+   Expected: Error message indicates index is out of range.<br>
 
 ---
 
@@ -675,19 +704,21 @@ Prerequisites: Have at least one client displayed. List all clients using the `l
 
 ### Adding a booking
 
-Prerequisites: Have at least one client displayed. List all clients using the `list` command.
+**Prerequisites:** Have at least one client displayed. List all clients using the `list` command.
 
-1. Adding a booking with valid inputs.
-    1. Test case: `addbooking 1 d/Wedding Shoot dt/14/10/2025 1200 p/PORTRAIT t/outdoor t/summer`<br>
-       Expected: Booking added to the first client. Details shown in status message including booking index.<br>
+**Adding a booking with valid inputs**
 
-2. Adding a booking with invalid inputs.
-    1. Test case: `addbooking 1 d/Test dt/32/01/2025 1200 p/PORTRAIT`<br>
-       Expected: No booking is added. Error message indicates invalid date (day 32 does not exist).
-    2. Test case: `addbooking 100000 d/Test dt/14/10/2025 1200 p/PORTRAIT` (assuming 100000 is larger than list size)<br>
-       Expected: No booking is added. Error message indicates invalid client index.
-    3. Test case: `addbooking 1`<br>
-       Expected: No booking is added. Error message shows correct format with all required parameters.<br>
+1. Test case: `addbooking 1 d/Wedding Shoot dt/14/10/2025 1200 p/PORTRAIT t/outdoor t/summer`<br>
+   Expected: Booking added to the first client. Details shown in status message including booking index.<br>
+
+**Adding a booking with invalid inputs**
+
+1. Test case: `addbooking 1 d/Test dt/32/01/2025 1200 p/PORTRAIT`<br>
+   Expected: No booking is added. Error message indicates invalid date (day 32 does not exist).
+2. Test case: `addbooking 100000 d/Test dt/14/10/2025 1200 p/PORTRAIT` (assuming 100000 is larger than list size)<br>
+   Expected: No booking is added. Error message indicates invalid client index.
+3. Test case: `addbooking 1`<br>
+   Expected: No booking is added. Error message shows correct format with all required parameters.<br>
 
 ### Listing all bookings
 
@@ -696,79 +727,89 @@ Prerequisites: Have at least one client displayed. List all clients using the `l
 
 ### Viewing bookings for a client
 
-Prerequisites: Have at least one client displayed. List all clients using the `list` command.
+**Prerequisites:** Have at least one client displayed. List all clients using the `list` command.
 
-1. Viewing bookings for a client.
-    1. Test case: `viewbooking 1`<br>
-       Expected: Other clients hidden and all bookings for the first client are displayed. Number of bookings shown in status message.<br>
+**Viewing bookings for a client**
 
-2. Viewing bookings with invalid client index.
-    1. Test case: `viewbooking 0`<br>
-       Expected: Error message indicates invalid command format.
-    2. Test case: `viewbooking 100000` (assuming 100000 is larger than list size)<br>
-       Expected: Error message indicates index is out of range.<br>
+1. Test case: `viewbooking 1`<br>
+   Expected: Other clients hidden and all bookings for the first client are displayed. Number of bookings shown in status message.<br>
+
+**Viewing bookings with invalid client index**
+
+1. Test case: `viewbooking 0`<br>
+   Expected: Error message indicates invalid command format.
+2. Test case: `viewbooking 100000` (assuming 100000 is larger than list size)<br>
+   Expected: Error message indicates index is out of range.<br>
 
 ### Editing a booking
 
-Prerequisites: Have at least one booking displayed. List all bookings using the `listbooking` command.
+**Prerequisites:** Have at least one booking displayed. List all bookings using the `listbooking` command.
 
-1. Editing a booking with valid fields
-    1. Test case: `editbooking 1 d/Updated Description`<br>
-       Expected: First booking's description is updated. Details shown in status message.
-    2. Test case: `editbooking 1 d/Updated Description p/WEDDING dt/15/11/2025 1400`<br>
-       Expected: First booking's description, package, and datetime are updated. Success message displayed.<br>
+**Editing a booking with valid fields**
 
-2. Editing a booking with invalid fields.
-    1. Test case: `editbooking 1 dt/31/02/2025 1200`<br>
-       Expected: No booking is edited. Error message indicates invalid date (February 31 does not exist).
-    2. Test case: `editbooking 0 d/Test`<br>
-       Expected: No booking is edited. Error message indicates command format.<br>
+1. Test case: `editbooking 1 d/Updated Description`<br>
+   Expected: First booking's description is updated. Details shown in status message.
+2. Test case: `editbooking 1 d/Updated Description p/WEDDING dt/15/11/2025 1400`<br>
+   Expected: First booking's description, package, and datetime are updated. Success message displayed.<br>
+
+**Editing a booking with invalid fields**
+
+1. Test case: `editbooking 1 dt/31/02/2025 1200`<br>
+   Expected: No booking is edited. Error message indicates invalid date (February 31 does not exist).
+2. Test case: `editbooking 0 d/Test`<br>
+   Expected: No booking is edited. Error message indicates command format.<br>
 
 ### Marking/Unmarking a booking
 
-Prerequisites: Have at least one booking displayed. List all bookings using the `listbooking` command.
+**Prerequisites:** Have at least one booking displayed. List all bookings using the `listbooking` command.
 
-1. Marking a booking as paid.
-    1. Test case: `markbooking 1`<br>
-       Expected: First booking marked as "Paid". Status shows [X] in the booking list. Success message displayed.<br>
+**Marking a booking as paid**
 
-2. Unmarking a booking as not paid.
-    1. Test case: `unmarkbooking 1`<br>
-       Expected: First booking unmarked as "Not Paid". Status shows [ ] in the booking list. Success message displayed.<br>
+1. Test case: `markbooking 1`<br>
+   Expected: First booking marked as "Paid". Status shows [X] in the booking list. Success message displayed.<br>
 
-3. Marking/Unmarking a booking with invalid index.
-    1. Test case: `markbooking 0`<br>
-       Expected: Error message indicates invalid command format.
-    2. Test case: `unmarkbooking 100000` (assuming 100000 is larger than list size)<br>
-       Expected: Error message indicates index is invalid.<br>
+**Unmarking a booking as not paid**
+
+1. Test case: `unmarkbooking 1`<br>
+   Expected: First booking unmarked as "Not Paid". Status shows [ ] in the booking list. Success message displayed.<br>
+
+**Marking/Unmarking a booking with invalid index**
+
+1. Test case: `markbooking 0`<br>
+   Expected: Error message indicates invalid command format.
+2. Test case: `unmarkbooking 100000` (assuming 100000 is larger than list size)<br>
+   Expected: Error message indicates index is invalid.<br>
 
 ### Sorting bookings by date and time
 
-Prerequisites: Have at least 3 bookings with different dates and times.
+**Prerequisites:** Have at least 3 bookings with different dates and times.
 
 1. Test case: `sortbooking`<br>
    Expected: All bookings sorted by date and time in chronological order from today (earliest first). Past bookings are not shown. Status message confirms sorting.<br>
 
 ### Deleting a booking
 
-Prerequisites: Have at least one booking displayed. List all bookings using the `listbooking` command.
+**Prerequisites:** Have at least one booking displayed. List all bookings using the `listbooking` command.
 
-1. Deleting a booking from the full list.
-    1. Test case: `deletebooking 1`<br>
-       Expected: First booking is deleted. Details of the deleted booking shown in status message.<br>
+**Deleting a booking from the full list**
 
-2. Deleting a booking with invalid index.
-    1. Test case: `deletebooking 0`<br>
-       Expected: No booking is deleted. Error message indicates invalid command format.
-    2. Test case: `deletebooking 100000` (assuming 100000 is larger than list size)<br>
-       Expected: Error message indicates index is out of range.<br>
+1. Test case: `deletebooking 1`<br>
+   Expected: First booking is deleted. Details of the deleted booking shown in status message.<br>
+
+**Deleting a booking with invalid index**
+
+1. Test case: `deletebooking 0`<br>
+   Expected: No booking is deleted. Error message indicates invalid command format.
+2. Test case: `deletebooking 100000` (assuming 100000 is larger than list size)<br>
+   Expected: Error message indicates index is out of range.<br>
+
 ---
 
 ## General Commands
 
 ### Clearing all data
 
-Prerequisites: Have some clients and bookings in the system.
+**Prerequisites:** Have some clients and bookings in the system.
 
 1. Test case: `clear`<br>
    Expected: All clients and bookings are removed. InSight displays empty lists. Confirmation message shown.
