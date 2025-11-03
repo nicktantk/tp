@@ -685,7 +685,7 @@ testers are expected to do more *exploratory* testing.
 1. Test case: `sort`<br>
    Expected: All clients are sorted alphabetically by name (Alice, Bob, Charlie). Status message confirms sorting.<br>
 
-## Deleting a client
+### Deleting a client
 
 **Prerequisites:** Have at least one client displayed. List all clients using the `list` command.
 
