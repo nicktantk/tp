@@ -1,7 +1,7 @@
 ---
   layout: default.md
-    title: "InSight User Guide"
-    pageNav: 3
+  title: "InSight User Guide"
+  pageNav: 3
 ---
 
 # InSight User Guide
@@ -44,7 +44,7 @@ This user guide will walk you through the **key features** of the application, p
     - [Listing all Clients: `list`](#listing-all-clients-list)
     - [Listing all Bookings: `listbooking`](#listing-all-bookings-listbooking)
     - [Marking a Booking as Paid: `markbooking`](#marking-a-booking-as-paid-markbooking)
-    - [Marking a Booking as Not Paid: `unmarkbooking`](#marking-a-booking-as-unpaid-unmarkbooking)
+    - [Marking a Booking as Unpaid: `unmarkbooking`](#marking-a-booking-as-unpaid-unmarkbooking)
     - [Editing a Client: `edit`](#editing-a-client-edit)
     - [Editing a Booking: `editbooking`](#editing-a-booking-editbooking)
     - [Deleting a Client: `delete`](#deleting-a-client-delete)
