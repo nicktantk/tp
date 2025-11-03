@@ -57,7 +57,7 @@ public class Name {
         }
 
         String[] names = fullName.split("\\s+");
-        String[] namesToCompare = otherName.fullName.split("\\\s+");
+        String[] namesToCompare = otherName.fullName.split("\\s+");
         if (names.length != namesToCompare.length) {
             return false;
         }
