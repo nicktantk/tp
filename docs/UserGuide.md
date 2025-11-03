@@ -105,7 +105,7 @@ iii) Find active clients: `find status active`
 
 If you are unsure what each component of the Graphical User Interface (GUI) is for, refer to the image below!
 
-![LabelledUi.png](images/LabelledUi.png)
+![LabelledUi.png](images/LabelledUI.png)
 **<sub><i>Image: InSight's Graphical User Interface (GUI) with labels</i></sub>**
 
 ---
