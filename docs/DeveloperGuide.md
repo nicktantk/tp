@@ -42,7 +42,7 @@ This project was **forked** from [se-edu/addressbook-level3](https://github.com/
 - **ChatGPT (OpenAI)** — assisted with idea generation, conceptual explanations, and documentation drafting.  
   [https://chat.openai.com](https://chat.openai.com)
 - **GitHub Copilot** — provided inline code suggestions and boilerplate generation.  
-  [https://github.com/features/copilot](https://github.com/features/copilot)\
+  [https://github.com/features/copilot](https://github.com/features/copilot)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -196,7 +196,7 @@ The `Model` component,
 
 <box type="info" seamless>
 
-**Note:** A booking object is initialised by copying the Name object of an existing Person, hence Booking has an association to the Person Class through the copied Name object.`Person` objects are uniquely identified by their `Name`, while `Booking` objects are uniquely identified by their `DateTime`. The following class diagram shows the different classes `Person` and `Booking` are composed by.
+**Note:** A booking object is initialised by copying the Name object of an existing Person, hence Booking has an association to the Person Class through the copied Name object.`Person` objects are uniquely identified by their `Name`, while `Booking` objects are uniquely identified by their `DateTime`. The following class diagram shows the different classes that `Person` and `Booking` composes of.
 
 <puml src="diagrams/BetterModelClassDiagram.puml" width="450" />
 
