@@ -45,6 +45,9 @@ public class TypicalPersons {
     public static final Person GEORGE =
             new PersonBuilder().withName("George Best").withPhone("9482442").withEmail("anna@example.com")
                     .withAddress("4th street").withTags("Stupid").build();
+    public static final Person ALICEINLOWER =
+            new PersonBuilder().withName("alice pauline").withAddress("123, Jurong West Ave 6, #08-111")
+                    .withEmail("alice@example.com").withPhone("94351253").withTags("friends").build();
 
     // Manually added
     public static final Person HOON =
